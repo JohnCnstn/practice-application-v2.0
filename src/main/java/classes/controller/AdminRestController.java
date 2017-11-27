@@ -3,17 +3,11 @@ package classes.controller;
 import classes.data.detail.CustomUserDetail;
 import classes.data.dto.*;
 import classes.data.entity.User;
-import classes.data.service.FacultyService;
-import classes.data.service.HeadMasterService;
-import classes.data.service.StudentService;
-import classes.data.service.UniversityService;
-import classes.data.validation.exception.EmailExistsException;
-import classes.data.validation.exception.UserNameExistsException;
+import classes.data.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,6 +22,9 @@ public class AdminRestController {
     private HeadMasterService headMasterService;
 
     @Autowired
+    private PracticeService practiceService;
+
+    @Autowired
     private StudentService studentService;
 
     @Autowired
@@ -36,8 +33,8 @@ public class AdminRestController {
         this.facultyService = facultyService;
     }
 
-    @RequestMapping(value = "/postPractice", method = RequestMethod.POST)
-    public ResponseEntity<UniversityDto> postPractice(@RequestBody UniversityDto universityDto) {
+    @RequestMapping(value = "/postUniversity", method = RequestMethod.POST)
+    public ResponseEntity<UniversityDto> postUniversity(@RequestBody UniversityDto universityDto) {
         createUniversity(universityDto);
         return new ResponseEntity<>(universityDto, HttpStatus.OK);
     }
@@ -60,6 +57,12 @@ public class AdminRestController {
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/postPractice", method = RequestMethod.POST)
+    public ResponseEntity<PracticeDto> postPractice(@RequestBody PracticeDto practiceDto) {
+        createPractice(practiceDto);
+        return new ResponseEntity<>(practiceDto, HttpStatus.OK);
+    }
+
     private void createFaculty(FacultyDto facultyDto) {
         facultyService.registerNewFaculty(facultyDto);
     }
@@ -74,6 +77,10 @@ public class AdminRestController {
 
     private void createStudent(StudentDto studentDto) {
         studentService.registerStudent(studentDto);
+    }
+
+    private void createPractice(PracticeDto practiceDto) {
+        practiceService.registerNewPractice(practiceDto);
     }
 
     private User getPrincipal(){

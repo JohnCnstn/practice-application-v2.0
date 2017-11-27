@@ -28,11 +28,21 @@ public class PracticeServiceImpl implements PracticeService {
 
     @Override
     @Transactional
-    public Practice registerNewPractice(PracticeDto practiceDto, User user) {
+    public Practice registerPracticeWithHeadMaster(PracticeDto practiceDto, User user) {
         Practice practice = new Practice();
         practice.setStartDate(practiceDto.getStartDate());
         practice.setEndDate(practiceDto.getEndDate());
         practice.setHeadMaster(headMasterService.findOne(user.getId()));
+        return practiceRepository.save(practice);
+    }
+
+    @Override
+    @Transactional
+    public Practice registerNewPractice(PracticeDto practiceDto) {
+        Practice practice = new Practice();
+        practice.setStartDate(practiceDto.getStartDate());
+        practice.setEndDate(practiceDto.getEndDate());
+        practice.setHeadMaster(headMasterService.findOne(practiceDto.getHeadMasterId()));
         return practiceRepository.save(practice);
     }
 }

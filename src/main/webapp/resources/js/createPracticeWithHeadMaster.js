@@ -1,7 +1,7 @@
 $( document ).ready(function() {
 
     // SUBMIT FORM
-    $("#practiceForm").submit(function(event) {
+    $("#customerForm").submit(function(event) {
         // Prevent the form from submitting via the browser.
         event.preventDefault();
         ajaxPost();
@@ -10,15 +10,30 @@ $( document ).ready(function() {
 
     function ajaxPost(){
 
+        // var checked = $('#studentId').is(':checked');
+
         // PREPARE FORM DATA
 
         var formData;
 
         formData = {
-            startDate : $("#startDateAdmin").val(),
-            endDate :  $("#endDateAdmin").val(),
-            headMasterId :  $("#headMasterId").val()
+            startDate : $("#startDate").val(),
+            endDate :  $("#endDate").val()
         };
+
+        // if(checked) {
+        //      formData = {
+        //          startDate : $("#startDate").val(),
+        //          endDate :  $("#endDate").val(),
+        //          studentId : $("#studentId").val()
+        //     };
+        // } else {
+        //     formData = {
+        //         startDate : $("#startDate").val(),
+        //         endDate :  $("#endDate").val(),
+        //         studentId : $("#studentId").val()
+        //     };
+        // }
 
         $.ajax({
             type: "POST",
@@ -45,8 +60,7 @@ $( document ).ready(function() {
     }
 
     function resetData(){
-        $("#startDateAdmin").val("");
-        $("#endDateAdmin").val("");
-        $("#headMasterId").val("");
+        $("#startDate").val("");
+        $("#endDate").val("");
     }
 });

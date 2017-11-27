@@ -17,6 +17,7 @@
     <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/jquery.tablesorter.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/jquery.tablesorter.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/createPracticeWithHeadMaster.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/createPractice.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/createUniversity.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/createFaculty.js"/>"></script>
@@ -56,19 +57,6 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Practice application</a>
             </div>
-
-            <form:form name="form-Search" commandName="searchCriteria" action="admin" method="POST">
-
-                <div class="form-group">
-                    <form:label path="firstName" for="firstName">Your First Name:</form:label>
-                    <form:input path="firstName" type="text" name="firstName" class="form-control" id="firstName" required="required" placeholder="Pavel"/>
-                </div>
-
-                <button type="submit" class="btn navbar-btn" id="header-btn">
-                    Search
-                </button>
-
-            </form:form>
 
             <form:form action="logout" method="get">
                 <button type="submit" class="btn navbar-btn navbar-right" id="header-btn">
@@ -391,6 +379,93 @@
 
                 </div>
             </div>
+
+        </div>
+
+    </form:form>
+
+    <form:form name="form-Practice" commandName="practiceDto" method="POST" id="practiceForm">
+
+        <div class="container">
+
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#practiceModal">Create Practice</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="practiceModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Create practice</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <div id = "create_practice_admin">
+
+                                <div class="form-group">
+
+                                    <div class="form-group has-feedback">
+                                        <div class="form-group">
+                                            <div class="input-group date">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <form:label path="startDate" for="startDateAdmin">Start date of practice:</form:label>
+                                                <form:input path="startDate" type="date" class="form-control" id="startDateAdmin" required="required" placeholder="18:12:1997"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <div class="form-group has-feedback">
+                                        <div class="form-group">
+                                            <div class="input-group date">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <form:label path="endDate" for="endDateAdmin">End date of practice:</form:label>
+                                                <form:input path="endDate" type="date" class="form-control" id="endDateAdmin" required="required"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <label>Select HeadMaster:
+
+                                    <select id="headMasterId" name="headMasterId">
+                                        <c:forEach items="${listOfHeadMasters}" var="i">
+                                            <option value="${i.id}">${i.userName}</option>
+                                        </c:forEach>
+                                    </select>
+
+                                </label>
+
+                                <div class="sign-up button">
+                                    <input type="submit" value="Sign up" />
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                                <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
+                            <div class="col-sm-7" id="postResultDiv"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
 
         </div>
 

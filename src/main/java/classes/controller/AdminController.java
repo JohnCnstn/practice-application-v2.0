@@ -4,10 +4,7 @@ import classes.data.detail.CustomUserDetail;
 import classes.data.dto.*;
 import classes.data.entity.Student;
 import classes.data.entity.User;
-import classes.data.service.CompanyService;
-import classes.data.service.FacultyService;
-import classes.data.service.StudentService;
-import classes.data.service.UniversityService;
+import classes.data.service.*;
 import classes.objects.search.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,6 +31,9 @@ public class AdminController {
     @Autowired
     private CompanyService companyService;
 
+    @Autowired
+    private HeadMasterService headMasterService;
+
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String showUserPage(Model model) {
         model.addAttribute("user", getPrincipal());
@@ -45,16 +45,9 @@ public class AdminController {
         model.addAttribute("listOfCompanies", companyService.getAll());
         model.addAttribute("studentDto", new StudentDto());
         model.addAttribute("listOfFaculties", facultyService.getAll());
-        model.addAttribute("searchCriteria", new SearchCriteria());
+        model.addAttribute("practiceDto", new PracticeDto());
+        model.addAttribute("listOfHeadMasters", headMasterService.getAll());
         return "students";
-    }
-
-    @RequestMapping(value = "/admin", method = RequestMethod.POST)
-    public ModelAndView searchUser(@ModelAttribute("searchCriteria") SearchCriteria searchCriteria) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("student", searchStudent(searchCriteria));
-        modelAndView.setViewName("test");
-        return modelAndView;
     }
 
     @RequestMapping(value = "/admin/userInfo/{id}", method = RequestMethod.GET)

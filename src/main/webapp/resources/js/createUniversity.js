@@ -21,7 +21,7 @@ $( document ).ready(function() {
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: window.location + "/postPractice",
+            url: window.location + "/postUniversity",
             data: JSON.stringify(formData),
             dataType: 'json',
             success: function (result) {

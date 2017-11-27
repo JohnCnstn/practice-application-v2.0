@@ -5,6 +5,7 @@ import classes.data.dto.PracticeDto;
 import classes.data.entity.Student;
 import classes.data.entity.User;
 import classes.data.service.StudentService;
+import classes.objects.search.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -54,7 +55,7 @@ public class HeadMasterController {
 //
 //        createPractice(practiceDto);
 //
-//        registerNewPractice(practiceDto);
+//        registerPracticeWithHeadMaster(practiceDto);
 //
 //        setStudentOnPractice(user, practiceDto);
 //
@@ -77,7 +78,7 @@ public class HeadMasterController {
         userService.setStudentOnPractice(student, practiceDto);
     }
 
-//    private void registerNewPractice(PracticeDto practiceDto) {
-//        practiceService.registerNewPractice(practiceDto);
+//    private void registerPracticeWithHeadMaster(PracticeDto practiceDto) {
+//        practiceService.registerPracticeWithHeadMaster(practiceDto);
 //    }
 }

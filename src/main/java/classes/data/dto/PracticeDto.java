@@ -1,6 +1,5 @@
 package classes.data.dto;
 
-import classes.data.entity.HeadMaster;
 import classes.data.entity.User;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,5 +25,5 @@ public class PracticeDto {
 
     @Getter
     @Setter
-    private HeadMaster headMaster;
+    private long headMasterId;
 }
