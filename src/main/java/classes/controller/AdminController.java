@@ -2,15 +2,18 @@ package classes.controller;
 
 import classes.data.detail.CustomUserDetail;
 import classes.data.dto.*;
+import classes.data.entity.Student;
 import classes.data.entity.User;
 import classes.data.service.CompanyService;
 import classes.data.service.FacultyService;
 import classes.data.service.StudentService;
 import classes.data.service.UniversityService;
+import classes.objects.search.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,7 +45,16 @@ public class AdminController {
         model.addAttribute("listOfCompanies", companyService.getAll());
         model.addAttribute("studentDto", new StudentDto());
         model.addAttribute("listOfFaculties", facultyService.getAll());
+        model.addAttribute("searchCriteria", new SearchCriteria());
         return "students";
+    }
+
+    @RequestMapping(value = "/admin", method = RequestMethod.POST)
+    public ModelAndView searchUser(@ModelAttribute("searchCriteria") SearchCriteria searchCriteria) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("student", searchStudent(searchCriteria));
+        modelAndView.setViewName("test");
+        return modelAndView;
     }
 
     @RequestMapping(value = "/admin/userInfo/{id}", method = RequestMethod.GET)
@@ -65,22 +77,19 @@ public class AdminController {
 
     }
 
-    @RequestMapping(value = "/admin/sign-up", method = RequestMethod.GET)
-    public ModelAndView showRegisterHeadMaster() {
+    @RequestMapping(value = "/admin/test", method = RequestMethod.GET)
+    public ModelAndView test() {
+        return new ModelAndView("test");
+    }
 
-        ModelAndView model = new ModelAndView();
-
-        model.setViewName("sign-up");
-        model.addObject("user", new StudentDto());
-        model.addObject("company", new CompanyDto());
-        model.addObject("list", companyService.getAll());
-
-        return model;
-
+    private Student searchStudent(SearchCriteria searchCriteria) {
+        return studentService.getByFirstName(searchCriteria.getFirstName());
     }
 
     private User getPrincipal(){
         CustomUserDetail customUserDetail = (CustomUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return customUserDetail.getUser();
     }
+
+
 }

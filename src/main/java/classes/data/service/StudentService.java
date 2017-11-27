@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface StudentService {
     Student findOne(long id);
-    Student getByName(String name);
+    Student getByFirstName(String firstName);
     Student getByUserName(String studentName);
     void setStudentOnPractice(Student student, PracticeDto practiceDto);
     Student registerNewUserAccount(StudentDto accountDto, FacultyDto facultyDto) throws UserNameExistsException, EmailExistsException;

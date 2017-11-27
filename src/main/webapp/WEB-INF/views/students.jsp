@@ -57,6 +57,19 @@
                 <a class="navbar-brand" href="#">Practice application</a>
             </div>
 
+            <form:form name="form-Search" commandName="searchCriteria" action="admin" method="POST">
+
+                <div class="form-group">
+                    <form:label path="firstName" for="firstName">Your First Name:</form:label>
+                    <form:input path="firstName" type="text" name="firstName" class="form-control" id="firstName" required="required" placeholder="Pavel"/>
+                </div>
+
+                <button type="submit" class="btn navbar-btn" id="header-btn">
+                    Search
+                </button>
+
+            </form:form>
+
             <form:form action="logout" method="get">
                 <button type="submit" class="btn navbar-btn navbar-right" id="header-btn">
                     Logout
@@ -111,63 +124,7 @@
 
     </div>
 
-
-    <%--<sec:authorize access="hasRole('ADMIN')">--%>
-
-        <%--<form:form name="form-University" commandName="universityDto" action="sign-up" method="POST" id="universityForm">--%>
-
-            <%--<div id="test">--%>
-
-            <%--<div class="container">--%>
-
-                <%--<!-- Trigger the modal with a button -->--%>
-                <%--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#universityModal">Create University</button>--%>
-
-                <%--<!-- Modal -->--%>
-                <%--<div class="modal fade" id="universityModal" role="dialog">--%>
-                    <%--<div class="modal-dialog">--%>
-
-                        <%--<!-- Modal content-->--%>
-                        <%--<div class="modal-content">--%>
-                            <%--<div class="modal-header">--%>
-                                <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
-                                <%--<h4 class="modal-title">Create university</h4>--%>
-                            <%--</div>--%>
-                            <%--<div class="modal-body">--%>
-
-                                <%--<div id = "create_university">--%>
-
-                                    <%--<div class="form-group">--%>
-                                        <%--<form:label path="name" for="name">Your First Name:</form:label>--%>
-                                        <%--<form:input path="name" type="text" name="name" class="form-control" id="name" required="required" placeholder="Pavel"/>--%>
-                                    <%--</div>--%>
-
-                                    <%--<div class="sign-up button">--%>
-                                        <%--<input type="submit" value="Create" />--%>
-                                    <%--</div>--%>
-
-                                <%--</div>--%>
-
-                            <%--</div>--%>
-
-                            <%--<div class="modal-footer">--%>
-                                    <%--&lt;%&ndash;<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>&ndash;%&gt;--%>
-                                <%--<div class="col-sm-7" id="postResultDiv"></div>--%>
-                            <%--</div>--%>
-
-                        <%--</div>--%>
-
-                    <%--</div>--%>
-                <%--</div>--%>
-
-            <%--</div>--%>
-
-            <%--</div>--%>
-
-
-                <%--</form:form>--%>
-
-    <%--</sec:authorize>--%>
+    <%--<div id="test">--%>
 
 <sec:authorize access="hasRole('ADMIN')">
 
@@ -441,6 +398,8 @@
 
     </sec:authorize>
 
+    <%--</div>--%>
+
     <sec:authorize access="hasRole('HEAD_MASTER')">
 
         <form:form name="form-Customer" commandName="practiceDto" action="sign-up" method="POST" id="customerForm">
@@ -521,6 +480,5 @@
         </form:form>
 
     </sec:authorize>
-
 </body>
 </html>
