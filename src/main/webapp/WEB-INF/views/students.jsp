@@ -21,6 +21,7 @@
     <script type="text/javascript" src="<c:url value="/resources/js/createUniversity.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/createFaculty.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/createHeadMaster.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/createStudent.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/slideMenu/BootSlideMenu.js"/>"></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 
@@ -360,7 +361,7 @@
 
     </form:form>
 
-    <form:form name="form-CreateStudent" commandName="studentDto" action="sign-up" method="POST" id="createStudentForm">
+    <form:form name="form-CreateStudent" commandName="studentDto" method="POST" id="createStudentForm">
 
         <div class="container">
 
@@ -375,7 +376,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Create faculty</h4>
+                            <h4 class="modal-title">Create Student</h4>
                         </div>
                         <div class="modal-body">
 
@@ -384,30 +385,30 @@
                                 <div class="form-group">
 
                                     <div class="form-group">
-                                        <form:label path="firstName" for="firstName">Your First Name:</form:label>
-                                        <form:input path="firstName" type="text" name="firstName" class="form-control" id="firstName" required="required" placeholder="Pavel"/>
+                                        <form:label path="firstName" for="studentFirstName">Your First Name:</form:label>
+                                        <form:input path="firstName" type="text" class="form-control" id="studentFirstName" required="required" placeholder="Pavel"/>
                                     </div>
                                     <div class="form-group">
-                                        <form:label path="lastName" for="lastName">Your Last Name:</form:label>
-                                        <form:input path="lastName" type="text" name="lastName" class="form-control" id="lastName" required="required" placeholder="Khankevich"/>
+                                        <form:label path="lastName" for="studentLastName">Your Last Name:</form:label>
+                                        <form:input path="lastName" type="text" class="form-control" id="studentLastName" required="required" placeholder="Khankevich"/>
                                     </div>
                                     <div class="form-group">
-                                        <form:label path="userName" for="userName">Your username:</form:label>
-                                        <form:input path="userName" type="text" name="userName" class="form-control" id="userName" required="required" placeholder="Username"/>
+                                        <form:label path="userName" for="studentUserName">Your username:</form:label>
+                                        <form:input path="userName" type="text" class="form-control" id="studentUserName" required="required" placeholder="Username"/>
                                     </div>
                                     <div class="form-group">
-                                        <form:label path="email" for="email">Your email:</form:label>
-                                        <form:input path="email" type="text" name="email" class="form-control" id="email" required="required" placeholder="email"/>
+                                        <form:label path="email" for="studentEmail">Your email:</form:label>
+                                        <form:input path="email" type="text" class="form-control" id="studentEmail" required="required" placeholder="email"/>
                                     </div>
                                     <div class="form-group">
-                                        <form:label path="password" for="pwd">Your password:</form:label>
-                                        <form:input path="password" type="password" name="password" class="form-control" id="pwd" required="required" placeholder="Password"/>
+                                        <form:label path="password" for="studentPassword">Your password:</form:label>
+                                        <form:input path="password" type="password" class="form-control" id="studentPassword" required="required" placeholder="Password"/>
                                     </div>
 
                                     <label>Select a Company:
 
-                                        <select id="companyId" name="companyId">
-                                            <c:forEach items="${listOfCompanies}" var="i">
+                                        <select id="facultyId" name="facultyId">
+                                            <c:forEach items="${listOfFaculties}" var="i">
                                                 <option value="${i.id}">${i.name}</option>
                                             </c:forEach>
                                         </select>

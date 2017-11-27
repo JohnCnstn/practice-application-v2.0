@@ -55,7 +55,7 @@ public class StudentDto {
 
     @Getter
     @Setter
-    private Faculty faculty;
+    private long facultyId;
 
     @Getter
     @Setter

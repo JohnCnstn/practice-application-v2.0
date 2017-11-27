@@ -87,6 +87,28 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.save(student);
     }
 
+    @Transactional
+    @Override
+    public Student registerStudent(StudentDto studentDto) {
+
+        Student student = new Student();
+
+        Faculty faculty = facultyServiceImpl.findOne(studentDto.getFacultyId());
+
+        student.setFirstName(studentDto.getFirstName());
+        student.setLastName(studentDto.getLastName());
+        student.setEmail(studentDto.getEmail());
+        student.setUserName(studentDto.getUserName());
+
+        student.setPassword(bCryptPasswordEncoder.encode(studentDto.getPassword()));
+
+        student.setFaculty(faculty);
+
+        student.setUserProfile(userProfileService.getByType("STUDENT"));
+
+        return studentRepository.save(student);
+    }
+
     public void delete(long id) {
         studentRepository.delete(id);
     }

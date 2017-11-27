@@ -5,6 +5,7 @@ import classes.data.dto.*;
 import classes.data.entity.User;
 import classes.data.service.FacultyService;
 import classes.data.service.HeadMasterService;
+import classes.data.service.StudentService;
 import classes.data.service.UniversityService;
 import classes.data.validation.exception.EmailExistsException;
 import classes.data.validation.exception.UserNameExistsException;
@@ -27,6 +28,9 @@ public class AdminRestController {
     private HeadMasterService headMasterService;
 
     @Autowired
+    private StudentService studentService;
+
+    @Autowired
     public AdminRestController(UniversityService universityService, FacultyService facultyService) {
         this.universityService = universityService;
         this.facultyService = facultyService;
@@ -39,7 +43,7 @@ public class AdminRestController {
     }
 
     @RequestMapping(value = "/postFaculty", method = RequestMethod.POST)
-    public ResponseEntity<FacultyDto> postFaculty(@RequestBody FacultyDto facultyDto, UniversityDto universityDto) {
+    public ResponseEntity<FacultyDto> postFaculty(@RequestBody FacultyDto facultyDto) {
         createFaculty(facultyDto);
         return new ResponseEntity<>(facultyDto, HttpStatus.OK);
     }
@@ -48,6 +52,12 @@ public class AdminRestController {
     public ResponseEntity<HeadMasterDto> postHeadMaster(@RequestBody HeadMasterDto headMasterDto) {
         createHeadMasterAccount(headMasterDto);
         return new ResponseEntity<>(headMasterDto, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/postStudent", method = RequestMethod.POST)
+    public ResponseEntity<StudentDto> postStudent(@RequestBody StudentDto studentDto) {
+        createStudent(studentDto);
+        return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 
     private void createFaculty(FacultyDto facultyDto) {
@@ -60,6 +70,10 @@ public class AdminRestController {
 
     private void createHeadMasterAccount(HeadMasterDto headMasterDto) {
         headMasterService.registerNewHeadMasterAccount(headMasterDto);
+    }
+
+    private void createStudent(StudentDto studentDto) {
+        studentService.registerStudent(studentDto);
     }
 
     private User getPrincipal(){

@@ -4,6 +4,7 @@ import classes.data.detail.CustomUserDetail;
 import classes.data.dto.*;
 import classes.data.entity.User;
 import classes.data.service.CompanyService;
+import classes.data.service.FacultyService;
 import classes.data.service.StudentService;
 import classes.data.service.UniversityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class AdminController {
     private UniversityService universityService;
 
     @Autowired
+    private FacultyService facultyService;
+
+    @Autowired
     private CompanyService companyService;
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
@@ -37,6 +41,7 @@ public class AdminController {
         model.addAttribute("headMasterDto", new HeadMasterDto());
         model.addAttribute("listOfCompanies", companyService.getAll());
         model.addAttribute("studentDto", new StudentDto());
+        model.addAttribute("listOfFaculties", facultyService.getAll());
         return "students";
     }
 

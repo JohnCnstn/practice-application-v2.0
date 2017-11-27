@@ -15,17 +15,17 @@ $( document ).ready(function() {
         var formData;
 
         formData = {
-            firstName : $("#firstName").val(),
-            lastName : $("#lastName").val(),
-            userName : $("#userName").val(),
-            email : $("#email").val(),
-            password : $("#password").val()
+            firstName : $("#studentFirstName").val(),
+            lastName : $("#studentLastName").val(),
+            userName : $("#studentUserName").val(),
+            email : $("#studentEmail").val(),
+            password : $("#studentPassword").val()
         };
 
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: window.location + "/postHeadMaster",
+            url: window.location + "/postStudent",
             data: JSON.stringify(formData),
             dataType: 'json',
             success: function (result) {
@@ -47,10 +47,10 @@ $( document ).ready(function() {
     }
 
     function resetData(){
-        $("#firstName").val("");
-        $("#lastName").val("");
-        $("#userName").val("");
-        $("#email").val("");
-        $("#password").val("");
+        $("#studentFirstName").val("");
+        $("#studentLastName").val("");
+        $("#studentUserName").val("");
+        $("#studentEmail").val("");
+        $("#studentPassword").val("");
     }
 });
