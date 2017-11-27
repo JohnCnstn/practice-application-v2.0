@@ -461,6 +461,11 @@
                     <th></th>
                     <th><span>First Name</span></th>
                     <th><span>Second Name</span></th>
+                    <th><span>University</span></th>
+                    <th><span>Faculty</span></th>
+                    <th><span>Is budget</span></th>
+                    <th><span>Average score</span></th>
+                    <th><span><Status></Status></span></th>
                 </tr>
             </thead>
             <tbody id="myTable">
@@ -470,6 +475,11 @@
                         <td><input type="checkbox" id="studentId" name="${i.id}"/></td>
                         <td class='clickable-row' data-href="/head-master/userInfo/${i.id}">${i.firstName}</td>
                         <td>${i.lastName}</td>
+                        <td>${i.faculty.university.name}</td>
+                        <td>${i.faculty.name}</td>
+                        <td>${i.budget}</td>
+                        <td>${i.avgScore}</td>
+                        <td>${i.status}</td>
                         <td>
                             <sec:authorize access="hasRole('HEAD_MASTER')">
 
