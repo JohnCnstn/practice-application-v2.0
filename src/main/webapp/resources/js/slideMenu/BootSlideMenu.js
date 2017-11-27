@@ -110,25 +110,6 @@
             }
         });
 
-        menu.off("click", ".list-group-item");
-        menu.on("click", ".list-group-item", function () {
-            menu.find(".list-group-item").each(function () {
-                $(this).removeClass("active");
-            });
-            $(this).addClass("active");
-            $(".glyphicon", this).toggleClass("glyphicon-chevron-right").toggleClass("glyphicon-chevron-down");
-        });
-
-
-        menu.off("click", "a.list-group-item");
-        menu.on("click", "a.list-group-item", function () {
-            if (options.closeOnClick) {
-                if ($(this).attr("data-toggle") != "collapse") {
-                    closeMenu(true);
-                }
-            }
-        });
-
         function toggle() {
             if (menu.status == "opened") {
                 closeMenu(true);

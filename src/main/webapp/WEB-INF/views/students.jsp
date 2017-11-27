@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/admin.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/slideMenu/BootSlideMenu.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/slideMenu/slideMenu.css"/>">
 
     <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/jquery.tablesorter.js"/>"></script>
@@ -49,14 +49,400 @@
         });
     </script>
 
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
 </head>
 <body>
 
+<form:form name="form-University" commandName="universityDto" method="POST" id="universityForm">
+    <!-- Modal -->
+    <div class="modal fade" id="universityModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create university</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div id = "create_university">
+
+                        <div class="form-group">
+                            <form:label path="name" for="name">Your First Name:</form:label>
+                            <form:input path="name" type="text" name="name" class="form-control" id="name" required="required" placeholder="Pavel"/>
+                        </div>
+
+                        <div class="sign-up button">
+                            <input type="submit" value="Create" />
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
+                    <div class="col-sm-7" id="postResultDiv"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    </form:form>
+
     <div class="navbar navbar-default navbar-fixed-top">
+
         <div class="container">
+
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Practice application</a>
             </div>
+
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                <sec:authorize access="hasRole('ADMIN')">
+
+                        <div class="container">
+
+                            <!-- Trigger the modal with a button -->
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#universityModal">Create University</button>
+
+                        </div>
+
+                    <form:form name="form-Faculty" commandName="facultyDto" action="sign-up" method="POST" id="facultyForm">
+
+                        <div class="container">
+
+                            <!-- Trigger the modal with a button -->
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#facultyModal">Create Faculty</button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="facultyModal" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Create faculty</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div id = "create_faculty">
+
+                                                <div class="form-group">
+
+                                                    <label>Select a university:
+
+                                                        <select id="universityId" name="universityId">
+                                                            <c:forEach items="${list}" var="i">
+                                                                <option value="${i.id}">${i.name}</option>
+                                                            </c:forEach>
+                                                        </select>
+
+                                                    </label>
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <form:label path="name" for="facultyName">Your Faculty Name:</form:label>
+                                                    <form:input path="name" type="text" name="facultyName" class="form-control" id="facultyName" required="required" placeholder="FKSiS"/>
+                                                </div>
+
+                                                <div class="sign-up button">
+                                                    <input type="submit" value="Create" />
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                                <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
+                                            <div class="col-sm-7" id="postResultDiv"></div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </form:form>
+
+                    <form:form name="form-HeadMaster" commandName="headMasterDto" action="sign-up" method="POST" id="headMasterForm">
+
+                        <div class="container">
+
+                            <!-- Trigger the modal with a button -->
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#headMasterModal">Create Head Master</button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="headMasterModal" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Create faculty</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div id = "create_headMaster">
+
+                                                <div class="form-group">
+
+                                                    <div class="form-group">
+                                                        <form:label path="firstName" for="firstName">Your First Name:</form:label>
+                                                        <form:input path="firstName" type="text" name="firstName" class="form-control" id="firstName" required="required" placeholder="Pavel"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <form:label path="lastName" for="lastName">Your Last Name:</form:label>
+                                                        <form:input path="lastName" type="text" name="lastName" class="form-control" id="lastName" required="required" placeholder="Khankevich"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <form:label path="userName" for="userName">Your username:</form:label>
+                                                        <form:input path="userName" type="text" name="userName" class="form-control" id="userName" required="required" placeholder="Username"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <form:label path="email" for="email">Your email:</form:label>
+                                                        <form:input path="email" type="text" name="email" class="form-control" id="email" required="required" placeholder="email"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <form:label path="password" for="password">Your password:</form:label>
+                                                        <form:input path="password" type="password" name="password" class="form-control" id="password" required="required" placeholder="Password"/>
+                                                    </div>
+
+                                                    <label>Select a Company:
+
+                                                        <select id="companyId" name="companyId">
+                                                            <c:forEach items="${listOfCompanies}" var="i">
+                                                                <option value="${i.id}">${i.name}</option>
+                                                            </c:forEach>
+                                                        </select>
+
+                                                    </label>
+
+                                                </div>
+
+                                                <div class="sign-up button">
+                                                    <input type="submit" value="Create" />
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                                <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
+                                            <div class="col-sm-7" id="postResultDiv"></div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </form:form>
+
+                    <form:form name="form-CreateStudent" commandName="studentDto" method="POST" id="createStudentForm">
+
+                        <div class="container">
+
+                            <!-- Trigger the modal with a button -->
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#createStudentModal">Create Student</button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="createStudentModal" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Create Student</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div id = "create_student">
+
+                                                <div class="form-group">
+
+                                                    <div class="form-group">
+                                                        <form:label path="firstName" for="studentFirstName">Your First Name:</form:label>
+                                                        <form:input path="firstName" type="text" class="form-control" id="studentFirstName" required="required" placeholder="Pavel"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <form:label path="lastName" for="studentLastName">Your Last Name:</form:label>
+                                                        <form:input path="lastName" type="text" class="form-control" id="studentLastName" required="required" placeholder="Khankevich"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <form:label path="userName" for="studentUserName">Your username:</form:label>
+                                                        <form:input path="userName" type="text" class="form-control" id="studentUserName" required="required" placeholder="Username"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <form:label path="email" for="studentEmail">Your email:</form:label>
+                                                        <form:input path="email" type="text" class="form-control" id="studentEmail" required="required" placeholder="email"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <form:label path="password" for="studentPassword">Your password:</form:label>
+                                                        <form:input path="password" type="password" class="form-control" id="studentPassword" required="required" placeholder="Password"/>
+                                                    </div>
+
+                                                    <label>Select a Company:
+
+                                                        <select id="facultyId" name="facultyId">
+                                                            <c:forEach items="${listOfFaculties}" var="i">
+                                                                <option value="${i.id}">${i.name}</option>
+                                                            </c:forEach>
+                                                        </select>
+
+                                                    </label>
+
+                                                </div>
+
+                                                <div class="sign-up button">
+                                                    <input type="submit" value="Create" />
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                                <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
+                                            <div class="col-sm-7" id="postResultDiv"></div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </form:form>
+
+                    <form:form name="form-Practice" commandName="practiceDto" method="POST" id="practiceForm">
+
+                        <div class="container">
+
+                            <!-- Trigger the modal with a button -->
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#practiceModal">Create Practice</button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="practiceModal" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Create practice</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div id = "create_practice_admin">
+
+                                                <div class="form-group">
+
+                                                    <div class="form-group has-feedback">
+                                                        <div class="form-group">
+                                                            <div class="input-group date">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </div>
+                                                                <form:label path="startDate" for="startDateAdmin">Start date of practice:</form:label>
+                                                                <form:input path="startDate" type="date" class="form-control" id="startDateAdmin" required="required" placeholder="18:12:1997"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group">
+
+                                                    <div class="form-group has-feedback">
+                                                        <div class="form-group">
+                                                            <div class="input-group date">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </div>
+                                                                <form:label path="endDate" for="endDateAdmin">End date of practice:</form:label>
+                                                                <form:input path="endDate" type="date" class="form-control" id="endDateAdmin" required="required"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <label>Select HeadMaster:
+
+                                                    <select id="headMasterId" name="headMasterId">
+                                                        <c:forEach items="${listOfHeadMasters}" var="i">
+                                                            <option value="${i.id}">${i.userName}</option>
+                                                        </c:forEach>
+                                                    </select>
+
+                                                </label>
+
+                                                <div class="sign-up button">
+                                                    <input type="submit" value="Sign up" />
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                                <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
+                                            <div class="col-sm-7" id="postResultDiv"></div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </form:form>
+
+                </sec:authorize>
+
+            </div>
+
+            <span class="navbar-left" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
 
             <form:form action="logout" method="get">
                 <button type="submit" class="btn navbar-btn navbar-right" id="header-btn">
@@ -77,7 +463,7 @@
                     <th><span>Second Name</span></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="myTable">
 
                 <c:forEach items="${listOfStudents}" var="i">
                     <tr>
@@ -110,370 +496,9 @@
             </tbody>
         </table>
 
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+
     </div>
-
-    <%--<div id="test">--%>
-
-<sec:authorize access="hasRole('ADMIN')">
-
-    <form:form name="form-University" commandName="universityDto" action="sign-up" method="POST" id="universityForm">
-
-        <div class="container">
-
-            <!-- Trigger the modal with a button -->
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#universityModal">Create University</button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="universityModal" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Create university</h4>
-                        </div>
-                        <div class="modal-body">
-
-                            <div id = "create_university">
-
-                                <div class="form-group">
-                                    <form:label path="name" for="name">Your First Name:</form:label>
-                                    <form:input path="name" type="text" name="name" class="form-control" id="name" required="required" placeholder="Pavel"/>
-                                </div>
-
-                                <div class="sign-up button">
-                                    <input type="submit" value="Create" />
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="modal-footer">
-                                <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
-                            <div class="col-sm-7" id="postResultDiv"></div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-
-
-        </div>
-
-    </form:form>
-
-    <form:form name="form-Faculty" commandName="facultyDto" action="sign-up" method="POST" id="facultyForm">
-
-        <div class="container">
-
-            <!-- Trigger the modal with a button -->
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#facultyModal">Create Faculty</button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="facultyModal" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Create faculty</h4>
-                        </div>
-                        <div class="modal-body">
-
-                            <div id = "create_faculty">
-
-                                <div class="form-group">
-
-                                        <label>Select a university:
-
-                                            <select id="universityId" name="universityId">
-                                                <c:forEach items="${list}" var="i">
-                                                    <option value="${i.id}">${i.name}</option>
-                                                </c:forEach>
-                                            </select>
-
-                                        </label>
-
-                                </div>
-
-                                <div class="form-group">
-                                    <form:label path="name" for="facultyName">Your Faculty Name:</form:label>
-                                    <form:input path="name" type="text" name="facultyName" class="form-control" id="facultyName" required="required" placeholder="FKSiS"/>
-                                </div>
-
-                                <div class="sign-up button">
-                                    <input type="submit" value="Create" />
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="modal-footer">
-                                <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
-                            <div class="col-sm-7" id="postResultDiv"></div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-    </form:form>
-
-    <form:form name="form-HeadMaster" commandName="headMasterDto" action="sign-up" method="POST" id="headMasterForm">
-
-        <div class="container">
-
-            <!-- Trigger the modal with a button -->
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#headMasterModal">Create Head Master</button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="headMasterModal" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Create faculty</h4>
-                        </div>
-                        <div class="modal-body">
-
-                            <div id = "create_headMaster">
-
-                                <div class="form-group">
-
-                                    <div class="form-group">
-                                        <form:label path="firstName" for="firstName">Your First Name:</form:label>
-                                        <form:input path="firstName" type="text" name="firstName" class="form-control" id="firstName" required="required" placeholder="Pavel"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <form:label path="lastName" for="lastName">Your Last Name:</form:label>
-                                        <form:input path="lastName" type="text" name="lastName" class="form-control" id="lastName" required="required" placeholder="Khankevich"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <form:label path="userName" for="userName">Your username:</form:label>
-                                        <form:input path="userName" type="text" name="userName" class="form-control" id="userName" required="required" placeholder="Username"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <form:label path="email" for="email">Your email:</form:label>
-                                        <form:input path="email" type="text" name="email" class="form-control" id="email" required="required" placeholder="email"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <form:label path="password" for="password">Your password:</form:label>
-                                        <form:input path="password" type="password" name="password" class="form-control" id="password" required="required" placeholder="Password"/>
-                                    </div>
-
-                                    <label>Select a Company:
-
-                                        <select id="companyId" name="companyId">
-                                            <c:forEach items="${listOfCompanies}" var="i">
-                                                <option value="${i.id}">${i.name}</option>
-                                            </c:forEach>
-                                        </select>
-
-                                    </label>
-
-                                </div>
-
-                                <div class="sign-up button">
-                                    <input type="submit" value="Create" />
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="modal-footer">
-                                <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
-                            <div class="col-sm-7" id="postResultDiv"></div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-    </form:form>
-
-    <form:form name="form-CreateStudent" commandName="studentDto" method="POST" id="createStudentForm">
-
-        <div class="container">
-
-            <!-- Trigger the modal with a button -->
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#createStudentModal">Create Student</button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="createStudentModal" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Create Student</h4>
-                        </div>
-                        <div class="modal-body">
-
-                            <div id = "create_student">
-
-                                <div class="form-group">
-
-                                    <div class="form-group">
-                                        <form:label path="firstName" for="studentFirstName">Your First Name:</form:label>
-                                        <form:input path="firstName" type="text" class="form-control" id="studentFirstName" required="required" placeholder="Pavel"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <form:label path="lastName" for="studentLastName">Your Last Name:</form:label>
-                                        <form:input path="lastName" type="text" class="form-control" id="studentLastName" required="required" placeholder="Khankevich"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <form:label path="userName" for="studentUserName">Your username:</form:label>
-                                        <form:input path="userName" type="text" class="form-control" id="studentUserName" required="required" placeholder="Username"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <form:label path="email" for="studentEmail">Your email:</form:label>
-                                        <form:input path="email" type="text" class="form-control" id="studentEmail" required="required" placeholder="email"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <form:label path="password" for="studentPassword">Your password:</form:label>
-                                        <form:input path="password" type="password" class="form-control" id="studentPassword" required="required" placeholder="Password"/>
-                                    </div>
-
-                                    <label>Select a Company:
-
-                                        <select id="facultyId" name="facultyId">
-                                            <c:forEach items="${listOfFaculties}" var="i">
-                                                <option value="${i.id}">${i.name}</option>
-                                            </c:forEach>
-                                        </select>
-
-                                    </label>
-
-                                </div>
-
-                                <div class="sign-up button">
-                                    <input type="submit" value="Create" />
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="modal-footer">
-                                <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
-                            <div class="col-sm-7" id="postResultDiv"></div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-    </form:form>
-
-    <form:form name="form-Practice" commandName="practiceDto" method="POST" id="practiceForm">
-
-        <div class="container">
-
-            <!-- Trigger the modal with a button -->
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#practiceModal">Create Practice</button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="practiceModal" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Create practice</h4>
-                        </div>
-                        <div class="modal-body">
-
-                            <div id = "create_practice_admin">
-
-                                <div class="form-group">
-
-                                    <div class="form-group has-feedback">
-                                        <div class="form-group">
-                                            <div class="input-group date">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                                <form:label path="startDate" for="startDateAdmin">Start date of practice:</form:label>
-                                                <form:input path="startDate" type="date" class="form-control" id="startDateAdmin" required="required" placeholder="18:12:1997"/>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="form-group">
-
-                                    <div class="form-group has-feedback">
-                                        <div class="form-group">
-                                            <div class="input-group date">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                                <form:label path="endDate" for="endDateAdmin">End date of practice:</form:label>
-                                                <form:input path="endDate" type="date" class="form-control" id="endDateAdmin" required="required"/>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <label>Select HeadMaster:
-
-                                    <select id="headMasterId" name="headMasterId">
-                                        <c:forEach items="${listOfHeadMasters}" var="i">
-                                            <option value="${i.id}">${i.userName}</option>
-                                        </c:forEach>
-                                    </select>
-
-                                </label>
-
-                                <div class="sign-up button">
-                                    <input type="submit" value="Sign up" />
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="modal-footer">
-                                <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
-                            <div class="col-sm-7" id="postResultDiv"></div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-
-
-        </div>
-
-    </form:form>
-
-    </sec:authorize>
-
-    <%--</div>--%>
 
     <sec:authorize access="hasRole('HEAD_MASTER')">
 
