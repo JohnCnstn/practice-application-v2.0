@@ -1,16 +1,12 @@
 package classes.data.service.impl;
 
-import classes.data.dto.CompanyDto;
 import classes.data.dto.HeadMasterDto;
 import classes.data.dto.PracticeDto;
-import classes.data.dto.UserDto;
 import classes.data.entity.Company;
 import classes.data.entity.HeadMaster;
 import classes.data.entity.Student;
 import classes.data.repository.HeadMasterRepository;
 import classes.data.service.HeadMasterService;
-import classes.data.validation.exception.EmailExistsException;
-import classes.data.validation.exception.UserNameExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

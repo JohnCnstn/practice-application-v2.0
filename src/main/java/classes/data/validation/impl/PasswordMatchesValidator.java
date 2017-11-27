@@ -1,6 +1,6 @@
 package classes.data.validation.impl;
 
-import classes.data.dto.UserDto;
+import classes.data.dto.StudentDto;
 import classes.data.validation.PasswordMatches;
 
 import javax.validation.ConstraintValidator;
@@ -19,7 +19,7 @@ public class PasswordMatchesValidator implements ConstraintValidator<PasswordMat
     }
 
     private boolean passwordMatches(Object o) {
-        UserDto user = (UserDto) o;
+        StudentDto user = (StudentDto) o;
         return user.getPassword().equals(user.getMatchingPassword());
     }
 }

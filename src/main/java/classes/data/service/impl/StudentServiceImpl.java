@@ -2,7 +2,7 @@ package classes.data.service.impl;
 
 import classes.data.dto.FacultyDto;
 import classes.data.dto.PracticeDto;
-import classes.data.dto.UserDto;
+import classes.data.dto.StudentDto;
 import classes.data.entity.*;
 import classes.data.repository.StudentRepository;
 import classes.data.service.FacultyService;
@@ -59,7 +59,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Transactional
-    public Student registerNewUserAccount(UserDto accountDto, FacultyDto facultyDto) throws UserNameExistsException, EmailExistsException {
+    public Student registerNewUserAccount(StudentDto accountDto, FacultyDto facultyDto) throws UserNameExistsException, EmailExistsException {
 
         if (userNameExists(accountDto.getUserName())) {
             throw new UserNameExistsException("There is an account with that Username: "  + accountDto.getUserName());

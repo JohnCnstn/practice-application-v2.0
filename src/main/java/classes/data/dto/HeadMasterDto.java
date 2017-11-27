@@ -1,8 +1,5 @@
 package classes.data.dto;
 
-import classes.data.entity.Company;
-import classes.data.entity.Practice;
-import classes.data.validation.PasswordMatches;
 import lombok.Getter;
 import lombok.Setter;
 

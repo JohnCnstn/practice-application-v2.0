@@ -1,15 +1,9 @@
 package classes.data.service.impl;
 
 import classes.data.detail.CustomUserDetail;
-import classes.data.dto.FacultyDto;
-import classes.data.dto.PracticeDto;
-import classes.data.dto.UserDto;
 import classes.data.entity.*;
 import classes.data.repository.UserRepository;
-import classes.data.service.StudentService;
 import classes.data.service.UserService;
-import classes.data.validation.exception.EmailExistsException;
-import classes.data.validation.exception.UserNameExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

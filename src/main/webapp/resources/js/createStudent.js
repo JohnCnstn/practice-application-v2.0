@@ -1,7 +1,7 @@
 $( document ).ready(function() {
 
     // SUBMIT FORM
-    $("#headMasterForm").submit(function(event) {
+    $("#createStudentForm").submit(function(event) {
         // Prevent the form from submitting via the browser.
         event.preventDefault();
         ajaxPost();
@@ -19,8 +19,7 @@ $( document ).ready(function() {
             lastName : $("#lastName").val(),
             userName : $("#userName").val(),
             email : $("#email").val(),
-            password : $("#password").val(),
-            companyId : $("#companyId").val()
+            password : $("#password").val()
         };
 
         $.ajax({
@@ -53,6 +52,5 @@ $( document ).ready(function() {
         $("#userName").val("");
         $("#email").val("");
         $("#password").val("");
-        $("#companyId").val("");
     }
 });

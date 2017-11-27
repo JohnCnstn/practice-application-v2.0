@@ -322,6 +322,84 @@
                                         <form:input path="email" type="text" name="email" class="form-control" id="email" required="required" placeholder="email"/>
                                     </div>
                                     <div class="form-group">
+                                        <form:label path="password" for="password">Your password:</form:label>
+                                        <form:input path="password" type="password" name="password" class="form-control" id="password" required="required" placeholder="Password"/>
+                                    </div>
+
+                                    <label>Select a Company:
+
+                                        <select id="companyId" name="companyId">
+                                            <c:forEach items="${listOfCompanies}" var="i">
+                                                <option value="${i.id}">${i.name}</option>
+                                            </c:forEach>
+                                        </select>
+
+                                    </label>
+
+                                </div>
+
+                                <div class="sign-up button">
+                                    <input type="submit" value="Create" />
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                                <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
+                            <div class="col-sm-7" id="postResultDiv"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </form:form>
+
+    <form:form name="form-CreateStudent" commandName="studentDto" action="sign-up" method="POST" id="createStudentForm">
+
+        <div class="container">
+
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#createStudentModal">Create Student</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="createStudentModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Create faculty</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <div id = "create_student">
+
+                                <div class="form-group">
+
+                                    <div class="form-group">
+                                        <form:label path="firstName" for="firstName">Your First Name:</form:label>
+                                        <form:input path="firstName" type="text" name="firstName" class="form-control" id="firstName" required="required" placeholder="Pavel"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <form:label path="lastName" for="lastName">Your Last Name:</form:label>
+                                        <form:input path="lastName" type="text" name="lastName" class="form-control" id="lastName" required="required" placeholder="Khankevich"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <form:label path="userName" for="userName">Your username:</form:label>
+                                        <form:input path="userName" type="text" name="userName" class="form-control" id="userName" required="required" placeholder="Username"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <form:label path="email" for="email">Your email:</form:label>
+                                        <form:input path="email" type="text" name="email" class="form-control" id="email" required="required" placeholder="email"/>
+                                    </div>
+                                    <div class="form-group">
                                         <form:label path="password" for="pwd">Your password:</form:label>
                                         <form:input path="password" type="password" name="password" class="form-control" id="pwd" required="required" placeholder="Password"/>
                                     </div>

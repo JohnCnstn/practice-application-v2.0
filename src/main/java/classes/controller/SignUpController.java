@@ -1,10 +1,9 @@
 package classes.controller;
 
 import classes.data.dto.FacultyDto;
-import classes.data.dto.UserDto;
+import classes.data.dto.StudentDto;
 import classes.data.service.FacultyService;
 import classes.data.service.StudentService;
-import classes.data.service.impl.FacultyServiceImpl;
 import classes.data.validation.exception.EmailExistsException;
 import classes.data.validation.exception.UserNameExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ public class SignUpController {
         ModelAndView model = new ModelAndView();
 
         model.setViewName("sign-up");
-        model.addObject("user", new UserDto());
+        model.addObject("user", new StudentDto());
         model.addObject("faculty", new FacultyDto());
         model.addObject("list", facultyServiceImpl.getAll());
 
@@ -43,7 +42,7 @@ public class SignUpController {
 
     @RequestMapping(value = "/sign-up", method = RequestMethod.POST)
     public ModelAndView registerUserAccount(@ModelAttribute("faculty") FacultyDto facultyDto,
-            @Valid @ModelAttribute("user") UserDto accountDto,
+            @Valid @ModelAttribute("user") StudentDto accountDto,
             BindingResult result) {
 
         ModelAndView model = new ModelAndView();
@@ -61,7 +60,7 @@ public class SignUpController {
         return model;
     }
 
-    private void createUserAccount(UserDto accountDto, FacultyDto facultyDto, BindingResult result) {
+    private void createUserAccount(StudentDto accountDto, FacultyDto facultyDto, BindingResult result) {
         try {
             service.registerNewUserAccount(accountDto, facultyDto);
         } catch (UserNameExistsException e) {
