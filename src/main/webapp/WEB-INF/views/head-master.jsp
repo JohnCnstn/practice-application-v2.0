@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.css">
     <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
     <link rel="stylesheet" href="/resources/css/main.css">
-    <link rel="stylesheet" href="/resources/css/admin.css">
+    <link rel="stylesheet" href="/resources/css/tableStudent.css">
 
     <script type="text/javascript" src="/resources/js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="/resources/js/jquery.tablesorter.js"></script>

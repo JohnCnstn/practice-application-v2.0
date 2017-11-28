@@ -71,12 +71,8 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/test", method = RequestMethod.GET)
-    public ModelAndView test() {
-        return new ModelAndView("test");
-    }
-
-    private Student searchStudent(SearchCriteria searchCriteria) {
-        return studentService.getByFirstName(searchCriteria.getFirstName());
+    public String testAdmin() {
+        return "test";
     }
 
     private User getPrincipal(){

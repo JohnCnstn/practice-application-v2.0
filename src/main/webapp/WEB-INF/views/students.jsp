@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/admin.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/tableStudent.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/slideMenu/slideMenu.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/sideBar.css"/>">
 
     <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/jquery.tablesorter.js"/>"></script>
@@ -70,6 +71,37 @@
         });
     </script>
 
+    <script>
+        $(document).ready(function () {
+            var trigger = $('.hamburger'),
+                overlay = $('.overlay'),
+                isClosed = false;
+
+            trigger.click(function () {
+                hamburger_cross();
+            });
+
+            function hamburger_cross() {
+
+                if (isClosed == true) {
+                    overlay.hide();
+                    trigger.removeClass('is-open');
+                    trigger.addClass('is-closed');
+                    isClosed = false;
+                } else {
+                    overlay.show();
+                    trigger.removeClass('is-closed');
+                    trigger.addClass('is-open');
+                    isClosed = true;
+                }
+            }
+
+            $('[data-toggle="offcanvas"]').click(function () {
+                $('#wrapper').toggleClass('toggled');
+            });
+        });
+    </script>
+
 </head>
 <body>
 
@@ -116,6 +148,8 @@
     <div class="navbar navbar-default navbar-fixed-top">
 
         <div class="container">
+
+            <span class="navbar-left" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
 
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Practice application</a>
@@ -442,8 +476,6 @@
 
             </div>
 
-            <span class="navbar-left" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
-
             <form:form action="logout" method="get">
                 <button type="submit" class="btn navbar-btn navbar-right" id="header-btn">
                     Logout
@@ -455,7 +487,7 @@
 
     <div class="form-group" id="wrapper">
 
-        <table class="tablesorter" id="keywords" cellspacing="0" cellpadding="0">
+        <table class="table table-hover" id="keywords" cellspacing="0" cellpadding="0">
             <thead>
                 <tr>
                     <th></th>
@@ -465,7 +497,7 @@
                     <th><span>Faculty</span></th>
                     <th><span>Is budget</span></th>
                     <th><span>Average score</span></th>
-                    <th><span><Status></Status></span></th>
+                    <th><span>Status</span></th>
                 </tr>
             </thead>
             <tbody id="myTable">
