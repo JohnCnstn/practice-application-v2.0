@@ -32,16 +32,11 @@
 
         <div class="form-group" id="wrapper">
                 <div class="row">
-                        <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-                                <A href="edit.html" >Edit Profile</A>
-
-                                <p class=" text-info">May 05,2014,03:00 pm </p>
-                        </div>
                         <div class="col-lg-6 col-lg-offset-3" >
 
                                 <div class="panel panel-info">
                                         <div class="panel-heading">
-                                                <h3 class="panel-title">Sheena Shrestha</h3>
+                                                <h3 class="panel-title">${student.userName}</h3>
                                         </div>
                                         <div class="panel-body">
                                                 <div class="row">
@@ -62,6 +57,26 @@
                                                                                 <tr>
                                                                                         <td>Email:</td>
                                                                                         <td>${student.email}</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                        <td>University:</td>
+                                                                                        <td>${student.faculty.university.name}</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                        <td>Faculty:</td>
+                                                                                        <td>${student.faculty.name}</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                        <td>Is budget:</td>
+                                                                                        <td>${student.budget}</td>
+                                                                                </tr>
+
+                                                                                        <td>Average score:</td>
+                                                                                        <td>${student.avgScore}</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                        <td>Status:</td>
+                                                                                        <td>${student.status}</td>
                                                                                 </tr>
 
                                                                         </tbody>

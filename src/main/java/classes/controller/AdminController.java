@@ -53,7 +53,7 @@ public class AdminController {
     @RequestMapping(value = "/admin/userInfo/{id}", method = RequestMethod.GET)
     public ModelAndView showStudentInfo(@PathVariable("id") int id) {
 
-        User student = studentService.findOne(id);
+        Student student = studentService.findOne(id);
 
         ModelAndView model = new ModelAndView("student-info");
         model.addObject("student", student);
