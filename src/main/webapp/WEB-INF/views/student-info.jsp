@@ -11,8 +11,69 @@
         <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
         <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
         <script type="text/javascript" src="<c:url value="/resources/js/"/>"></script>
+        <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 </head>
 <body>
+
+<form:form name="form-SetOnPractice" commandName="practiceDto" method="POST" id="studentOnPracticeForm">
+
+        <div class="container">
+
+                <!-- Modal -->
+                <div class="modal fade" id="studentOnPracticeModal" role="dialog">
+                        <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                        <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Create faculty</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+                                                <div id = "create_faculty">
+
+                                                        <div class="form-group">
+
+                                                                <label>Select practice:
+
+                                                                        <select id="practiceId" name="practiceId">
+                                                                                <c:forEach items="${list}" var="i">
+                                                                                        <option value="${i.id}">${i.headMaster.company.name}</option>
+                                                                                </c:forEach>
+                                                                        </select>
+
+                                                                </label>
+
+                                                        </div>
+
+                                                        <%--<div class="form-group">--%>
+                                                                <%--<form:label path="name" for="facultyName">Your Faculty Name:</form:label>--%>
+                                                                <%--<form:input path="name" type="text" name="facultyName" class="form-control" id="facultyName" required="required" placeholder="FKSiS"/>--%>
+                                                        <%--</div>--%>
+
+                                                        <div class="btn btn-primary">
+                                                                <input type="submit" value="Create" />
+                                                        </div>
+
+                                                </div>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                                        <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
+                                                <div class="col-sm-7" id="postResultDiv"></div>
+                                        </div>
+
+                                </div>
+
+                        </div>
+                </div>
+
+        </div>
+
+</form:form>
+
         <div class="navbar navbar-default navbar-fixed-top">
 
                 <div class="container">
@@ -82,8 +143,10 @@
                                                                         </tbody>
                                                                 </table>
 
-                                                                <a href="#" class="btn btn-primary">My Sales Performance</a>
-                                                                <a href="#" class="btn btn-primary">Team Sales Performance</a>
+                                                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#studentOnPracticeModal">Set on practice</button>
+
+                                                                <%--<a href="#" class="btn btn-primary">My Sales Performance</a>--%>
+                                                                <%--<a href="#" class="btn btn-primary">Team Sales Performance</a>--%>
                                                         </div>
                                                 </div>
                                         </div>

@@ -34,6 +34,9 @@ public class AdminController {
     @Autowired
     private HeadMasterService headMasterService;
 
+    @Autowired
+    private PracticeService practiceService;
+
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String showUserPage(Model model) {
         model.addAttribute("user", getPrincipal());
@@ -51,20 +54,21 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/userInfo/{id}", method = RequestMethod.GET)
-    public ModelAndView showStudentInfo(@PathVariable("id") int id) {
+    public String showStudentInfo(@PathVariable("id") int id, @ModelAttribute("practiceDto") PracticeDto practiceDto, Model model) {
 
         Student student = studentService.findOne(id);
 
-        ModelAndView model = new ModelAndView("student-info");
-        model.addObject("student", student);
+        model.addAttribute("student", student);
+        model.addAttribute("list", practiceService.getAll());
+        model.addAttribute("practiceDto", practiceDto);
 
-        return model;
+        return "student-info";
     }
 
-    @RequestMapping(value = "/admin/userInfo/logout", method = RequestMethod.GET)
-    public String redirectToLogout() {
-        return "redirect:/login?logout=true";
-    }
+//    @RequestMapping(value = "/admin/userInfo/logout", method = RequestMethod.GET)
+//    public String redirectToLogout() {
+//        return "redirect:/login?logout=true";
+//    }
 
     @RequestMapping(value = "/admin/test", method = RequestMethod.GET)
     public String testAdmin() {
