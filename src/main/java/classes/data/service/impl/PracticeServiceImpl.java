@@ -42,6 +42,7 @@ public class PracticeServiceImpl implements PracticeService {
         Practice practice = new Practice();
         practice.setStartDate(practiceDto.getStartDate());
         practice.setEndDate(practiceDto.getEndDate());
+        practice.setQuantity(practiceDto.getQuantity());
         practice.setHeadMaster(headMasterService.findOne(practiceDto.getHeadMasterId()));
         return practiceRepository.save(practice);
     }

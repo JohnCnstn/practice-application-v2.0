@@ -31,6 +31,11 @@ public class Practice {
     @Setter
     private Date endDate;
 
+    @Column(name = "quantity")
+    @Getter
+    @Setter
+    private byte quantity;
+
     @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "student_id")
     @Getter

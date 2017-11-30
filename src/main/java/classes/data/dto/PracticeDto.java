@@ -21,6 +21,10 @@ public class PracticeDto {
 
     @Getter
     @Setter
+    private byte quantity;
+
+    @Getter
+    @Setter
     private User user;
 
     @Getter

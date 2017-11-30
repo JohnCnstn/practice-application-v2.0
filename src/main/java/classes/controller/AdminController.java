@@ -66,15 +66,6 @@ public class AdminController {
         return "redirect:/login?logout=true";
     }
 
-    @RequestMapping(value = "/admin/delete/{id}", method = RequestMethod.GET)
-    public ModelAndView deleteUser(@PathVariable("id") int id) {
-
-        studentService.delete(id);
-
-        return new ModelAndView("redirect:/admin");
-
-    }
-
     @RequestMapping(value = "/admin/test", method = RequestMethod.GET)
     public String testAdmin() {
         return "test";
@@ -84,6 +75,4 @@ public class AdminController {
         CustomUserDetail customUserDetail = (CustomUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return customUserDetail.getUser();
     }
-
-
 }

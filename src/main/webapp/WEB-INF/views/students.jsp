@@ -404,6 +404,11 @@
 
                                 </div>
 
+                                <div class="form-group">
+                                    <form:label path="quantity" for="quantity">Quantity of students:</form:label>
+                                    <form:input path="quantity" type="quantity" class="form-control" id="quantity" required="required"/>
+                                </div>
+
                                 <label>Select HeadMaster:
 
                                     <select id="headMasterId" name="headMasterId">
@@ -615,5 +620,6 @@
         </form:form>
 
     </sec:authorize>
+
 </body>
 </html>

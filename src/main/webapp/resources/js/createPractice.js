@@ -17,6 +17,7 @@ $( document ).ready(function() {
         formData = {
             startDate : $("#startDateAdmin").val(),
             endDate :  $("#endDateAdmin").val(),
+            quantity :  $("#quantity").val(),
             headMasterId :  $("#headMasterId").val()
         };
 
@@ -47,6 +48,7 @@ $( document ).ready(function() {
     function resetData(){
         $("#startDateAdmin").val("");
         $("#endDateAdmin").val("");
+        $("#quantity").val("");
         $("#headMasterId").val("");
     }
 });
