@@ -61,6 +61,11 @@ public class AdminController {
         return model;
     }
 
+    @RequestMapping(value = "/admin/userInfo/logout", method = RequestMethod.GET)
+    public String redirectToLogout() {
+        return "redirect:/login?logout=true";
+    }
+
     @RequestMapping(value = "/admin/delete/{id}", method = RequestMethod.GET)
     public ModelAndView deleteUser(@PathVariable("id") int id) {
 

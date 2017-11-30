@@ -16,11 +16,10 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    @RequestMapping(value = "/student", method = RequestMethod.GET)
     public String showUserPage(Model model) {
-        model.addAttribute("user", getPrincipal());
-        model.addAttribute("listOfStudents", studentService.getAll());
-        return "students";
+        model.addAttribute("student", studentService.getByUserName(getPrincipal().getUserName()));
+        return "student-info";
     }
 
     private User getPrincipal(){
