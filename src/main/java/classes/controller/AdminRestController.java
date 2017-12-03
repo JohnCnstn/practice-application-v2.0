@@ -25,6 +25,9 @@ public class AdminRestController {
     private PracticeService practiceService;
 
     @Autowired
+    private SpecialityService specialityService;
+
+    @Autowired
     private StudentService studentService;
 
     @Autowired
@@ -43,6 +46,12 @@ public class AdminRestController {
     public ResponseEntity<FacultyDto> postFaculty(@RequestBody FacultyDto facultyDto) {
         createFaculty(facultyDto);
         return new ResponseEntity<>(facultyDto, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/postSpeciality", method = RequestMethod.POST)
+    public ResponseEntity<SpecialityDto> postSpeciality(@RequestBody SpecialityDto specialityDto) {
+        createSpeciality(specialityDto);
+        return new ResponseEntity<>(specialityDto, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/postHeadMaster", method = RequestMethod.POST)
@@ -65,6 +74,10 @@ public class AdminRestController {
 
     private void createFaculty(FacultyDto facultyDto) {
         facultyService.registerNewFaculty(facultyDto);
+    }
+
+    private void createSpeciality(SpecialityDto specialityDto) {
+        specialityService.registerNewSpeciality(specialityDto);
     }
 
     private void createUniversity(UniversityDto universityDto) {

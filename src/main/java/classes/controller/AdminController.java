@@ -42,7 +42,7 @@ public class AdminController {
     public String showUserPage(Model model) {
         model.addAttribute("user", getPrincipal());
         model.addAttribute("listOfStudents", studentService.getAll());
-        model.addAttribute("list", universityService.getAll());
+        model.addAttribute("universityList", universityService.getAll());
         model.addAttribute("universityDto", new UniversityDto());
         model.addAttribute("facultyDto", new FacultyDto());
         model.addAttribute("headMasterDto", new HeadMasterDto());
@@ -50,6 +50,7 @@ public class AdminController {
         model.addAttribute("studentDto", new StudentDto());
         model.addAttribute("listOfFaculties", facultyService.getAll());
         model.addAttribute("practiceDto", new PracticeDto());
+        model.addAttribute("specialityDto", new SpecialityDto());
         model.addAttribute("listOfHeadMasters", headMasterService.getAll());
         model.addAttribute("specialityList", specialityService.getAll());
         return "students";

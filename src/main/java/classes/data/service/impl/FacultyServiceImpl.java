@@ -33,11 +33,7 @@ public class FacultyServiceImpl implements FacultyService {
         Faculty faculty = new Faculty();
         faculty.setName(facultyDto.getName());
 
-        System.out.println("ID => " + facultyDto.getUniversityId());
-
         University university = universityService.findOne(facultyDto.getUniversityId());
-
-        System.out.println("university => " + university.getName());
 
         faculty.setUniversity(university);
 

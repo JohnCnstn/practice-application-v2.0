@@ -24,6 +24,7 @@
     <script type="text/javascript" src="<c:url value="/resources/js/createFaculty.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/createHeadMaster.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/createStudent.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/createSpeciality.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/slideMenu/BootSlideMenu.js"/>"></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 
@@ -168,7 +169,7 @@
                                     <label>Select a university:
 
                                         <select id="universityId" name="universityId">
-                                            <c:forEach items="${list}" var="i">
+                                            <c:forEach items="${universityList}" var="i">
                                                 <option value="${i.id}">${i.name}</option>
                                             </c:forEach>
                                         </select>
@@ -180,6 +181,65 @@
                                 <div class="form-group">
                                     <form:label path="name" for="facultyName">Your Faculty Name:</form:label>
                                     <form:input path="name" type="text" name="facultyName" class="form-control" id="facultyName" required="required" placeholder="FKSiS"/>
+                                </div>
+
+                                <div class="sign-up button">
+                                    <input type="submit" value="Create" />
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                                <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
+                            <div class="col-sm-7" id="postResultDiv"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </form:form>
+
+    <form:form name="form-Speciality" commandName="specialityDto" action="sign-up" method="POST" id="specialityForm">
+
+        <div class="container">
+
+            <!-- Modal -->
+            <div class="modal fade" id="specialityModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Create speciality</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <div id = "create_speciality">
+
+                                <div class="form-group">
+
+                                    <label>Select a faculty:
+
+                                        <select id="facultyId" name="facultyId">
+                                            <c:forEach items="${listOfFaculties}" var="i">
+                                                <option value="${i.id}">${i.name}</option>
+                                            </c:forEach>
+                                        </select>
+
+                                    </label>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <form:label path="name" for="specialityName">Your Speciality Name:</form:label>
+                                    <form:input path="name" type="text" class="form-control" id="specialityName" required="required" placeholder="FKSiS"/>
                                 </div>
 
                                 <div class="sign-up button">
@@ -479,6 +539,8 @@
                             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#createStudentModal">Create Student</button>
                             </br>
                             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#practiceModal">Create Practice</button>
+                            </br>
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#specialityModal">Create Speciality</button>
 
                         </div>
 
