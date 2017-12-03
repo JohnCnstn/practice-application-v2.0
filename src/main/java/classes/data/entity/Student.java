@@ -30,10 +30,10 @@ public class Student extends User {
     private String status = StudentProfileType.AVAILABLE.getUserProfileType();
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "faculty_id")
+    @JoinColumn(name = "speciality_id")
     @Getter
     @Setter
-    private Faculty faculty;
+    private Speciality speciality;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "practice_id")

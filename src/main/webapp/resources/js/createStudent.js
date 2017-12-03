@@ -19,7 +19,10 @@ $( document ).ready(function() {
             lastName : $("#studentLastName").val(),
             userName : $("#studentUserName").val(),
             email : $("#studentEmail").val(),
-            password : $("#studentPassword").val()
+            password : $("#studentPassword").val(),
+            specialityId : $("#specialityId").val(),
+            avgScore : $("#avgScore").val(),
+            budget : $("#budget").val()
         };
 
         $.ajax({
@@ -52,5 +55,8 @@ $( document ).ready(function() {
         $("#studentUserName").val("");
         $("#studentEmail").val("");
         $("#studentPassword").val("");
+        $("#specialityId").val("");
+        $("#avgScore").val("");
+        $("#budget").val("");
     }
 });

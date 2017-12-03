@@ -5,6 +5,7 @@ import classes.data.dto.StudentDto;
 import classes.data.entity.*;
 import classes.data.repository.StudentRepository;
 import classes.data.service.FacultyService;
+import classes.data.service.SpecialityService;
 import classes.data.service.StudentService;
 import classes.data.validation.exception.EmailExistsException;
 import classes.data.validation.exception.UserNameExistsException;
@@ -22,10 +23,10 @@ public class StudentServiceImpl implements StudentService {
     private StudentRepository studentRepository;
 
     @Autowired
-    private FacultyService facultyServiceImpl;
+    private UserProfileServiceImpl userProfileService;
 
     @Autowired
-    private UserProfileServiceImpl userProfileService;
+    private SpecialityService specialityService;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -58,30 +59,30 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Transactional
-    public Student registerNewUserAccount(StudentDto accountDto) throws UserNameExistsException, EmailExistsException {
+    public Student registerNewUserAccount(StudentDto studentDto) throws UserNameExistsException, EmailExistsException {
 
-        if (userNameExists(accountDto.getUserName())) {
-            throw new UserNameExistsException("There is an account with that Username: "  + accountDto.getUserName());
+        if (userNameExists(studentDto.getUserName())) {
+            throw new UserNameExistsException("There is an account with that Username: "  + studentDto.getUserName());
         }
 
-        if (emailExist(accountDto.getEmail())) {
-            throw new EmailExistsException("There is an account with that email address: "  + accountDto.getEmail());
+        if (emailExist(studentDto.getEmail())) {
+            throw new EmailExistsException("There is an account with that email address: "  + studentDto.getEmail());
         }
 
         Student student = new Student();
 
-        Faculty faculty = facultyServiceImpl.findOne(accountDto.getSpecialityId());
+        Speciality speciality = specialityService.findOne(studentDto.getSpecialityId());
 
-        student.setFirstName(accountDto.getFirstName());
-        student.setLastName(accountDto.getLastName());
-        student.setEmail(accountDto.getEmail());
-        student.setUserName(accountDto.getUserName());
-        student.setAvgScore(accountDto.getAvgScore());
-        student.setBudget(accountDto.isBudget());
+        student.setFirstName(studentDto.getFirstName());
+        student.setLastName(studentDto.getLastName());
+        student.setEmail(studentDto.getEmail());
+        student.setUserName(studentDto.getUserName());
+        student.setAvgScore(studentDto.getAvgScore());
+        student.setBudget(studentDto.isBudget());
 
-        student.setPassword(bCryptPasswordEncoder.encode(accountDto.getPassword()));
+        student.setPassword(bCryptPasswordEncoder.encode(studentDto.getPassword()));
 
-        student.setFaculty(faculty);
+        student.setSpeciality(speciality);
 
         student.setUserProfile(userProfileService.getByType("STUDENT"));
 
@@ -89,21 +90,22 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Transactional
-    @Override
     public Student registerStudent(StudentDto studentDto) {
 
         Student student = new Student();
 
-        Faculty faculty = facultyServiceImpl.findOne(studentDto.getSpecialityId());
+        Speciality speciality = specialityService.findOne(studentDto.getSpecialityId());
 
         student.setFirstName(studentDto.getFirstName());
         student.setLastName(studentDto.getLastName());
         student.setEmail(studentDto.getEmail());
         student.setUserName(studentDto.getUserName());
+        student.setAvgScore(studentDto.getAvgScore());
+        student.setBudget(studentDto.isBudget());
 
         student.setPassword(bCryptPasswordEncoder.encode(studentDto.getPassword()));
 
-        student.setFaculty(faculty);
+        student.setSpeciality(speciality);
 
         student.setUserProfile(userProfileService.getByType("STUDENT"));
 

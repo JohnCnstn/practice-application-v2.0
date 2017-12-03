@@ -72,13 +72,14 @@
                         <form:label path="matchingPassword" for="pwdMatches">Confirm your password:</form:label>
                         <form:input path="matchingPassword" type="password" name="matchingPassword" class="form-control" id="pwdMatches" required="required" placeholder="Password"/>
                     </div>
+
                     <div class="form-group">
                         <form:label path="avgScore" for="avgScore">Set your average score:</form:label>
                         <form:input path="avgScore" type="number" class="form-control" id="avgScore" required="required"/>
                     </div>
 
                     <div class="form-group">
-                        <form:label path="budget" for="avgScore">Is budge:</form:label>
+                        <form:label path="budget" for="budget">Is budget:</form:label>
                         <form:checkbox path="budget" class="form-control" id="budget"/>
                     </div>
 

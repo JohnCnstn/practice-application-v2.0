@@ -15,6 +15,11 @@ public class SpecialityServiceImpl implements SpecialityService {
     private SpecialityRepository specialityRepository;
 
     @Override
+    public Speciality findOne(long id) {
+        return specialityRepository.findOne(id);
+    }
+
+    @Override
     public List<Speciality> getAll() {
         return specialityRepository.findAll();
     }

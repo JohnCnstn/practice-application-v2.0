@@ -320,17 +320,29 @@
                                         <form:input path="password" type="password" class="form-control" id="studentPassword" required="required" placeholder="Password"/>
                                     </div>
 
-                                    <label>Select a Company:
+                                    <div class="form-group">
+                                        <form:label path="avgScore" for="avgScore">Set your average score:</form:label>
+                                        <form:input path="avgScore" type="number" class="form-control" id="avgScore" required="required"/>
+                                    </div>
 
-                                        <select id="facultyId" name="facultyId">
-                                            <c:forEach items="${listOfFaculties}" var="i">
-                                                <option value="${i.id}">${i.name}</option>
-                                            </c:forEach>
-                                        </select>
+                                    <div class="form-group">
+                                        <form:label path="budget" for="budget">Is budget:</form:label>
+                                        <form:checkbox path="budget" class="form-control" id="budget"/>
+                                    </div>
 
-                                    </label>
+                                    <div class="form-group">
 
-                                </div>
+                                        <label>Select speciality:
+
+                                            <select id="specialityId" name="specialityId">
+                                                <c:forEach items="${specialityList}" var="i">
+                                                    <option value="${i.id}">${i.name}</option>
+                                                </c:forEach>
+                                            </select>
+
+                                        </label>
+
+                                    </div>
 
                                 <div class="sign-up button">
                                     <input type="submit" value="Create" />
@@ -505,8 +517,8 @@
                         <td><input type="checkbox" id="studentId" name="${i.id}"/></td>
                         <td class='clickable-row' data-href="/head-master/userInfo/${i.id}">${i.firstName}</td>
                         <td>${i.lastName}</td>
-                        <td>${i.faculty.university.name}</td>
-                        <td>${i.faculty.name}</td>
+                        <td>${i.speciality.faculty.university.name}</td>
+                        <td>${i.speciality.faculty.name}</td>
                         <td>${i.budget}</td>
                         <td>${i.avgScore}</td>
                         <td>${i.status}</td>

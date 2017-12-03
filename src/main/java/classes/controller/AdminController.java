@@ -35,6 +35,9 @@ public class AdminController {
     @Autowired
     private PracticeService practiceService;
 
+    @Autowired
+    private SpecialityService specialityService;
+
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String showUserPage(Model model) {
         model.addAttribute("user", getPrincipal());
@@ -48,6 +51,7 @@ public class AdminController {
         model.addAttribute("listOfFaculties", facultyService.getAll());
         model.addAttribute("practiceDto", new PracticeDto());
         model.addAttribute("listOfHeadMasters", headMasterService.getAll());
+        model.addAttribute("specialityList", specialityService.getAll());
         return "students";
     }
 
