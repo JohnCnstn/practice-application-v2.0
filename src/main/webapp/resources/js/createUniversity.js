@@ -15,7 +15,7 @@ $( document ).ready(function() {
         var formData;
 
         formData = {
-            name : $("#name").val()
+            name : $("#universityName").val()
         };
 
         $.ajax({

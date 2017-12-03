@@ -122,8 +122,8 @@
                         <div id = "create_university">
 
                             <div class="form-group">
-                                <form:label path="name" for="name">Your First Name:</form:label>
-                                <form:input path="name" type="text" name="name" class="form-control" id="name" required="required" placeholder="Pavel"/>
+                                <form:label path="name" for="universityName">University Name:</form:label>
+                                <form:input path="name" type="text" class="form-control" id="universityName" required="required" placeholder="BSUiR"/>
                             </div>
 
                             <div class="sign-up button">
@@ -146,7 +146,7 @@
 
     </form:form>
 
-    <form:form name="form-Faculty" commandName="facultyDto" action="sign-up" method="POST" id="facultyForm">
+    <form:form name="form-Faculty" commandName="facultyDto" method="POST" id="facultyForm">
 
         <div class="container">
 
@@ -166,7 +166,7 @@
 
                                 <div class="form-group">
 
-                                    <label>Select a university:
+                                    <label>Select university:
 
                                         <select id="universityId" name="universityId">
                                             <c:forEach items="${universityList}" var="i">
@@ -205,7 +205,7 @@
 
     </form:form>
 
-    <form:form name="form-Speciality" commandName="specialityDto" action="sign-up" method="POST" id="specialityForm">
+    <form:form name="form-Speciality" commandName="specialityDto" method="POST" id="specialityForm">
 
         <div class="container">
 
@@ -239,7 +239,7 @@
 
                                 <div class="form-group">
                                     <form:label path="name" for="specialityName">Your Speciality Name:</form:label>
-                                    <form:input path="name" type="text" class="form-control" id="specialityName" required="required" placeholder="FKSiS"/>
+                                    <form:input path="name" type="text" class="form-control" id="specialityName" required="required" placeholder="POiT"/>
                                 </div>
 
                                 <div class="sign-up button">
@@ -264,7 +264,7 @@
 
     </form:form>
 
-    <form:form name="form-HeadMaster" commandName="headMasterDto" action="sign-up" method="POST" id="headMasterForm">
+    <form:form name="form-HeadMaster" commandName="headMasterDto" method="POST" id="headMasterForm">
 
         <div class="container">
 
@@ -276,7 +276,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Create faculty</h4>
+                            <h4 class="modal-title">Create HeadMaster</h4>
                         </div>
                         <div class="modal-body">
 
@@ -285,27 +285,27 @@
                                 <div class="form-group">
 
                                     <div class="form-group">
-                                        <form:label path="firstName" for="firstName">Your First Name:</form:label>
-                                        <form:input path="firstName" type="text" name="firstName" class="form-control" id="firstName" required="required" placeholder="Pavel"/>
+                                        <form:label path="firstName" for="firstName">HeadMaster First Name:</form:label>
+                                        <form:input path="firstName" type="text" class="form-control" id="firstName" required="required" placeholder="Pavel"/>
                                     </div>
                                     <div class="form-group">
-                                        <form:label path="lastName" for="lastName">Your Last Name:</form:label>
-                                        <form:input path="lastName" type="text" name="lastName" class="form-control" id="lastName" required="required" placeholder="Khankevich"/>
+                                        <form:label path="lastName" for="lastName">HeadMaster Last Name:</form:label>
+                                        <form:input path="lastName" type="text" class="form-control" id="lastName" required="required" placeholder="Khankevich"/>
                                     </div>
                                     <div class="form-group">
-                                        <form:label path="userName" for="userName">Your username:</form:label>
-                                        <form:input path="userName" type="text" name="userName" class="form-control" id="userName" required="required" placeholder="Username"/>
+                                        <form:label path="userName" for="userName">HeadMaster userName:</form:label>
+                                        <form:input path="userName" type="text" class="form-control" id="userName" required="required" placeholder="Username"/>
                                     </div>
                                     <div class="form-group">
-                                        <form:label path="email" for="email">Your email:</form:label>
-                                        <form:input path="email" type="text" name="email" class="form-control" id="email" required="required" placeholder="email"/>
+                                        <form:label path="email" for="email">HeadMaster email:</form:label>
+                                        <form:input path="email" type="text" class="form-control" id="email" required="required" placeholder="email"/>
                                     </div>
                                     <div class="form-group">
-                                        <form:label path="password" for="password">Your password:</form:label>
-                                        <form:input path="password" type="password" name="password" class="form-control" id="password" required="required" placeholder="Password"/>
+                                        <form:label path="password" for="password">HeadMaster password:</form:label>
+                                        <form:input path="password" type="password" class="form-control" id="password" required="required" placeholder="Password"/>
                                     </div>
 
-                                    <label>Select a Company:
+                                    <label>Select Company:
 
                                         <select id="companyId" name="companyId">
                                             <c:forEach items="${listOfCompanies}" var="i">
@@ -360,28 +360,28 @@
                                 <div class="form-group">
 
                                     <div class="form-group">
-                                        <form:label path="firstName" for="studentFirstName">Your First Name:</form:label>
+                                        <form:label path="firstName" for="studentFirstName">Student First Name:</form:label>
                                         <form:input path="firstName" type="text" class="form-control" id="studentFirstName" required="required" placeholder="Pavel"/>
                                     </div>
                                     <div class="form-group">
-                                        <form:label path="lastName" for="studentLastName">Your Last Name:</form:label>
+                                        <form:label path="lastName" for="studentLastName">Student Last Name:</form:label>
                                         <form:input path="lastName" type="text" class="form-control" id="studentLastName" required="required" placeholder="Khankevich"/>
                                     </div>
                                     <div class="form-group">
-                                        <form:label path="userName" for="studentUserName">Your username:</form:label>
+                                        <form:label path="userName" for="studentUserName">Student userName:</form:label>
                                         <form:input path="userName" type="text" class="form-control" id="studentUserName" required="required" placeholder="Username"/>
                                     </div>
                                     <div class="form-group">
-                                        <form:label path="email" for="studentEmail">Your email:</form:label>
+                                        <form:label path="email" for="studentEmail">Student email:</form:label>
                                         <form:input path="email" type="text" class="form-control" id="studentEmail" required="required" placeholder="email"/>
                                     </div>
                                     <div class="form-group">
-                                        <form:label path="password" for="studentPassword">Your password:</form:label>
+                                        <form:label path="password" for="studentPassword">Student password:</form:label>
                                         <form:input path="password" type="password" class="form-control" id="studentPassword" required="required" placeholder="Password"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <form:label path="avgScore" for="avgScore">Set your average score:</form:label>
+                                        <form:label path="avgScore" for="avgScore">Average score:</form:label>
                                         <form:input path="avgScore" type="number" class="form-control" id="avgScore" required="required"/>
                                     </div>
 
