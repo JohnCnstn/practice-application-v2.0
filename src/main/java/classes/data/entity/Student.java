@@ -19,6 +19,11 @@ public class Student extends User {
     @Setter
     private double avgScore;
 
+//    @Column(name = "group")
+//    @Getter
+//    @Setter
+//    private short group;
+
     @Column(name="status", nullable = false)
     @Getter
     @Setter

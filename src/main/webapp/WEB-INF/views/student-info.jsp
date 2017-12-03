@@ -38,8 +38,8 @@
                                                                 <label>Select practice:
 
                                                                         <select id="practiceId" name="practiceId">
-                                                                                <c:forEach items="${list}" var="i">
-                                                                                        <option value="${i.id}">${i.headMaster.company.name}</option>
+                                                                                <c:forEach items="${listOfPractice}" var="i">
+                                                                                        <option value="${i.id}">${i.headMaster.userName}</option>
                                                                                 </c:forEach>
                                                                         </select>
 

@@ -59,7 +59,7 @@ public class AdminController {
         Student student = studentService.findOne(id);
 
         model.addAttribute("student", student);
-        model.addAttribute("list", practiceService.getAll());
+        model.addAttribute("listOfPractice", practiceService.getAll());
         model.addAttribute("practiceDto", practiceDto);
 
         return "student-info";
