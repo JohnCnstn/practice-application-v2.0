@@ -4,7 +4,6 @@ import classes.data.dto.PracticeDto;
 import classes.data.dto.StudentDto;
 import classes.data.entity.*;
 import classes.data.repository.StudentRepository;
-import classes.data.service.FacultyService;
 import classes.data.service.SpecialityService;
 import classes.data.service.StudentService;
 import classes.data.validation.exception.EmailExistsException;

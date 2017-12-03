@@ -106,6 +106,8 @@
 </head>
 <body>
 
+    <sec:authorize access="hasRole('ADMIN')">
+
     <form:form name="form-University" commandName="universityDto" method="POST" id="universityForm">
         <!-- Modal -->
         <div class="modal fade" id="universityModal" role="dialog">
@@ -422,96 +424,178 @@
                 </div>
             </div>
 
-        </div>
-
-    </form:form>
-
-    <form:form name="form-Practice" commandName="practiceDto" method="POST" id="practiceForm">
-
-        <div class="container">
-
-            <!-- Modal -->
-            <div class="modal fade" id="practiceModal" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Create practice</h4>
-                        </div>
-                        <div class="modal-body">
-
-                            <div id = "create_practice_admin">
-
-                                <div class="form-group">
-
-                                    <div class="form-group has-feedback">
-                                        <div class="form-group">
-                                            <div class="input-group date">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                                <form:label path="startDate" for="startDateAdmin">Start date of practice:</form:label>
-                                                <form:input path="startDate" type="date" class="form-control" id="startDateAdmin" required="required" placeholder="18:12:1997"/>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="form-group">
-
-                                    <div class="form-group has-feedback">
-                                        <div class="form-group">
-                                            <div class="input-group date">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                                <form:label path="endDate" for="endDateAdmin">End date of practice:</form:label>
-                                                <form:input path="endDate" type="date" class="form-control" id="endDateAdmin" required="required"/>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="form-group">
-                                    <form:label path="quantity" for="quantity">Quantity of students:</form:label>
-                                    <form:input path="quantity" type="quantity" class="form-control" id="quantity" required="required"/>
-                                </div>
-
-                                <label>Select HeadMaster:
-
-                                    <select id="headMasterId" name="headMasterId">
-                                        <c:forEach items="${listOfHeadMasters}" var="i">
-                                            <option value="${i.id}">${i.userName}</option>
-                                        </c:forEach>
-                                    </select>
-
-                                </label>
-
-                                <div class="sign-up button">
-                                    <input type="submit" value="Sign up" />
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="modal-footer">
-                                <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
-                            <div class="col-sm-7" id="postResultDiv"></div>
-                        </div>
-
-                    </div>
-
-                </div>
             </div>
 
         </div>
 
     </form:form>
+
+            <form:form name="form-Practice" commandName="practiceDto" method="POST" id="practiceForm">
+
+                <div class="container">
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="practiceModal" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Create practice</h4>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div id = "create_practice_admin">
+
+                                        <div class="form-group">
+
+                                            <div class="form-group has-feedback">
+                                                <div class="form-group">
+                                                    <div class="input-group date">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <form:label path="startDate" for="startDateAdmin">Start date of practice:</form:label>
+                                                        <form:input path="startDate" type="date" class="form-control" id="startDateAdmin" required="required" placeholder="18:12:1997"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <div class="form-group has-feedback">
+                                                <div class="form-group">
+                                                    <div class="input-group date">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <form:label path="endDate" for="endDateAdmin">End date of practice:</form:label>
+                                                        <form:input path="endDate" type="date" class="form-control" id="endDateAdmin" required="required"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <form:label path="quantity" for="quantity">Quantity of students:</form:label>
+                                            <form:input path="quantity" type="quantity" class="form-control" id="quantity" required="required"/>
+                                        </div>
+
+                                        <label>Select HeadMaster:
+
+                                            <select id="headMasterId" name="headMasterId">
+                                                <c:forEach items="${listOfHeadMasters}" var="i">
+                                                    <option value="${i.id}">${i.userName}</option>
+                                                </c:forEach>
+                                            </select>
+
+                                        </label>
+
+                                        <div class="sign-up button">
+                                            <input type="submit" value="Sign up" />
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                        <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
+                                    <div class="col-sm-7" id="postResultDiv"></div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </form:form>
+
+            </sec:authorize>
+
+            <sec:authorize access="hasRole('HEAD_MASTER')">
+
+                <form:form name="form-Customer" commandName="practiceDto" action="sign-up" method="POST" id="customerForm">
+
+                    <div class="container">
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Create practice</h4>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div id = "create_practice">
+
+                                            <div class="form-group">
+
+                                                <div class="form-group has-feedback">
+                                                    <div class="form-group">
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <form:label path="startDate" for="startDate">Start date of practice:</form:label>
+                                                            <form:input path="startDate" type="date" name="startDate" class="form-control" id="startDate" required="required" placeholder="18:12:1997"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <div class="form-group has-feedback">
+                                                    <div class="form-group">
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <form:label path="endDate" for="endDate">End date of practice:</form:label>
+                                                            <form:input path="endDate" type="date" name="endDate" class="form-control" id="endDate" required="required"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="sign-up button">
+                                                <input type="submit" value="Sign up" />
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                            <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
+                                        <div class="col-sm-7" id="postResultDiv"></div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </form:form>
+
+            </sec:authorize>
 
     <div class="navbar navbar-default navbar-fixed-top">
 
@@ -526,7 +610,7 @@
             <div id="mySidenav" class="sidenav">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
-                <sec:authorize access="hasRole('ADMIN')">
+                    <sec:authorize access="hasRole('ADMIN')">
 
                         <div class="container">
 
@@ -544,7 +628,17 @@
 
                         </div>
 
-                </sec:authorize>
+                    </sec:authorize>
+
+                    <sec:authorize access="hasRole('HEAD_MASTER')">
+
+                        <div class="container">
+
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Create Practice</button>
+
+                        </div>
+
+                    </sec:authorize>
 
             </div>
 
@@ -613,87 +707,6 @@
         <input class="form-control" id="myInput" type="text" placeholder="Search..">
 
     </div>
-
-    <sec:authorize access="hasRole('HEAD_MASTER')">
-
-        <form:form name="form-Customer" commandName="practiceDto" action="sign-up" method="POST" id="customerForm">
-
-    <div class="container">
-
-        <!-- Trigger the modal with a button -->
-        <button id="getAllStudentsId" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Create Practice</button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Create practice</h4>
-                    </div>
-                    <div class="modal-body">
-
-                            <div id = "create_practice">
-
-                                <div class="form-group">
-
-                                    <div class="form-group has-feedback">
-                                        <div class="form-group">
-                                            <div class="input-group date">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                                <form:label path="startDate" for="startDate">Start date of practice:</form:label>
-                                                <form:input path="startDate" type="date" name="startDate" class="form-control" id="startDate" required="required" placeholder="18:12:1997"/>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="form-group">
-
-                                    <div class="form-group has-feedback">
-                                        <div class="form-group">
-                                            <div class="input-group date">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                                <form:label path="endDate" for="endDate">End date of practice:</form:label>
-                                                <form:input path="endDate" type="date" name="endDate" class="form-control" id="endDate" required="required"/>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="sign-up button">
-                                    <input type="submit" value="Sign up" />
-                                </div>
-
-                            </div>
-
-                    </div>
-
-                    <div class="modal-footer">
-                        <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
-                        <div class="col-sm-7" id="postResultDiv"></div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-
-
-    </div>
-
-        </form:form>
-
-    </sec:authorize>
 
 </body>
 </html>

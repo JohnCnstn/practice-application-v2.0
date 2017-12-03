@@ -121,11 +121,15 @@
                                                                                 </tr>
                                                                                 <tr>
                                                                                         <td>University:</td>
-                                                                                        <td>${student.faculty.university.name}</td>
+                                                                                        <td>${student.speciality.faculty.university.name}</td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                         <td>Faculty:</td>
-                                                                                        <td>${student.faculty.name}</td>
+                                                                                        <td>${student.speciality.faculty.name}</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                        <td>Speciality:</td>
+                                                                                        <td>${student.speciality.name}</td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                         <td>Is budget:</td>

@@ -29,7 +29,7 @@ public class HeadMasterController {
     @RequestMapping(value = "/head-master/userInfo/{id}", method = RequestMethod.GET)
     public ModelAndView showStudentInfo(@PathVariable("id") int id) {
 
-        User student = userService.findOne(id);
+        Student student = userService.findOne(id);
 
         ModelAndView model = new ModelAndView("student-info");
         model.addObject("student", student);
