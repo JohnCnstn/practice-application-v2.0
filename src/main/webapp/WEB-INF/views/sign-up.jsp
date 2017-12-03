@@ -72,32 +72,27 @@
                         <form:label path="matchingPassword" for="pwdMatches">Confirm your password:</form:label>
                         <form:input path="matchingPassword" type="password" name="matchingPassword" class="form-control" id="pwdMatches" required="required" placeholder="Password"/>
                     </div>
+                    <div class="form-group">
+                        <form:label path="avgScore" for="avgScore">Set your average score:</form:label>
+                        <form:input path="avgScore" type="number" class="form-control" id="avgScore" required="required"/>
+                    </div>
+
+                    <div class="form-group">
+                        <form:label path="budget" for="avgScore">Is budge:</form:label>
+                        <form:checkbox path="budget" class="form-control" id="budget"/>
+                    </div>
 
                     <div class="form-group">
 
-                        <sec:authorize access="isAnonymous()">
-                            <label>Select a university:
+                        <label>Select speciality:
 
-                                <select name="id">
-                                    <c:forEach items="${list}" var="i">
-                                        <option value="${i.id}">${i.name}</option>
-                                    </c:forEach>
-                                </select>
+                            <select name="specialityId">
+                                <c:forEach items="${specialityList}" var="i">
+                                    <option value="${i.id}">${i.name}</option>
+                                </c:forEach>
+                            </select>
 
-                            </label>
-                        </sec:authorize>
-
-                        <sec:authorize access="hasRole('ADMIN')">
-                            <label>Select a company:
-
-                                <select name="id">
-                                    <c:forEach items="${list}" var="i">
-                                        <option value="${i.id}">${i.name}</option>
-                                    </c:forEach>
-                                </select>
-
-                            </label>
-                        </sec:authorize>
+                        </label>
 
                     </div>
 

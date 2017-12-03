@@ -17,7 +17,7 @@
         <intercept-url pattern="/" access="permitAll" requires-channel="https"/>
 
         <port-mappings>
-            <port-mapping http="8080" https="8181"/>
+            <port-mapping http="8081" https="8181"/>
         </port-mappings>
 
         <intercept-url pattern="/favicon*" access="permitAll" />
@@ -39,7 +39,7 @@
         />
 
         <logout
-            logout-url="/login?logout=true"
+                logout-success-url="/login?logout=true"
             delete-cookies="JSESSIONID"
         />
 

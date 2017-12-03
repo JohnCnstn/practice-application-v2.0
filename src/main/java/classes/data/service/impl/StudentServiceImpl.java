@@ -1,6 +1,5 @@
 package classes.data.service.impl;
 
-import classes.data.dto.FacultyDto;
 import classes.data.dto.PracticeDto;
 import classes.data.dto.StudentDto;
 import classes.data.entity.*;
@@ -59,7 +58,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Transactional
-    public Student registerNewUserAccount(StudentDto accountDto, FacultyDto facultyDto) throws UserNameExistsException, EmailExistsException {
+    public Student registerNewUserAccount(StudentDto accountDto) throws UserNameExistsException, EmailExistsException {
 
         if (userNameExists(accountDto.getUserName())) {
             throw new UserNameExistsException("There is an account with that Username: "  + accountDto.getUserName());
@@ -71,12 +70,14 @@ public class StudentServiceImpl implements StudentService {
 
         Student student = new Student();
 
-        Faculty faculty = facultyServiceImpl.findOne(facultyDto.getId());
+        Faculty faculty = facultyServiceImpl.findOne(accountDto.getSpecialityId());
 
         student.setFirstName(accountDto.getFirstName());
         student.setLastName(accountDto.getLastName());
         student.setEmail(accountDto.getEmail());
         student.setUserName(accountDto.getUserName());
+        student.setAvgScore(accountDto.getAvgScore());
+        student.setBudget(accountDto.isBudget());
 
         student.setPassword(bCryptPasswordEncoder.encode(accountDto.getPassword()));
 
@@ -93,7 +94,7 @@ public class StudentServiceImpl implements StudentService {
 
         Student student = new Student();
 
-        Faculty faculty = facultyServiceImpl.findOne(studentDto.getFacultyId());
+        Faculty faculty = facultyServiceImpl.findOne(studentDto.getSpecialityId());
 
         student.setFirstName(studentDto.getFirstName());
         student.setLastName(studentDto.getLastName());

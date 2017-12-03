@@ -1,6 +1,5 @@
 package classes.data.service;
 
-import classes.data.dto.FacultyDto;
 import classes.data.dto.PracticeDto;
 import classes.data.dto.StudentDto;
 import classes.data.entity.Student;
@@ -14,7 +13,7 @@ public interface StudentService {
     Student getByFirstName(String firstName);
     Student getByUserName(String studentName);
     void setStudentOnPractice(Student student, PracticeDto practiceDto);
-    Student registerNewUserAccount(StudentDto accountDto, FacultyDto facultyDto) throws UserNameExistsException, EmailExistsException;
+    Student registerNewUserAccount(StudentDto accountDto) throws UserNameExistsException, EmailExistsException;
     Student registerStudent(StudentDto studentDto);
     void delete(long id);
     List<Student> getAll();

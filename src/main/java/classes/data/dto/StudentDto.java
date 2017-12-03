@@ -55,7 +55,15 @@ public class StudentDto {
 
     @Getter
     @Setter
-    private long facultyId;
+    private long specialityId;
+
+    @Getter
+    @Setter
+    private double avgScore;
+
+    @Getter
+    @Setter
+    private boolean budget;
 
     @Getter
     @Setter

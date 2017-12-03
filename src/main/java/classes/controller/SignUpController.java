@@ -3,7 +3,9 @@ package classes.controller;
 import classes.data.dto.FacultyDto;
 import classes.data.dto.StudentDto;
 import classes.data.service.FacultyService;
+import classes.data.service.SpecialityService;
 import classes.data.service.StudentService;
+import classes.data.service.UniversityService;
 import classes.data.validation.exception.EmailExistsException;
 import classes.data.validation.exception.UserNameExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes("list")
 public class SignUpController {
 
     @Autowired
@@ -26,6 +27,12 @@ public class SignUpController {
 
     @Autowired
     private FacultyService facultyServiceImpl;
+
+    @Autowired
+    private UniversityService universityService;
+
+    @Autowired
+    private SpecialityService specialityService;
 
     @RequestMapping(value = "/sign-up", method = RequestMethod.GET)
     public ModelAndView showSignUpForm() {
@@ -35,7 +42,9 @@ public class SignUpController {
         model.setViewName("sign-up");
         model.addObject("user", new StudentDto());
         model.addObject("faculty", new FacultyDto());
-        model.addObject("list", facultyServiceImpl.getAll());
+        model.addObject("universityList", universityService.getAll());
+        model.addObject("facultyList", facultyServiceImpl.getAll());
+        model.addObject("specialityList", specialityService.getAll());
 
         return model;
     }
@@ -48,11 +57,13 @@ public class SignUpController {
         ModelAndView model = new ModelAndView();
 
         if (!result.hasErrors()) {
-            createUserAccount(accountDto, facultyDto, result);
+            createUserAccount(accountDto, result);
         }
 
         if (result.hasErrors()) {
-            model.addObject("list", facultyServiceImpl.getAll());
+            model.addObject("universityList", universityService.getAll());
+            model.addObject("facultyList", facultyServiceImpl.getAll());
+            model.addObject("specialityList", specialityService.getAll());
             model.setViewName("sign-up");
         } else {
             model.setViewName("redirect:/login");
@@ -60,9 +71,9 @@ public class SignUpController {
         return model;
     }
 
-    private void createUserAccount(StudentDto accountDto, FacultyDto facultyDto, BindingResult result) {
+    private void createUserAccount(StudentDto accountDto, BindingResult result) {
         try {
-            service.registerNewUserAccount(accountDto, facultyDto);
+            service.registerNewUserAccount(accountDto);
         } catch (UserNameExistsException e) {
             result.rejectValue("userName", "message", "Username already exists");
         } catch (EmailExistsException e) {

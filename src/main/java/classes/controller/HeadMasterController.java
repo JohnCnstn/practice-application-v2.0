@@ -5,16 +5,12 @@ import classes.data.dto.PracticeDto;
 import classes.data.entity.Student;
 import classes.data.entity.User;
 import classes.data.service.StudentService;
-import classes.objects.search.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class HeadMasterController {
