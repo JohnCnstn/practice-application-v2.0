@@ -693,7 +693,16 @@
             </tbody>
         </table>
 
-        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <%--<input class="form-control" id="myInput" type="text" placeholder="Search..">--%>
+
+        <form>
+            <div class="form-group">
+                <div class="input-group ">
+                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                    <input type="text" id="myInput" class="form-control" placeholder="Search da Fish">
+                </div>
+            </div>
+        </form>
 
     </div>
 
