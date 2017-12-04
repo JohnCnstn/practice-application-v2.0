@@ -19,9 +19,16 @@
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <mysql.version>5.1.31</mysql.version>
         <jackson.version>2.7.5</jackson.version>
+        <quartz.version>2.2.1</quartz.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>${quartz.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>javax.validation</groupId>
