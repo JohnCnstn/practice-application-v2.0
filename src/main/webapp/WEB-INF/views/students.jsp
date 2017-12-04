@@ -693,8 +693,6 @@
             </tbody>
         </table>
 
-        <%--<input class="form-control" id="myInput" type="text" placeholder="Search..">--%>
-
         <form>
             <div class="form-group">
                 <div class="input-group ">

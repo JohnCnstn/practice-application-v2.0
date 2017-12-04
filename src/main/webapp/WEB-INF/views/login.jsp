@@ -41,13 +41,29 @@
 
                 <h1>Sign in</h1>
                 <div class="form-group">
-                    <label for="userName">Your email or username:</label>
-                    <input type="text" name="username-signin" class="form-control" id="userName" required="required" placeholder="Username">
+                    <label for="userName">Your username:</label>
+                    <div class="input-group ">
+                        <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                        <input type="text" name="username-signin" class="form-control" id="userName" required="required" placeholder="Username">
+                    </div>
                 </div>
+
                 <div class="form-group">
                     <label for="password">Your password:</label>
-                    <input type="password" name="password-signin" class="form-control" id="password" required="required" placeholder="Password">
+                    <div class="input-group ">
+                        <div class="input-group-addon"><i class="fa fa-key"></i></div>
+                        <input type="password" name="password-signin" class="form-control" id="password" required="required" placeholder="Password">
+                    </div>
                 </div>
+
+                <%--<form>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<div class="input-group ">--%>
+                            <%--<div class="input-group-addon"><i class="fa fa-search"></i></div>--%>
+                            <%--<input type="text" id="myInput" class="form-control" placeholder="Search da Fish">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</form>--%>
 
                 <div class="check-box">
                     <div class="keeplogin">
