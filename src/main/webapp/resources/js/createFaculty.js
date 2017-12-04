@@ -45,6 +45,5 @@ $( document ).ready(function() {
 
     function resetData(){
         $("#facultyName").val("");
-        $("#universityId").val("");
     }
 });

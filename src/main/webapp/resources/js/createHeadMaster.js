@@ -53,6 +53,5 @@ $( document ).ready(function() {
         $("#userName").val("");
         $("#email").val("");
         $("#password").val("");
-        $("#companyId").val("");
     }
 });

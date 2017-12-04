@@ -49,6 +49,5 @@ $( document ).ready(function() {
         $("#startDateAdmin").val("");
         $("#endDateAdmin").val("");
         $("#quantity").val("");
-        $("#headMasterId").val("");
     }
 });

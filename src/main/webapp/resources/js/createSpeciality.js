@@ -45,6 +45,5 @@ $( document ).ready(function() {
 
     function resetData(){
         $("#specialityName").val("");
-        $("#facultyId").val("");
     }
 });

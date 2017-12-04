@@ -55,7 +55,6 @@ $( document ).ready(function() {
         $("#studentUserName").val("");
         $("#studentEmail").val("");
         $("#studentPassword").val("");
-        $("#specialityId").val("");
         $("#avgScore").val("");
         $("#budget").val("");
     }
