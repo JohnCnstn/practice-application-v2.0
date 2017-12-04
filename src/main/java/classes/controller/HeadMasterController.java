@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("/head-master")
 public class HeadMasterController {
 
     @Autowired
@@ -22,7 +23,7 @@ public class HeadMasterController {
     @Autowired
     private PracticeService practiceService;
 
-    @RequestMapping(value = "/head-master", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String showUserPage(Model model) {
         model.addAttribute("user", getPrincipal());
         model.addAttribute("listOfStudents", userService.getAll());
@@ -30,7 +31,7 @@ public class HeadMasterController {
         return "students";
     }
 
-    @RequestMapping(value = "/head-master/userInfo/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/userInfo/{id}", method = RequestMethod.GET)
     public ModelAndView showStudentInfo(@PathVariable("id") int id) {
 
         Student student = userService.findOne(id);
@@ -41,6 +42,11 @@ public class HeadMasterController {
 
         return model;
     }
+
+//    @RequestMapping(value = "/userInfo/logout", method = RequestMethod.POST)
+//    public ModelAndView logoutRedirect() {
+//        return new ModelAndView("redirect:/login");
+//    }
 
     private User getPrincipal(){
         CustomUserDetail customUserDetail = (CustomUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

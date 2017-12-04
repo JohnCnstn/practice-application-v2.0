@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 
     @Autowired
@@ -38,7 +40,7 @@ public class AdminController {
     @Autowired
     private SpecialityService specialityService;
 
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String showUserPage(Model model) {
         model.addAttribute("user", getPrincipal());
         model.addAttribute("listOfStudents", studentService.getAll());
@@ -56,7 +58,7 @@ public class AdminController {
         return "students";
     }
 
-    @RequestMapping(value = "/admin/userInfo/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/userInfo/{id}", method = RequestMethod.GET)
     public String showStudentInfo(@PathVariable("id") int id, @ModelAttribute("practiceDto") PracticeDto practiceDto, Model model) {
 
         Student student = studentService.findOne(id);
@@ -68,12 +70,7 @@ public class AdminController {
         return "student-info";
     }
 
-//    @RequestMapping(value = "/admin/userInfo/logout", method = RequestMethod.GET)
-//    public String redirectToLogout() {
-//        return "redirect:/login?logout=true";
-//    }
-
-    @RequestMapping(value = "/admin/test", method = RequestMethod.GET)
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String testAdmin() {
         return "test";
     }

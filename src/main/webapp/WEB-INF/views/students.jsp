@@ -43,14 +43,6 @@
         });
     </script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#test').BootSideMenu({
-                side: "left"
-            });
-        });
-    </script>
-
     <script>
         function openNav() {
             document.getElementById("mySidenav").style.width = "250px";
@@ -668,10 +660,22 @@
             </thead>
             <tbody id="myTable">
 
+                <sec:authorize access="hasRole('HEAD_MASTER')">
+
+                    <spring:url value="/head-master/userInfo" var="userProfileUrl" />
+
+                </sec:authorize>
+
+                <sec:authorize access="hasRole('ADMIN')">
+
+                    <spring:url value="/admin/userInfo" var="userProfileUrl" />
+
+                </sec:authorize>
+
                 <c:forEach items="${listOfStudents}" var="i">
                     <tr>
                         <td><input type="checkbox" id="studentId" name="${i.id}"/></td>
-                        <td class='clickable-row' data-href="/head-master/userInfo/${i.id}">${i.firstName}</td>
+                        <td class='clickable-row' data-href="${userProfileUrl}/${i.id}">${i.firstName}</td>
                         <td>${i.lastName}</td>
                         <td>${i.speciality.faculty.university.name}</td>
                         <td>${i.speciality.faculty.name}</td>
@@ -679,23 +683,8 @@
                         <td>${i.avgScore}</td>
                         <td>${i.status}</td>
                         <td>
-                            <sec:authorize access="hasRole('HEAD_MASTER')">
 
-                                <spring:url value="/head-master/userInfo/${i.id}" var="userProfileUrl" />
-
-                                <button class="btn btn-info"
-                                        onclick="location.href='${userProfileUrl}'">Info</button>
-
-                            </sec:authorize>
-
-                            <sec:authorize access="hasRole('ADMIN')">
-
-                                <spring:url value="/admin/userInfo/${i.id}" var="userProfileUrl" />
-
-                                <button class="btn btn-info"
-                                        onclick="location.href='${userProfileUrl}'">Info</button>
-
-                            </sec:authorize>
+                            <button class="btn btn-info" onclick="location.href='${userProfileUrl}'">Info</button>
 
                         </td>
                     </tr>

@@ -22,8 +22,9 @@
 
         <intercept-url pattern="/favicon*" access="permitAll" />
 
-        <intercept-url pattern="/student**" access="hasRole('ROLE_STUDENT')"/>
         <intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/student**" access="hasRole('ROLE_STUDENT')"/>
+        <intercept-url pattern="/head-master**" access="hasRole('HEAD_MASTER')"/>
 
         <form-login
                 login-page="/login"
