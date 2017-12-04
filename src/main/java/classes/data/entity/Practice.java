@@ -42,7 +42,7 @@ public class Practice {
     @Setter
     private Student student;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "headMaster_id")
     @Getter
     @Setter

@@ -4,6 +4,7 @@ import classes.data.detail.CustomUserDetail;
 import classes.data.dto.PracticeDto;
 import classes.data.entity.Student;
 import classes.data.entity.User;
+import classes.data.service.PracticeService;
 import classes.data.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +18,9 @@ public class HeadMasterController {
 
     @Autowired
     private StudentService userService;
+
+    @Autowired
+    private PracticeService practiceService;
 
     @RequestMapping(value = "/head-master", method = RequestMethod.GET)
     public String showUserPage(Model model) {
@@ -32,49 +36,18 @@ public class HeadMasterController {
         Student student = userService.findOne(id);
 
         ModelAndView model = new ModelAndView("student-info");
+        model.addObject("listOfPractice", practiceService.getAll());
         model.addObject("student", student);
 
         return model;
     }
-
-//    @RequestMapping(value = "/head-master/userInfo/{id}/setPractice", method = RequestMethod.GET)
-//    public ModelAndView setPractice(@PathVariable("id") int id) {
-//
-////        createPractice(student);
-//
-//        ModelAndView model = new ModelAndView();
-////        model.addObject("student", student);
-//
-//        User user = userService.findOne(id);
-//
-//        PracticeDto practiceDto = new PracticeDto();
-//
-//        createPractice(practiceDto);
-//
-//        registerPracticeWithHeadMaster(practiceDto);
-//
-//        setStudentOnPractice(user, practiceDto);
-//
-//        model.setViewName("test");
-//
-//        return model;
-//    }
 
     private User getPrincipal(){
         CustomUserDetail customUserDetail = (CustomUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return customUserDetail.getUser();
     }
 
-//    private void createPractice(PracticeDto practiceDto) {
-//        Date date = new Date();
-//        practiceDto.setStartDate(date);
-//    }
-
     private void setStudentOnPractice(Student student, PracticeDto practiceDto) {
         userService.setStudentOnPractice(student, practiceDto);
     }
-
-//    private void registerPracticeWithHeadMaster(PracticeDto practiceDto) {
-//        practiceService.registerPracticeWithHeadMaster(practiceDto);
-//    }
 }
