@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface PracticeService {
     List<Practice> getAll();
+    Practice findOne(long id);
     Practice registerPracticeWithHeadMaster(PracticeDto practiceDto, User user);
     Practice registerNewPractice(PracticeDto practiceDto);
 }

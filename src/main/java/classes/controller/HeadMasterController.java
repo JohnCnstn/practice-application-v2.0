@@ -53,7 +53,7 @@ public class HeadMasterController {
         return customUserDetail.getUser();
     }
 
-    private void setStudentOnPractice(Student student, PracticeDto practiceDto) {
-        userService.setStudentOnPractice(student, practiceDto);
-    }
+//    private void setStudentOnPractice(Student student, PracticeDto practiceDto) {
+//        userService.setStudentOnPractice(student, practiceDto);
+//    }
 }

@@ -27,6 +27,11 @@ public class PracticeServiceImpl implements PracticeService {
     }
 
     @Override
+    public Practice findOne(long id) {
+        return practiceRepository.findOne(id);
+    }
+
+    @Override
     @Transactional
     public Practice registerPracticeWithHeadMaster(PracticeDto practiceDto, User user) {
         Practice practice = new Practice();

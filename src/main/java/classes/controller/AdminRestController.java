@@ -72,6 +72,13 @@ public class AdminRestController {
         return new ResponseEntity<>(practiceDto, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/userInfo/{id}/postStudentOnPractice", method = RequestMethod.POST)
+    public ResponseEntity<StudentDto> postStudentOnPractice(@PathVariable("id") int id, @RequestBody StudentDto studentDto) {
+        studentDto.setId(id);
+        setStudentOnPractice(studentDto);
+        return new ResponseEntity<>(studentDto, HttpStatus.OK);
+    }
+
     private void createFaculty(FacultyDto facultyDto) {
         facultyService.registerNewFaculty(facultyDto);
     }
@@ -94,6 +101,10 @@ public class AdminRestController {
 
     private void createPractice(PracticeDto practiceDto) {
         practiceService.registerNewPractice(practiceDto);
+    }
+
+    private void setStudentOnPractice(StudentDto studentDto) {
+        studentService.setStudentOnPractice(studentDto);
     }
 
     private User getPrincipal(){

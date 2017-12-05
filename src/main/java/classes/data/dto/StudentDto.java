@@ -70,5 +70,5 @@ public class StudentDto {
 
     @Getter
     @Setter
-    private Practice practice;
+    private long practiceId;
 }

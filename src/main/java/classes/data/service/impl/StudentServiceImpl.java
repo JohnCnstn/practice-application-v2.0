@@ -1,9 +1,9 @@
 package classes.data.service.impl;
 
-import classes.data.dto.PracticeDto;
 import classes.data.dto.StudentDto;
 import classes.data.entity.*;
 import classes.data.repository.StudentRepository;
+import classes.data.service.PracticeService;
 import classes.data.service.SpecialityService;
 import classes.data.service.StudentService;
 import classes.data.validation.exception.EmailExistsException;
@@ -28,6 +28,9 @@ public class StudentServiceImpl implements StudentService {
     private SpecialityService specialityService;
 
     @Autowired
+    private PracticeService practiceService;
+
+    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public Student findOne(long id) {
@@ -43,14 +46,16 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findByUserName(studentName);
     }
 
-    public void setStudentOnPractice(Student student, PracticeDto practiceDto) {
+    @Transactional
+    public Student setStudentOnPractice(StudentDto studentDto) {
 
-        Practice practice = new Practice();
-        practice.setStartDate(practiceDto.getStartDate());
+        Practice practice = practiceService.findOne(studentDto.getPracticeId());
+
+        Student student = studentRepository.findOne(studentDto.getId());
 
         student.setPractice(practice);
 
-        studentRepository.save(student);
+        return studentRepository.save(student);
     }
 
     public List<Student> getAll() {
