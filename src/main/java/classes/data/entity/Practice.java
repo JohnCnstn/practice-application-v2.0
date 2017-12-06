@@ -1,12 +1,13 @@
 package classes.data.entity;
 
-import com.sun.org.apache.xpath.internal.operations.String;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "practice")
@@ -37,11 +38,11 @@ public class Practice {
     @Setter
     private byte quantity;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "student_id")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "practice_student", joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "practice_id", referencedColumnName = "id"))
     @Getter
     @Setter
-    private Student student;
+    private List<Student> students;
 
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "headMaster_id")

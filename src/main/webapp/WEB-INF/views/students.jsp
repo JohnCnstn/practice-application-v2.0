@@ -661,8 +661,6 @@
 
     <div class="form-group form" id="wrapper">
 
-        <h1>All students:</h1>
-
         <%--<form>--%>
             <%--<div class="form-group">--%>
                 <%--<div class="input-group ">--%>

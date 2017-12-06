@@ -53,7 +53,7 @@ public class StudentServiceImpl implements StudentService {
 
         Student student = studentRepository.findOne(studentDto.getId());
 
-        student.setPractice(practice);
+//        student.setPractice(practice);
 
         return studentRepository.save(student);
     }
