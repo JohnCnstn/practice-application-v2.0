@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/sideBar.css"/>">
 
     <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/jquery.tablesorter.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/jquery.tablesorter.min.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/createPracticeWithHeadMaster.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/createPractice.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/createUniversity.js"/>"></script>
@@ -26,7 +24,25 @@
     <script type="text/javascript" src="<c:url value="/resources/js/createStudent.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/createSpeciality.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/slideMenu/BootSlideMenu.js"/>"></script>
+
+    <script type="text/javascript" src="<c:url value="/resources/bower_components/datatables.net/js/jquery.dataTables.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"/>"></script>
+
+
+
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+    <script>
+        $(function () {
+            $('#example1').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
+        });
+    </script>
 
     <script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
     <script>
@@ -643,9 +659,20 @@
         </div>
     </div>
 
-    <div class="form-group" id="wrapper">
+    <div class="form-group form" id="wrapper">
 
-        <table class="table table-hover" id="keywords" cellspacing="0" cellpadding="0">
+        <h1>All students:</h1>
+
+        <form>
+            <div class="form-group">
+                <div class="input-group ">
+                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                    <input type="text" id="myInput" class="form-control" placeholder="Search da Fish">
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-hover" id="example1" cellspacing="0" cellpadding="0">
             <thead>
                 <tr>
                     <th></th>
@@ -656,6 +683,7 @@
                     <th><span>Is budget</span></th>
                     <th><span>Average score</span></th>
                     <th><span>Status</span></th>
+                    <th><span>Info</span></th>
                 </tr>
             </thead>
             <tbody id="myTable">
@@ -684,7 +712,7 @@
                         <td>${i.status}</td>
                         <td>
 
-                            <button class="btn btn-info" onclick="location.href='${userProfileUrl}'">Info</button>
+                            <button class="btn btn-info" onclick="location.href='${userProfileUrl}/${i.id}'">Info</button>
 
                         </td>
                     </tr>
@@ -692,15 +720,6 @@
 
             </tbody>
         </table>
-
-        <form>
-            <div class="form-group">
-                <div class="input-group ">
-                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                    <input type="text" id="myInput" class="form-control" placeholder="Search da Fish">
-                </div>
-            </div>
-        </form>
 
     </div>
 
