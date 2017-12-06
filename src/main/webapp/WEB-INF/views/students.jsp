@@ -36,7 +36,7 @@
             $('#example1').DataTable({
                 "paging": true,
                 "lengthChange": false,
-                "searching": false,
+                "searching": true,
                 "ordering": true,
                 "info": true,
                 "autoWidth": false
@@ -663,14 +663,14 @@
 
         <h1>All students:</h1>
 
-        <form>
-            <div class="form-group">
-                <div class="input-group ">
-                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                    <input type="text" id="myInput" class="form-control" placeholder="Search da Fish">
-                </div>
-            </div>
-        </form>
+        <%--<form>--%>
+            <%--<div class="form-group">--%>
+                <%--<div class="input-group ">--%>
+                    <%--<div class="input-group-addon"><i class="fa fa-search"></i></div>--%>
+                    <%--<input type="text" id="myInput" class="form-control" placeholder="Search da Fish">--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</form>--%>
 
         <table class="table table-hover" id="example1" cellspacing="0" cellpadding="0">
             <thead>
