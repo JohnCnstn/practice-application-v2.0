@@ -38,7 +38,7 @@
                 "lengthChange": false,
                 "searching": true,
                 "ordering": true,
-                "info": true,
+                "info": false,
                 "autoWidth": false
             });
         });
@@ -669,6 +669,22 @@
                 <%--</div>--%>
             <%--</div>--%>
         <%--</form>--%>
+
+
+            <%--<style>--%>
+                <%--.dataTables_filter {--%>
+                    <%--white-space:nowrap;--%>
+                <%--}--%>
+
+                <%--.dataTables_filter label, .dataTables_filter input {--%>
+                    <%--display: inline-block;--%>
+                <%--}--%>
+            <%--</style>--%>
+
+            <%--<div class="dataTables_filter" id="ads-table_filter">--%>
+                <%--<label>Search :</label>--%>
+                <%--<input type="text" aria-controls="ads-table"/>--%>
+            <%--</div>--%>
 
         <table class="table table-hover" id="example1" cellspacing="0" cellpadding="0">
             <thead>
