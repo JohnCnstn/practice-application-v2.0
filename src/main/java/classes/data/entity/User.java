@@ -11,8 +11,7 @@ import javax.persistence.*;
 @Inheritance(strategy=InheritanceType.JOINED)
 public class User {
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name= "increment", strategy= "increment")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
     @Setter
     @Column(name = "id", nullable = false)

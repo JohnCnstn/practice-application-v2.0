@@ -161,6 +161,7 @@
             <version>4.2.5.RELEASE</version>
         </dependency>
 
+
     </dependencies>
 
     <build>
@@ -178,9 +179,9 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>3.4.1</version>
                 <configuration>
-                    <changeLogFile>liquibase/db.changelog-master.xml</changeLogFile>
+                    <changeLogFile>changelog/db.changelog-master.xml</changeLogFile>
                     <propertyFile>src/main/resources/app.properties</propertyFile>
-                    <referenceUrl>hibernate:spring:by.application.task.tracker.data?dialect=org.hibernate.dialect.MySQL5Dialect</referenceUrl>
+                    <referenceUrl>hibernate:spring:PracticeApplication.data?dialect=org.hibernate.dialect.MySQL5Dialect</referenceUrl>
                     <driver>com.mysql.jdbc.Driver</driver>
                     <url>jdbc:mysql://localhost:3306/practice_app</url>
                     <username>root</username>

@@ -12,8 +12,7 @@ import javax.persistence.*;
 public class University {
 
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name= "increment", strategy= "increment")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
     @Setter
     @Column(name = "id", nullable = false)

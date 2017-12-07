@@ -11,8 +11,7 @@ import javax.persistence.*;
 public class UserProfile {
 
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name= "increment", strategy= "increment")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     @Getter
     @Setter

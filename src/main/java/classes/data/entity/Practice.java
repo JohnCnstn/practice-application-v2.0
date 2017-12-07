@@ -14,8 +14,7 @@ import java.util.Set;
 public class Practice {
 
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name= "increment", strategy= "increment")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     @Getter
     @Setter
