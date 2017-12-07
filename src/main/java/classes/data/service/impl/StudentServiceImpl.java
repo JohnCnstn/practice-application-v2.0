@@ -49,11 +49,15 @@ public class StudentServiceImpl implements StudentService {
     @Transactional
     public Student setStudentOnPractice(StudentDto studentDto) {
 
-        Practice practice = practiceService.findOne(studentDto.getPracticeId());
+        List<Practice> practices = null;
+
+        for (Long practiceId : studentDto.getPracticesId()) {
+            practices.add(practiceService.findOne(practiceId));
+        }
 
         Student student = studentRepository.findOne(studentDto.getId());
 
-//        student.setPractice(practice);
+        student.setPractices(practices);
 
         return studentRepository.save(student);
     }

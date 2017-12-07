@@ -24,13 +24,9 @@ $( document ).ready(function() {
             url: window.location + "/postUniversity",
             data: JSON.stringify(formData),
             dataType: 'json',
-            success: function (result) {
-                if (result.status == "OK") {
-                    $("#postResultDiv").html("<strong>Success</strong>");
-                } else {
-                    $("#postResultDiv").html("<strong>Error</strong>");
-                }
-                console.log(result);
+            success: function (data) {
+                $("#postResultDiv").html("<strong>Success</strong>");
+                console.log(data);
             },
             error: function (e) {
                 alert("Error!");

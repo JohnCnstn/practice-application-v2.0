@@ -280,6 +280,7 @@
             <column name="quantity">5</column>
             <!--<column name="startDate"></column>-->
             <!--<column name="endDate"></column>-->
+            <!--<column name="headMaster_id">1</column>-->
         </insert>
 
         <insert tableName="company">

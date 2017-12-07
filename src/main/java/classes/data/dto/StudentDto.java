@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @PasswordMatches
 public class StudentDto {
@@ -70,5 +71,5 @@ public class StudentDto {
 
     @Getter
     @Setter
-    private long practiceId;
+    private List<Long> practicesId;
 }

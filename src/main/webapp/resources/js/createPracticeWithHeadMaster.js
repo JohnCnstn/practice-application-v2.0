@@ -10,8 +10,6 @@ $( document ).ready(function() {
 
     function ajaxPost(){
 
-        // var checked = $('#studentId').is(':checked');
-
         // PREPARE FORM DATA
 
         var formData;
@@ -21,20 +19,6 @@ $( document ).ready(function() {
             endDate :  $("#endDate").val()
         };
 
-        // if(checked) {
-        //      formData = {
-        //          startDate : $("#startDate").val(),
-        //          endDate :  $("#endDate").val(),
-        //          studentId : $("#studentId").val()
-        //     };
-        // } else {
-        //     formData = {
-        //         startDate : $("#startDate").val(),
-        //         endDate :  $("#endDate").val(),
-        //         studentId : $("#studentId").val()
-        //     };
-        // }
-
         $.ajax({
             type: "POST",
             contentType: "application/json",
@@ -42,11 +26,7 @@ $( document ).ready(function() {
             data: JSON.stringify(formData),
             dataType: 'json',
             success: function (result) {
-                if (result.status == "OK") {
-                    $("#postResultDiv").html("<strong>Success</strong>");
-                } else {
-                    $("#postResultDiv").html("<strong>Error</strong>");
-                }
+                $("#postResultDiv").html("<strong>Success</strong>");
                 console.log(result);
             },
             error: function (e) {

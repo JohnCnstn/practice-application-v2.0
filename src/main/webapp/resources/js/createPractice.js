@@ -28,11 +28,7 @@ $( document ).ready(function() {
             data: JSON.stringify(formData),
             dataType: 'json',
             success: function (result) {
-                if (result.status == "OK") {
-                    $("#postResultDiv").html("<strong>Success</strong>");
-                } else {
-                    $("#postResultDiv").html("<strong>Error</strong>");
-                }
+                $("#postResultDiv").html("<strong>Success</strong>");
                 console.log(result);
             },
             error: function (e) {

@@ -15,7 +15,7 @@ $( document ).ready(function() {
         var formData;
 
         formData = {
-            practiceId : $("#practiceId").val()
+            practicesId : $("#practiceId").val()
         };
 
         $.ajax({
@@ -24,13 +24,13 @@ $( document ).ready(function() {
             url: window.location + "/postStudentOnPractice",
             data: JSON.stringify(formData),
             dataType: 'json',
-            success: function (result) {
-                if (result.status == "OK") {
+            success: function (data) {
+                if (data.status === "OK") {
                     $("#postResultDiv").html("<strong>Success</strong>");
                 } else {
                     $("#postResultDiv").html("<strong>Error</strong>");
                 }
-                console.log(result);
+                console.log(data);
             },
             error: function (e) {
                 alert("Error!");
