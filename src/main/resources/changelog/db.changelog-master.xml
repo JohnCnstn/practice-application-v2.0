@@ -229,13 +229,51 @@
             <column name="type">STUDENT</column>
         </insert>
 
-        <insert tableName="user">
-            <column name="userName">JohnCnstn</column>
-            <column name="password">faster</column>
-            <column name="first_name">Pavel</column>
-            <column name="last_name">Khankevich</column>
-            <column name="email">faster@mail.ru</column>
-            <column name="user_profile_id">1</column>
+        <insert tableName="university">
+            <column name="name">BSUiR</column>
+        </insert>
+
+        <insert tableName="university">
+            <column name="name">BNTU</column>
+        </insert>
+
+        <insert tableName="university">
+            <column name="name">BGU</column>
+        </insert>
+
+        <insert tableName="faculty">
+            <column name="name">FKSiS</column>
+            <column name="university_id">1</column>
+        </insert>
+
+        <insert tableName="faculty">
+            <column name="name">IEF</column>
+            <column name="university_id">1</column>
+        </insert>
+
+        <insert tableName="faculty">
+            <column name="name">FITU</column>
+            <column name="university_id">1</column>
+        </insert>
+
+        <insert tableName="speciality">
+            <column name="name">POiT</column>
+            <column name="faculty_id">1</column>
+        </insert>
+
+        <insert tableName="speciality">
+            <column name="name">IITP</column>
+            <column name="faculty_id">1</column>
+        </insert>
+
+        <insert tableName="speciality">
+            <column name="name">VMSiS</column>
+            <column name="faculty_id">1</column>
+        </insert>
+
+        <insert tableName="speciality">
+            <column name="name">ASOI</column>
+            <column name="faculty_id">3</column>
         </insert>
 
         <insert tableName="practice">
@@ -251,11 +289,234 @@
             <column name="email">netcracker@mail.ru</column>
         </insert>
 
-        <!--<insert tableName="headMaster">-->
-            <!--<column name="company_id">1</column>-->
-            <!--<column name="practice_id">1</column>-->
-        <!--</insert>-->
+        <insert tableName="company">
+            <column name="name">Itransition</column>
+            <column name="address">ul. Kulman 1</column>
+            <column name="phone">222222</column>
+            <column name="email">itransition@mail.ru</column>
+        </insert>
 
+        <insert tableName="company">
+            <column name="name">EffectiveSoft</column>
+            <column name="address">ul. Moskovskaya 22</column>
+            <column name="phone">3333333</column>
+            <column name="email">effectivesoft@mail.ru</column>
+        </insert>
+
+        <insert tableName="user">
+            <column name="userName">JohnCnstn</column>
+            <column name="password">$2a$04$ADRM8hhfgklHPSU2t6hz2OH/fguRqs3AmsYtoJkf7xbASVyei0IE2</column>
+            <column name="first_name">Pavel</column>
+            <column name="last_name">Khankevich</column>
+            <column name="email">faster@mail.ru</column>
+            <column name="user_profile_id">1</column>
+        </insert>
+
+        <insert tableName="user">
+            <column name="userName">Johny</column>
+            <column name="password">$2a$04$ADRM8hhfgklHPSU2t6hz2OH/fguRqs3AmsYtoJkf7xbASVyei0IE2</column>
+            <column name="first_name">Ekaterina</column>
+            <column name="last_name">Kriger</column>
+            <column name="email">johny@mail.ru</column>
+            <column name="user_profile_id">2</column>
+        </insert>
+
+        <insert tableName="user">
+            <column name="userName">Jenice</column>
+            <column name="password">$2a$04$ADRM8hhfgklHPSU2t6hz2OH/fguRqs3AmsYtoJkf7xbASVyei0IE2</column>
+            <column name="first_name">Dmitriy</column>
+            <column name="last_name">Umetskiy</column>
+            <column name="email">jenice@mail.ru</column>
+            <column name="user_profile_id">3</column>
+        </insert>
+
+        <insert tableName="user">
+            <column name="userName">Fedog</column>
+            <column name="password">$2a$04$ADRM8hhfgklHPSU2t6hz2OH/fguRqs3AmsYtoJkf7xbASVyei0IE2</column>
+            <column name="first_name">Bogdan</column>
+            <column name="last_name">Fedorenko</column>
+            <column name="email">fedoj@mail.ru</column>
+            <column name="user_profile_id">3</column>
+        </insert>
+
+        <insert tableName="user">
+            <column name="userName">Artiom321</column>
+            <column name="password">$2a$04$ADRM8hhfgklHPSU2t6hz2OH/fguRqs3AmsYtoJkf7xbASVyei0IE2</column>
+            <column name="first_name">Artyom</column>
+            <column name="last_name">Kirutin</column>
+            <column name="email">artiom321@mail.ru</column>
+            <column name="user_profile_id">3</column>
+        </insert>
+
+        <insert tableName="user">
+            <column name="userName">Melok</column>
+            <column name="password">$2a$04$ADRM8hhfgklHPSU2t6hz2OH/fguRqs3AmsYtoJkf7xbASVyei0IE2</column>
+            <column name="first_name">Maria</column>
+            <column name="last_name">Melnik</column>
+            <column name="email">melok@mail.ru</column>
+            <column name="user_profile_id">3</column>
+        </insert>
+
+        <insert tableName="user">
+            <column name="userName">Akula</column>
+            <column name="password">$2a$04$ADRM8hhfgklHPSU2t6hz2OH/fguRqs3AmsYtoJkf7xbASVyei0IE2</column>
+            <column name="first_name">Vladimir</column>
+            <column name="last_name">Akulchik</column>
+            <column name="email">akula@mail.ru</column>
+            <column name="user_profile_id">3</column>
+        </insert>
+
+        <insert tableName="user">
+            <column name="userName">Kochka</column>
+            <column name="password">$2a$04$ADRM8hhfgklHPSU2t6hz2OH/fguRqs3AmsYtoJkf7xbASVyei0IE2</column>
+            <column name="first_name">Nikita</column>
+            <column name="last_name">Romanchuk</column>
+            <column name="email">kochka@mail.ru</column>
+            <column name="user_profile_id">3</column>
+        </insert>
+
+        <insert tableName="user">
+            <column name="userName">Lizzka</column>
+            <column name="password">$2a$04$ADRM8hhfgklHPSU2t6hz2OH/fguRqs3AmsYtoJkf7xbASVyei0IE2</column>
+            <column name="first_name">Elizaveta</column>
+            <column name="last_name">Tsiulya</column>
+            <column name="email">lizzka@mail.ru</column>
+            <column name="user_profile_id">2</column>
+        </insert>
+
+        <insert tableName="user">
+            <column name="userName">Capability</column>
+            <column name="password">$2a$04$ADRM8hhfgklHPSU2t6hz2OH/fguRqs3AmsYtoJkf7xbASVyei0IE2</column>
+            <column name="first_name">Tamara</column>
+            <column name="last_name">Shautsova</column>
+            <column name="email">capability@mail.ru</column>
+            <column name="user_profile_id">3</column>
+        </insert>
+
+        <insert tableName="user">
+            <column name="userName">Vikusa</column>
+            <column name="password">$2a$04$ADRM8hhfgklHPSU2t6hz2OH/fguRqs3AmsYtoJkf7xbASVyei0IE2</column>
+            <column name="first_name">Viktoria</column>
+            <column name="last_name">Tsvirko</column>
+            <column name="email">vikusa@mail.ru</column>
+            <column name="user_profile_id">3</column>
+        </insert>
+
+        <insert tableName="user">
+            <column name="userName">Starosta</column>
+            <column name="password">$2a$04$ADRM8hhfgklHPSU2t6hz2OH/fguRqs3AmsYtoJkf7xbASVyei0IE2</column>
+            <column name="first_name">Misha</column>
+            <column name="last_name">Tsvetinskiy</column>
+            <column name="email">starosta@mail.ru</column>
+            <column name="user_profile_id">3</column>
+        </insert>
+
+        <insert tableName="user">
+            <column name="userName">Sirioga</column>
+            <column name="password">$2a$04$ADRM8hhfgklHPSU2t6hz2OH/fguRqs3AmsYtoJkf7xbASVyei0IE2</column>
+            <column name="first_name">Sergey</column>
+            <column name="last_name">Ivanov</column>
+            <column name="email">sirioga@mail.ru</column>
+            <column name="user_profile_id">3</column>
+        </insert>
+
+        <insert tableName="admin">
+            <column name="id">1</column>
+        </insert>
+
+        <insert tableName="headMaster">
+            <column name="id">2</column>
+            <column name="company_id">1</column>
+            <column name="practice_id">1</column>
+        </insert>
+
+        <insert tableName="student">
+            <column name="id">3</column>
+            <column name="isBudget" valueBoolean="true"/>
+            <column name="avgScore">5</column>
+            <column name="status">AVAILABLE</column>
+            <column name="speciality_id">1</column>
+        </insert>
+
+        <insert tableName="student">
+            <column name="id">4</column>
+            <column name="isBudget" valueBoolean="true"/>
+            <column name="avgScore">6</column>
+            <column name="status">AVAILABLE</column>
+            <column name="speciality_id">1</column>
+        </insert>
+
+        <insert tableName="student">
+            <column name="id">5</column>
+            <column name="isBudget" valueBoolean="false"/>
+            <column name="avgScore">7</column>
+            <column name="status">AVAILABLE</column>
+            <column name="speciality_id">1</column>
+        </insert>
+
+        <insert tableName="student">
+            <column name="id">6</column>
+            <column name="isBudget" valueBoolean="false"/>
+            <column name="avgScore">5</column>
+            <column name="status">AVAILABLE</column>
+            <column name="speciality_id">1</column>
+        </insert>
+
+        <insert tableName="student">
+            <column name="id">7</column>
+            <column name="isBudget" valueBoolean="true"/>
+            <column name="avgScore">9</column>
+            <column name="status">AVAILABLE</column>
+            <column name="speciality_id">1</column>
+        </insert>
+
+        <insert tableName="student">
+            <column name="id">8</column>
+            <column name="isBudget" valueBoolean="true"/>
+            <column name="avgScore">2</column>
+            <column name="status">AVAILABLE</column>
+            <column name="speciality_id">1</column>
+        </insert>
+
+        <insert tableName="student">
+            <column name="id">9</column>
+            <column name="isBudget" valueBoolean="false"/>
+            <column name="avgScore">8</column>
+            <column name="status">AVAILABLE</column>
+            <column name="speciality_id">1</column>
+        </insert>
+
+        <insert tableName="student">
+            <column name="id">10</column>
+            <column name="isBudget" valueBoolean="false"/>
+            <column name="avgScore">7</column>
+            <column name="status">AVAILABLE</column>
+            <column name="speciality_id">1</column>
+        </insert>
+
+        <insert tableName="student">
+            <column name="id">11</column>
+            <column name="isBudget" valueBoolean="false"/>
+            <column name="avgScore">3</column>
+            <column name="status">AVAILABLE</column>
+            <column name="speciality_id">1</column>
+        </insert>
+
+        <insert tableName="student">
+            <column name="id">12</column>
+            <column name="isBudget" valueBoolean="true"/>
+            <column name="avgScore">10</column>
+            <column name="status">AVAILABLE</column>
+            <column name="speciality_id">1</column>
+        </insert>
+
+        <insert tableName="student">
+            <column name="id">13</column>
+            <column name="isBudget" valueBoolean="true"/>
+            <column name="avgScore">10</column>
+            <column name="status">AVAILABLE</column>
+            <column name="speciality_id">1</column>
+        </insert>
     </changeSet>
 
 </databaseChangeLog>
