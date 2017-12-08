@@ -661,31 +661,6 @@
 
     <div class="form-group form" id="wrapper">
 
-        <%--<form>--%>
-            <%--<div class="form-group">--%>
-                <%--<div class="input-group ">--%>
-                    <%--<div class="input-group-addon"><i class="fa fa-search"></i></div>--%>
-                    <%--<input type="text" id="myInput" class="form-control" placeholder="Search da Fish">--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</form>--%>
-
-
-            <%--<style>--%>
-                <%--.dataTables_filter {--%>
-                    <%--white-space:nowrap;--%>
-                <%--}--%>
-
-                <%--.dataTables_filter label, .dataTables_filter input {--%>
-                    <%--display: inline-block;--%>
-                <%--}--%>
-            <%--</style>--%>
-
-            <%--<div class="dataTables_filter" id="ads-table_filter">--%>
-                <%--<label>Search :</label>--%>
-                <%--<input type="text" aria-controls="ads-table"/>--%>
-            <%--</div>--%>
-
         <table class="table table-hover" id="example1" cellspacing="0" cellpadding="0">
             <thead>
                 <tr>
@@ -714,9 +689,19 @@
 
                 </sec:authorize>
 
+
+
+
+                <form:form commandName="listOfStudentsIds" action="admin" method="POST">
+                    <form:checkboxes items="${listOfStudents}" path="students"/>
+                    <div class="login button">
+                        <input type="submit" value="Login" />
+                    </div>
+                </form:form>
+
                 <c:forEach items="${listOfStudents}" var="i">
                     <tr>
-                        <td><input type="checkbox" id="studentId" name="${i.id}"/></td>
+                        <%--<td><input type="checkbox" id="studentId" name="${i.id}"/></td>--%>
                         <td class='clickable-row' data-href="${userProfileUrl}/${i.id}">${i.firstName}</td>
                         <td>${i.lastName}</td>
                         <td>${i.speciality.faculty.university.name}</td>

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/admin")
@@ -55,7 +54,20 @@ public class AdminController {
         model.addAttribute("specialityDto", new SpecialityDto());
         model.addAttribute("listOfHeadMasters", headMasterService.getAll());
         model.addAttribute("specialityList", specialityService.getAll());
+
+        model.addAttribute("listOfStudentsIds", new ListOfStudentsIdsDto());
+
         return "students";
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public String showSelectedUsers(@ModelAttribute("listOfStudentsIds") ListOfStudentsIdsDto listOfStudentsIds) {
+
+        for (String student : listOfStudentsIds.getStudents()) {
+            System.out.println(student);
+        }
+
+        return "selectedUsers";
     }
 
     @RequestMapping(value = "/userInfo/{id}", method = RequestMethod.GET)
