@@ -25,7 +25,7 @@ $( document ).ready(function() {
             data: JSON.stringify(formData),
             dataType: 'json',
             success: function (data) {
-                $("#postResultDiv").html("<strong>Success</strong>");
+                $('#universityModal').modal('hide');
                 console.log(data);
             },
             error: function (e) {

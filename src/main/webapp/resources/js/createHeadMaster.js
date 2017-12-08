@@ -30,7 +30,7 @@ $( document ).ready(function() {
             data: JSON.stringify(formData),
             dataType: 'json',
             success: function (result) {
-                $("#postResultDiv").html("<strong>Success</strong>");
+                $('#universityModal').modal('hide');
                 console.log(result);
             },
             error: function (e) {
