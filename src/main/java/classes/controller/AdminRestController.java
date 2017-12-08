@@ -73,10 +73,11 @@ public class AdminRestController {
     }
 
     @RequestMapping(value = "/userInfo/{id}/postStudentOnPractice", method = RequestMethod.POST)
-    public ResponseEntity<StudentDto> postStudentOnPractice(@PathVariable("id") int id, @RequestBody StudentDto studentDto) {
+    @ResponseBody
+    public ResponseEntity<StudentDto> postStudentOnPractice(@RequestBody StudentDto studentDto, @PathVariable("id") int id) {
         studentDto.setId(id);
         setStudentOnPractice(studentDto);
-        return new ResponseEntity<>(studentDto, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     private void createFaculty(FacultyDto facultyDto) {

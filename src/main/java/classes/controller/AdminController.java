@@ -59,13 +59,13 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/userInfo/{id}", method = RequestMethod.GET)
-    public String showStudentInfo(@PathVariable("id") int id, @ModelAttribute("practiceDto") PracticeDto practiceDto, Model model) {
+    public String showStudentInfo(@PathVariable("id") int id, @ModelAttribute("studentDto") StudentDto studentDto, Model model) {
 
         Student student = studentService.findOne(id);
 
         model.addAttribute("student", student);
         model.addAttribute("listOfPractice", practiceService.getAll());
-        model.addAttribute("practiceDto", practiceDto);
+        model.addAttribute("studentDto", studentDto);
 
         return "student-info";
     }

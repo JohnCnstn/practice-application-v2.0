@@ -21,16 +21,12 @@ $( document ).ready(function() {
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: window.location + "/postStudentOnPractice",
+            url: window.location + "/postFaculty",
             data: JSON.stringify(formData),
             dataType: 'json',
-            success: function (data) {
-                if (data.status === "OK") {
-                    $("#postResultDiv").html("<strong>Success</strong>");
-                } else {
-                    $("#postResultDiv").html("<strong>Error</strong>");
-                }
-                console.log(data);
+            success: function (result) {
+                $("#postResultDiv").html("<strong>Success</strong>");
+                console.log(result);
             },
             error: function (e) {
                 alert("Error!");

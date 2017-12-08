@@ -21,12 +21,14 @@ public class ScheduledTasks {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    @Scheduled(cron = "0 0 0 * * *", zone="Europe/Minsk")
+    @Scheduled(cron = "0 59 11 * * *", zone="Europe/Minsk")
     public void reportCurrentTime() {
 
-        Student student = studentService.findOne(2);
-        student.setAvgScore(5);
-        studentRepository.save(student);
+//        Student student = studentService.findOne(2);
+//        student.setAvgScore(5);
+//        studentRepository.save(student);
+
+        System.out.println("darou");
 
         System.out.println("The time is now " + dateFormat.format(new Date()));
     }

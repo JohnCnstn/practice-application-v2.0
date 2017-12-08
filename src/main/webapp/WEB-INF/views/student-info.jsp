@@ -10,12 +10,19 @@
         <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>">
         <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
         <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
         <script type="text/javascript" src="<c:url value="/resources/js/setUserOnPractice.js"/>"></script>
-        <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
+
 </head>
 <body>
 
-<form:form name="form-SetOnPractice" commandName="practiceDto" method="POST" id="studentOnPracticeForm">
+<form:form name="form-SetOnPractice" commandName="studentDto" method="POST" id="studentOnPracticeForm">
 
         <div class="container">
 
@@ -47,11 +54,6 @@
 
                                                         </div>
 
-                                                        <%--<div class="form-group">--%>
-                                                                <%--<form:label path="name" for="facultyName">Your Faculty Name:</form:label>--%>
-                                                                <%--<form:input path="name" type="text" name="facultyName" class="form-control" id="facultyName" required="required" placeholder="FKSiS"/>--%>
-                                                        <%--</div>--%>
-
                                                         <div class="sign-up button">
                                                                 <input type="submit" value="Submit" />
                                                         </div>
@@ -61,7 +63,6 @@
                                         </div>
 
                                         <div class="modal-footer">
-                                                        <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
                                                 <div class="col-sm-7" id="postResultDiv"></div>
                                         </div>
 
@@ -145,9 +146,6 @@
 
                                                                         </tbody>
                                                                 </table>
-
-                                                                <%--<a href="#" class="btn btn-primary">My Sales Performance</a>--%>
-                                                                <%--<a href="#" class="btn btn-primary">Team Sales Performance</a>--%>
                                                         </div>
                                                 </div>
                                         </div>
@@ -155,10 +153,8 @@
                                                 <div class="panel-footer">
                                                         <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
                                                         <span class="pull-right">
-                                                                <button data-original-title="Remove from practice" type="button" class="btn btn-sm btn-danger" data-toggle="modal"><i class="glyphicon glyphicon-remove"></i></button>
-                                                                <button data-original-title="Remove from practice" type="button" class="btn btn-sm btn-warning" data-toggle="modal"><i class="glyphicon glyphicon-remove"></i></button>
-                                                                <%--<a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>--%>
-                                                                <%--<a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>--%>
+                                                                <button data-original-title="Remove from practice" type="button" class="btn btn-sm btn-danger" data-toggle="tooltip"><i class="glyphicon glyphicon-remove"></i></button>
+                                                                <button data-original-title="Set on practice" type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-target="#studentOnPracticeModal"><i class="glyphicon glyphicon-edit"></i></button>
                                                         </span>
                                                 </div>
                                         </sec:authorize>
@@ -166,10 +162,8 @@
                                                 <div class="panel-footer">
                                                         <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
                                                         <span class="pull-right">
-                                                                <button data-original-title="Remove from practice" type="button" class="btn btn-sm btn-danger" data-toggle="modal"><i class="glyphicon glyphicon-remove"></i></button>
-                                                                <button data-original-title="Set on practice" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#studentOnPracticeModal"><i class="glyphicon glyphicon-edit"></i></button>
-                                                                <%--<a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>--%>
-                                                                <%--<a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>--%>
+                                                                <button data-original-title="Remove from practice" type="button" class="btn btn-sm btn-danger" data-toggle="tooltip"><i class="glyphicon glyphicon-remove"></i></button>
+                                                                <button data-original-title="Set on practice" type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-target="#studentOnPracticeModal"><i class="glyphicon glyphicon-edit"></i></button>
                                                         </span>
                                                 </div>
                                         </sec:authorize>

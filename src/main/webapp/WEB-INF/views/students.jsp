@@ -726,7 +726,9 @@
                         <td>${i.status}</td>
                         <td>
 
-                            <button class="btn btn-info" onclick="location.href='${userProfileUrl}/${i.id}'">Info</button>
+                            <button class="btn btn-info" onclick="location.href='${userProfileUrl}/${i.id}'">Info
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            </button>
 
                         </td>
                     </tr>

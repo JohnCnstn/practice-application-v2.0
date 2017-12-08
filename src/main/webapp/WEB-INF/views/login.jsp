@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in</title>
-    <link rel="stylesheet" href="/resources/css/bootstrap.css">
+    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>">
     <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
     <link rel="stylesheet" href="/resources/css/main.css">
     <link rel="stylesheet" href="/resources/css/logout-success.css">
@@ -32,6 +32,7 @@
 </c:if>
 
 <div class="navbar navbar-default navbar-fixed-top">
+
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Practice application</a>
@@ -69,15 +70,6 @@
                         <input type="password" name="password-signin" class="form-control" id="password" required="required" placeholder="Password">
                     </div>
                 </div>
-
-                <%--<form>--%>
-                    <%--<div class="form-group">--%>
-                        <%--<div class="input-group ">--%>
-                            <%--<div class="input-group-addon"><i class="fa fa-search"></i></div>--%>
-                            <%--<input type="text" id="myInput" class="form-control" placeholder="Search da Fish">--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                <%--</form>--%>
 
                 <div class="check-box">
                     <div class="keeplogin">
