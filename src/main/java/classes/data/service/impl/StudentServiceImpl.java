@@ -59,6 +59,8 @@ public class StudentServiceImpl implements StudentService {
 
         System.out.println(studentDto.getPracticesId());
 
+        practiceService.findOne(studentDto.getPracticesId());
+
 //        student.setPractices(practices);
 
         return studentRepository.save(student);

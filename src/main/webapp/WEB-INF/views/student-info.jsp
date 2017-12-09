@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<form:form name="form-SetOnPractice" commandName="studentDto" method="POST" id="studentOnPracticeForm">
+<form:form name="form-SetOnPractice" commandName="arrayParam" method="POST" id="studentOnPracticeForm">
 
         <div class="container">
 

@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/admin")
 public class AdminRestController {
@@ -72,12 +74,22 @@ public class AdminRestController {
         return new ResponseEntity<>(practiceDto, HttpStatus.OK);
     }
 
+//    @RequestMapping(value = "/userInfo/{id}/postStudentOnPractice", method = RequestMethod.POST)
+//    @ResponseBody
+//    public ResponseEntity<StudentDto> postStudentOnPractice( @RequestParam(value = "arrayParam") List<String> arrayParam, @PathVariable("id") int id) {
+//        for (String practiceId : arrayParam) {
+//            System.out.println(practiceId);
+//        }
+////        studentDto.setId(id);
+////        setStudentOnPractice(studentDto);
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
+
     @RequestMapping(value = "/userInfo/{id}/postStudentOnPractice", method = RequestMethod.POST)
-    @ResponseBody
-    public ResponseEntity<StudentDto> postStudentOnPractice(@RequestBody StudentDto studentDto, @PathVariable("id") int id) {
-        studentDto.setId(id);
-        setStudentOnPractice(studentDto);
-        return new ResponseEntity<>(studentDto, HttpStatus.OK);
+    public @ResponseBody void postStudentOnPractice(@RequestBody String[] dataArrayToSend) {
+        for (String data : dataArrayToSend) {
+            System.out.println("Your Data =>" + data);
+        }
     }
 
     private void createFaculty(FacultyDto facultyDto) {

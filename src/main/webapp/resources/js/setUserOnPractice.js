@@ -14,15 +14,20 @@ $( document ).ready(function() {
 
         var formData;
 
+        var dataArrayToSend = [];
+        dataArrayToSend.push("a");
+        dataArrayToSend.push("b");
+        dataArrayToSend.push("c");
+
         formData = {
-            practicesId : $("#practiceId").val()
+            myArray : dataArrayToSend
         };
 
         $.ajax({
             type: "POST",
             contentType: "application/json",
             url: window.location + "/postStudentOnPractice",
-            data: JSON.stringify(formData),
+            data: JSON.stringify(dataArrayToSend),
             dataType: 'json',
             success: function (result) {
                 $('#universityModal').modal('hide');

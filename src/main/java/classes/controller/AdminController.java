@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -78,6 +81,7 @@ public class AdminController {
         model.addAttribute("student", student);
         model.addAttribute("listOfPractice", practiceService.getAll());
         model.addAttribute("studentDto", studentDto);
+        model.addAttribute("arrayParam",  new ArrayList<String>());
 
         return "student-info";
     }

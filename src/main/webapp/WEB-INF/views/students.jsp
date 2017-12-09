@@ -28,6 +28,8 @@
     <script type="text/javascript" src="<c:url value="/resources/bower_components/datatables.net/js/jquery.dataTables.min.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"/>"></script>
 
+    <script type="text/javascript" src="<c:url value="/resources/js/test.js"/>"></script>
+
 
 
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
@@ -661,10 +663,10 @@
 
     <div class="form-group form" id="wrapper">
 
-        <table class="table table-hover" id="example1" cellspacing="0" cellpadding="0">
+        <table class="table table-hover" id="example1" cellspacing="0" cellpadding="0" width="100%">
             <thead>
                 <tr>
-                    <th></th>
+                    <%--<th data-checkbox="true"></th>--%>
                     <th><span>First Name</span></th>
                     <th><span>Second Name</span></th>
                     <th><span>University</span></th>
@@ -692,16 +694,17 @@
 
 
 
-                <%--<form:form commandName="listOfStudentsIds" action="admin" method="POST">--%>
+                <form:form commandName="listOfStudentsIds" action="admin" method="POST">
                     <%--<form:checkboxes items="${listOfStudents}" path="students"/>--%>
-                    <%--<div class="login button">--%>
-                        <%--<input type="submit" value="Login" />--%>
-                    <%--</div>--%>
-                <%--</form:form>--%>
+                    <div class="login button">
+                        <input type="submit" value="Login" />
+                    </div>
 
-                <c:forEach items="${listOfStudents}" var="i">
+                </form:form>
+
+                <c:forEach items="${listOfStudents}" var="i" varStatus="status">
                     <tr>
-                        <%--<td><input type="checkbox" id="studentId" name="${i.id}"/></td>--%>
+                        <%--<td><form:checkbox path="students[${status}]" value="${i}"/></td>--%>
                         <td class='clickable-row' data-href="${userProfileUrl}/${i.id}">${i.firstName}</td>
                         <td>${i.lastName}</td>
                         <td>${i.speciality.faculty.university.name}</td>
