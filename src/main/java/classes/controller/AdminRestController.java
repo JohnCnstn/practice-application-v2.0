@@ -77,7 +77,7 @@ public class AdminRestController {
     public ResponseEntity<StudentDto> postStudentOnPractice(@RequestBody StudentDto studentDto, @PathVariable("id") int id) {
         studentDto.setId(id);
         setStudentOnPractice(studentDto);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 
     private void createFaculty(FacultyDto facultyDto) {

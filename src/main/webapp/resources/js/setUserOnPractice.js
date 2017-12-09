@@ -21,11 +21,11 @@ $( document ).ready(function() {
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: window.location + "/postFaculty",
+            url: window.location + "/postStudentOnPractice",
             data: JSON.stringify(formData),
             dataType: 'json',
             success: function (result) {
-                $("#postResultDiv").html("<strong>Success</strong>");
+                $('#universityModal').modal('hide');
                 console.log(result);
             },
             error: function (e) {

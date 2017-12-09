@@ -692,12 +692,12 @@
 
 
 
-                <form:form commandName="listOfStudentsIds" action="admin" method="POST">
-                    <form:checkboxes items="${listOfStudents}" path="students"/>
-                    <div class="login button">
-                        <input type="submit" value="Login" />
-                    </div>
-                </form:form>
+                <%--<form:form commandName="listOfStudentsIds" action="admin" method="POST">--%>
+                    <%--<form:checkboxes items="${listOfStudents}" path="students"/>--%>
+                    <%--<div class="login button">--%>
+                        <%--<input type="submit" value="Login" />--%>
+                    <%--</div>--%>
+                <%--</form:form>--%>
 
                 <c:forEach items="${listOfStudents}" var="i">
                     <tr>
