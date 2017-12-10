@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("studentServiceImpl")
@@ -49,19 +50,17 @@ public class StudentServiceImpl implements StudentService {
     @Transactional
     public Student setStudentOnPractice(StudentDto studentDto) {
 
-//        List<Practice> practices = null;
-
-//        for (Long practiceId : studentDto) {
-//            practices.add(practiceService.findOne(practiceId));
-//        }
-
         Student student = studentRepository.findOne(studentDto.getId());
 
-        System.out.println(studentDto.getPracticesId());
+        List practices = student.getPractices();
 
-        practiceService.findOne(studentDto.getPracticesId());
+        for (Long practiceId : studentDto.getPracticesId()) {
 
-//        student.setPractices(practices);
+            practices.add(practiceService.findOne(practiceId));
+
+        }
+
+        student.setPractices(practices);
 
         return studentRepository.save(student);
     }

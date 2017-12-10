@@ -10,24 +10,15 @@ $( document ).ready(function() {
 
     function ajaxPost(){
 
-        // PREPARE FORM DATA
+        var practicesId = [];
 
-        var formData;
-
-        var dataArrayToSend = [];
-        dataArrayToSend.push("a");
-        dataArrayToSend.push("b");
-        dataArrayToSend.push("c");
-
-        formData = {
-            myArray : dataArrayToSend
-        };
+        practicesId.push($("#practiceId").val());
 
         $.ajax({
             type: "POST",
             contentType: "application/json",
             url: window.location + "/postStudentOnPractice",
-            data: JSON.stringify(dataArrayToSend),
+            data: JSON.stringify(practicesId),
             dataType: 'json',
             success: function (result) {
                 $('#universityModal').modal('hide');

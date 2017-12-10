@@ -71,5 +71,5 @@ public class StudentDto {
 
     @Getter
     @Setter
-    private Long practicesId;
+    private List<Long> practicesId;
 }

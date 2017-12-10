@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/admin")
@@ -74,22 +74,18 @@ public class AdminRestController {
         return new ResponseEntity<>(practiceDto, HttpStatus.OK);
     }
 
-//    @RequestMapping(value = "/userInfo/{id}/postStudentOnPractice", method = RequestMethod.POST)
-//    @ResponseBody
-//    public ResponseEntity<StudentDto> postStudentOnPractice( @RequestParam(value = "arrayParam") List<String> arrayParam, @PathVariable("id") int id) {
-//        for (String practiceId : arrayParam) {
-//            System.out.println(practiceId);
-//        }
-////        studentDto.setId(id);
-////        setStudentOnPractice(studentDto);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
-
     @RequestMapping(value = "/userInfo/{id}/postStudentOnPractice", method = RequestMethod.POST)
-    public @ResponseBody void postStudentOnPractice(@RequestBody String[] dataArrayToSend) {
-        for (String data : dataArrayToSend) {
-            System.out.println("Your Data =>" + data);
+    public @ResponseBody void postStudentOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
+
+        ArrayList practicesIds = new ArrayList();
+
+        for (Long id : dataArrayToSend) {
+            practicesIds.add(id);
         }
+
+        studentDto.setPracticesId(practicesIds);
+
+        setStudentOnPractice(studentDto);
     }
 
     private void createFaculty(FacultyDto facultyDto) {

@@ -31,7 +31,13 @@ public class Student extends User {
     @Setter
     private Speciality speciality;
 
-    @ManyToMany(mappedBy = "students")
+//    @ManyToMany(mappedBy = "students")
+//    @Getter
+//    @Setter
+//    private List<Practice> practices;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "student_practice", joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "practice_id", referencedColumnName = "id"))
     @Getter
     @Setter
     private List<Practice> practices;

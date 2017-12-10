@@ -81,7 +81,7 @@ public class AdminController {
         model.addAttribute("student", student);
         model.addAttribute("listOfPractice", practiceService.getAll());
         model.addAttribute("studentDto", studentDto);
-        model.addAttribute("arrayParam",  new ArrayList<String>());
+        model.addAttribute("arrayParam",  new ArrayList<Long>());
 
         return "student-info";
     }
