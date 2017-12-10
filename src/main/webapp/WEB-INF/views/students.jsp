@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${user.userName}</title>
+    <title>Practice application</title>
     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
@@ -599,131 +599,180 @@
                             </div>
                         </div>
 
-
-
                     </div>
 
                 </form:form>
 
             </sec:authorize>
 
-    <div class="navbar navbar-default navbar-fixed-top">
+    <div id="wrapper">
 
-        <div class="container">
+        <div id="table-wrapper">
 
-            <span class="navbar-left" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+        <div class="overlay"></div>
 
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Practice application</a>
-            </div>
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
 
-            <div id="mySidenav" class="sidenav">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-
-                    <sec:authorize access="hasRole('ADMIN')">
-
-                        <div class="container">
-
-                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#universityModal">Create University</button>
-                            </br>
-                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#facultyModal">Create Faculty</button>
-                            </br>
-                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#headMasterModal">Create Head Master</button>
-                            </br>
-                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#createStudentModal">Create Student</button>
-                            </br>
-                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#practiceModal">Create Practice</button>
-                            </br>
-                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#specialityModal">Create Speciality</button>
-
-                        </div>
-
-                    </sec:authorize>
-
-                    <sec:authorize access="hasRole('HEAD_MASTER')">
-
-                        <div class="container">
-
-                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Create Practice</button>
-
-                        </div>
-
-                    </sec:authorize>
-
-            </div>
-
-            <form:form action="logout" method="get">
-                <button type="submit" class="btn navbar-btn navbar-right" id="header-btn">
-                    Logout
-                </button>
-            </form:form>
-
-        </div>
-    </div>
-
-    <div class="form-group form" id="wrapper">
-
-        <table class="table table-hover" id="example1" cellspacing="0" cellpadding="0" width="100%">
-            <thead>
-                <tr>
-                    <%--<th data-checkbox="true"></th>--%>
-                    <th><span>First Name</span></th>
-                    <th><span>Second Name</span></th>
-                    <th><span>University</span></th>
-                    <th><span>Faculty</span></th>
-                    <th><span>Is budget</span></th>
-                    <th><span>Average score</span></th>
-                    <th><span>Status</span></th>
-                    <th><span>Info</span></th>
-                </tr>
-            </thead>
-            <tbody id="myTable">
-
-                <sec:authorize access="hasRole('HEAD_MASTER')">
-
-                    <spring:url value="/head-master/userInfo" var="userProfileUrl" />
-
-                </sec:authorize>
+                <li class="sidebar-brand">
+                    <a href="#">
+                        ${user.userName}
+                    </a>
+                </li>
 
                 <sec:authorize access="hasRole('ADMIN')">
 
-                    <spring:url value="/admin/userInfo" var="userProfileUrl" />
+                <li>
+                    <a href="#"  data-toggle="modal" data-target="#headMasterModal">Create Head Master</a>
+                </li>
+                <li>
+                    <a href="#"  data-toggle="modal" data-target="#createStudentModal">Create Student</a>
+                </li>
+                <li>
+                    <a href="#"  data-toggle="modal" data-target="#practiceModal">Create Practice</a>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">University<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">Dropdown heading</li>
+                        <li><a href="#" data-toggle="modal" data-target="#universityModal">Create University</a></li>
+                        <li><a href="#"  data-toggle="modal" data-target="#facultyModal">Create Faculty</a></li>
+                        <li><a href="#"  data-toggle="modal" data-target="#specialityModal">Create Speciality</a></li>
+                    </ul>
+                </li>
 
                 </sec:authorize>
 
+                <sec:authorize access="hasRole('HEAD_MASTER')">
 
+                    <li>
+                        <a href="#"  data-toggle="modal" data-target="#myModal">Create Practice</a>
+                    </li>
 
+                </sec:authorize>
 
-                <form:form commandName="listOfStudentsIds" action="admin" method="POST">
-                    <%--<form:checkboxes items="${listOfStudents}" path="students"/>--%>
-                    <div class="login button">
-                        <input type="submit" value="Login" />
+            </ul>
+        </nav>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </button>
+                            <table class="table table-hover" id="example1" cellspacing="0" cellpadding="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <%--<th data-checkbox="true"></th>--%>
+                                    <th><span>First Name</span></th>
+                                    <th><span>Second Name</span></th>
+                                    <th><span>University</span></th>
+                                    <th><span>Faculty</span></th>
+                                    <th><span>Is budget</span></th>
+                                    <th><span>Average score</span></th>
+                                    <th><span>Status</span></th>
+                                    <th><span>Info</span></th>
+                                </tr>
+                                </thead>
+                                <tbody id="myTable">
+
+                                <sec:authorize access="hasRole('HEAD_MASTER')">
+
+                                    <spring:url value="/head-master/userInfo" var="userProfileUrl" />
+
+                                </sec:authorize>
+
+                                <sec:authorize access="hasRole('ADMIN')">
+
+                                    <spring:url value="/admin/userInfo" var="userProfileUrl" />
+
+                                </sec:authorize>
+
+                                <c:forEach items="${listOfStudents}" var="i" varStatus="status">
+                                    <tr>
+                                            <%--<td><form:checkbox path="students[${status}]" value="${i}"/></td>--%>
+                                        <td class='clickable-row' data-href="${userProfileUrl}/${i.id}">${i.firstName}</td>
+                                        <td>${i.lastName}</td>
+                                        <td>${i.speciality.faculty.university.name}</td>
+                                        <td>${i.speciality.faculty.name}</td>
+                                        <td>${i.budget}</td>
+                                        <td>${i.avgScore}</td>
+                                        <td>${i.status}</td>
+                                        <td>
+
+                                            <button class="btn btn-info" onclick="location.href='${userProfileUrl}/${i.id}'">Info
+                                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+
+                                </tbody>
+                            </table>
+
+            <div class="navbar navbar-default navbar-fixed-top">
+
+                <div class="container">
+
+                    <%--<span class="navbar-left" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>--%>
+
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Practice application</a>
                     </div>
 
-                </form:form>
+                    <%--<div id="mySidenav" class="sidenav">--%>
+                    <%--<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>--%>
 
-                <c:forEach items="${listOfStudents}" var="i" varStatus="status">
-                    <tr>
-                        <%--<td><form:checkbox path="students[${status}]" value="${i}"/></td>--%>
-                        <td class='clickable-row' data-href="${userProfileUrl}/${i.id}">${i.firstName}</td>
-                        <td>${i.lastName}</td>
-                        <td>${i.speciality.faculty.university.name}</td>
-                        <td>${i.speciality.faculty.name}</td>
-                        <td>${i.budget}</td>
-                        <td>${i.avgScore}</td>
-                        <td>${i.status}</td>
-                        <td>
+                    <%--<sec:authorize access="hasRole('ADMIN')">--%>
 
-                            <button class="btn btn-info" onclick="location.href='${userProfileUrl}/${i.id}'">Info
-                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                            </button>
+                    <%--<div class="container">--%>
 
-                        </td>
-                    </tr>
-                </c:forEach>
+                    <%--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#universityModal">Create University</button>--%>
+                    <%--</br>--%>
+                    <%--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#facultyModal">Create Faculty</button>--%>
+                    <%--</br>--%>
+                    <%--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#headMasterModal">Create Head Master</button>--%>
+                    <%--</br>--%>
+                    <%--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#createStudentModal">Create Student</button>--%>
+                    <%--</br>--%>
+                    <%--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#practiceModal">Create Practice</button>--%>
+                    <%--</br>--%>
+                    <%--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#specialityModal">Create Speciality</button>--%>
 
-            </tbody>
-        </table>
+                    <%--</div>--%>
+
+                    <%--</sec:authorize>--%>
+
+                    <%--<sec:authorize access="hasRole('HEAD_MASTER')">--%>
+
+                    <%--<div class="container">--%>
+
+                    <%--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Create Practice</button>--%>
+
+                    <%--</div>--%>
+
+                    <%--</sec:authorize>--%>
+
+                    <%--</div>--%>
+
+                    <form:form action="logout" method="get">
+                        <button type="submit" class="btn navbar-btn navbar-right" id="header-btn">
+                            Logout
+                        </button>
+                    </form:form>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- /#page-content-wrapper -->
+
+        </div>
 
     </div>
 

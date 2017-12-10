@@ -58,20 +58,18 @@ public class AdminController {
         model.addAttribute("listOfHeadMasters", headMasterService.getAll());
         model.addAttribute("specialityList", specialityService.getAll());
 
-        model.addAttribute("listOfStudentsIds", new ListOfStudentsIdsDto());
-
         return "students";
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public String showSelectedUsers(@ModelAttribute("listOfStudentsIds") ListOfStudentsIdsDto listOfStudentsIds) {
-
-        for (String student : listOfStudentsIds.getStudents()) {
-            System.out.println(student);
-        }
-
-        return "selectedUsers";
-    }
+//    @RequestMapping(value = "", method = RequestMethod.POST)
+//    public String showSelectedUsers(@ModelAttribute("listOfStudentsIds") ListOfStudentsIdsDto listOfStudentsIds) {
+//
+//        for (String student : listOfStudentsIds.getStudents()) {
+//            System.out.println(student);
+//        }
+//
+//        return "selectedUsers";
+//    }
 
     @RequestMapping(value = "/userInfo/{id}", method = RequestMethod.GET)
     public String showStudentInfo(@PathVariable("id") int id, @ModelAttribute("studentDto") StudentDto studentDto, Model model) {
