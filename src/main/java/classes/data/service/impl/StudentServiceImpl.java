@@ -153,6 +153,12 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.save(student);
     }
 
+    @Override
+    public Student changeStatus(Student student) {
+        student.setStatus("ON_PRACTICE");
+        return studentRepository.save(student);
+    }
+
     public void delete(long id) {
         studentRepository.delete(id);
     }

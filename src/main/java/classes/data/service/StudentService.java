@@ -16,6 +16,7 @@ public interface StudentService {
     List getStudentPractices(long id);
     Student registerNewUserAccount(StudentDto accountDto) throws UserNameExistsException, EmailExistsException;
     Student registerStudent(StudentDto studentDto);
+    Student changeStatus(Student student);
     void delete(long id);
     List<Student> getAll();
 }

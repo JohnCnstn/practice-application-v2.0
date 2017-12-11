@@ -1,14 +1,14 @@
 package classes.shedule;
 
+import classes.data.entity.Practice;
 import classes.data.entity.Student;
-import classes.data.repository.StudentRepository;
 import classes.data.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class ScheduledTasks {
@@ -16,20 +16,20 @@ public class ScheduledTasks {
     @Autowired
     private StudentService studentService;
 
-    @Autowired
-    private StudentRepository studentRepository;
-
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-
-    @Scheduled(cron = "0 59 11 * * *", zone="Europe/Minsk")
+    @Scheduled(cron = "0 0 0 * * *", zone="Europe/Minsk")
     public void reportCurrentTime() {
 
-//        Student student = studentService.findOne(2);
-//        student.setAvgScore(5);
-//        studentRepository.save(student);
+        Date today = new Date();
 
-        System.out.println("darou");
+        List<Student> students = studentService.getAll();
 
-        System.out.println("The time is now " + dateFormat.format(new Date()));
+        for (Student student : students) {
+            List<Practice> practices = studentService.getStudentPractices(student.getId());
+            for (Practice practice : practices) {
+                if(today.after(practice.getStartDate()) && today.before(practice.getEndDate())) {
+                    studentService.changeStatus(student);
+                }
+            }
+        }
     }
 }
