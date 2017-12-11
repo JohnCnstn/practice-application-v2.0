@@ -88,6 +88,20 @@ public class AdminRestController {
         setStudentOnPractice(studentDto);
     }
 
+    @RequestMapping(value = "/userInfo/{id}/deleteStudentFromPractice", method = RequestMethod.DELETE)
+    public @ResponseBody void deleteStudentFromPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
+
+        ArrayList practicesIds = new ArrayList();
+
+        for (Long id : dataArrayToSend) {
+            practicesIds.add(id);
+        }
+
+        studentDto.setPracticesId(practicesIds);
+
+        deleteFromPractice(studentDto);
+    }
+
     private void createFaculty(FacultyDto facultyDto) {
         facultyService.registerNewFaculty(facultyDto);
     }
@@ -110,6 +124,10 @@ public class AdminRestController {
 
     private void createPractice(PracticeDto practiceDto) {
         practiceService.registerNewPractice(practiceDto);
+    }
+
+    private void deleteFromPractice(StudentDto studentDto) {
+        studentService.deleteStudentFromPractice(studentDto);
     }
 
     private void setStudentOnPractice(StudentDto studentDto) {

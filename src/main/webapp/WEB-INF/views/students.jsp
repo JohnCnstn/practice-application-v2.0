@@ -30,8 +30,6 @@
 
     <script type="text/javascript" src="<c:url value="/resources/js/test.js"/>"></script>
 
-
-
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
     <script>
         $(function () {
@@ -44,13 +42,6 @@
                 "autoWidth": false
             });
         });
-    </script>
-
-    <script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
-    <script>
-        webshims.setOptions('waitReady', false);
-        webshims.setOptions('forms-ext', {types: 'date'});
-        webshims.polyfill('forms forms-ext');
     </script>
 
     <script>
@@ -719,46 +710,9 @@
 
                 <div class="container">
 
-                    <%--<span class="navbar-left" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>--%>
-
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#">Practice application</a>
                     </div>
-
-                    <%--<div id="mySidenav" class="sidenav">--%>
-                    <%--<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>--%>
-
-                    <%--<sec:authorize access="hasRole('ADMIN')">--%>
-
-                    <%--<div class="container">--%>
-
-                    <%--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#universityModal">Create University</button>--%>
-                    <%--</br>--%>
-                    <%--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#facultyModal">Create Faculty</button>--%>
-                    <%--</br>--%>
-                    <%--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#headMasterModal">Create Head Master</button>--%>
-                    <%--</br>--%>
-                    <%--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#createStudentModal">Create Student</button>--%>
-                    <%--</br>--%>
-                    <%--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#practiceModal">Create Practice</button>--%>
-                    <%--</br>--%>
-                    <%--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#specialityModal">Create Speciality</button>--%>
-
-                    <%--</div>--%>
-
-                    <%--</sec:authorize>--%>
-
-                    <%--<sec:authorize access="hasRole('HEAD_MASTER')">--%>
-
-                    <%--<div class="container">--%>
-
-                    <%--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Create Practice</button>--%>
-
-                    <%--</div>--%>
-
-                    <%--</sec:authorize>--%>
-
-                    <%--</div>--%>
 
                     <form:form action="logout" method="get">
                         <button type="submit" class="btn navbar-btn navbar-right" id="header-btn">

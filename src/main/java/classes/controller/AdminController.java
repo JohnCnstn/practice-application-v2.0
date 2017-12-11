@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,27 +62,23 @@ public class AdminController {
         return "students";
     }
 
-//    @RequestMapping(value = "", method = RequestMethod.POST)
-//    public String showSelectedUsers(@ModelAttribute("listOfStudentsIds") ListOfStudentsIdsDto listOfStudentsIds) {
-//
-//        for (String student : listOfStudentsIds.getStudents()) {
-//            System.out.println(student);
-//        }
-//
-//        return "selectedUsers";
-//    }
-
     @RequestMapping(value = "/userInfo/{id}", method = RequestMethod.GET)
-    public String showStudentInfo(@PathVariable("id") int id, @ModelAttribute("studentDto") StudentDto studentDto, Model model) {
+    public ModelAndView showStudentInfo(@PathVariable("id") int id, @ModelAttribute("studentDto") StudentDto studentDto) {
 
         Student student = studentService.findOne(id);
 
-        model.addAttribute("student", student);
-        model.addAttribute("listOfPractice", practiceService.getAll());
-        model.addAttribute("studentDto", studentDto);
-        model.addAttribute("arrayParam",  new ArrayList<Long>());
+        ModelAndView modelAndView = new ModelAndView("student-info");
 
-        return "student-info";
+        modelAndView.addObject("student", student);
+        modelAndView.addObject("listOfPractice", practiceService.getAll());
+        modelAndView.addObject("studentDto", studentDto);
+        modelAndView.addObject("arrayParam",  new ArrayList<Long>());
+
+        List studentPractices = studentService.getStudentPractices(id);
+
+        modelAndView.addObject("studentPractices", studentPractices);
+
+        return modelAndView;
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)

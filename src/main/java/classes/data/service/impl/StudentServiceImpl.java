@@ -8,6 +8,8 @@ import classes.data.service.SpecialityService;
 import classes.data.service.StudentService;
 import classes.data.validation.exception.EmailExistsException;
 import classes.data.validation.exception.UserNameExistsException;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -63,6 +65,34 @@ public class StudentServiceImpl implements StudentService {
         student.setPractices(practices);
 
         return studentRepository.save(student);
+    }
+
+    @Override
+    @Transactional
+    public Student deleteStudentFromPractice(StudentDto studentDto) {
+
+        Student student = studentRepository.findOne(studentDto.getId());
+
+        List practices = student.getPractices();
+
+        for (Long practiceId : studentDto.getPracticesId()) {
+
+            practices.remove(practiceService.findOne(practiceId));
+
+        }
+
+        student.setPractices(practices);
+
+        return studentRepository.save(student);
+    }
+
+    @Override
+    @Transactional
+    public List getStudentPractices(long id) {
+        Student student = studentRepository.findOne(id);
+        Hibernate.initialize(student.getPractices());
+        List<Practice> orders = student.getPractices();
+        return orders;
     }
 
     public List<Student> getAll() {

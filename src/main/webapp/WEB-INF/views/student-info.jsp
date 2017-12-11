@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
         <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
         <script type="text/javascript" src="<c:url value="/resources/js/setUserOnPractice.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/resources/js/deleteStudentFromPractice.js"/>"></script>
         <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 </head>
 <body>
@@ -57,6 +58,55 @@
 
                                         <div class="modal-footer">
                                                 <div class="col-sm-7" id="postResultDiv"></div>
+                                        </div>
+
+                                </div>
+
+                        </div>
+                </div>
+
+        </div>
+
+</form:form>
+
+<form:form name="form-DeleteFromPractice" commandName="arrayParam" method="POST" id="deleteStudentFromPracticeForm">
+
+        <div class="container">
+
+                <!-- Modal -->
+                <div class="modal fade" id="deleteStudentFromPracticeModal" role="dialog">
+                        <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                        <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Select practice</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+                                                <div id = "delete_from_practice">
+
+                                                        <div class="form-group">
+
+                                                                <label>Select practice:
+
+                                                                        <select id="practiceId" name="practiceId">
+                                                                                <c:forEach items="${studentPractices}" var="i">
+                                                                                        <option value="${i.id}">${i}</option>
+                                                                                </c:forEach>
+                                                                        </select>
+
+                                                                </label>
+
+                                                        </div>
+
+                                                        <div class="sign-up button">
+                                                                <input type="submit" value="Submit" />
+                                                        </div>
+
+                                                </div>
+
                                         </div>
 
                                 </div>
@@ -146,7 +196,7 @@
                                                 <div class="panel-footer">
                                                         <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
                                                         <span class="pull-right">
-                                                                <button data-original-title="Remove from practice" type="button" class="btn btn-sm btn-danger" data-toggle="modal"><i class="glyphicon glyphicon-remove"></i></button>
+                                                                <button data-original-title="Remove from practice" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteStudentFromPracticeModal"><i class="glyphicon glyphicon-remove"></i></button>
                                                                 <button data-original-title="Set on practice" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#studentOnPracticeModal"><i class="glyphicon glyphicon-edit"></i></button>
                                                                 <%--<a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>--%>
                                                                 <%--<a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>--%>
