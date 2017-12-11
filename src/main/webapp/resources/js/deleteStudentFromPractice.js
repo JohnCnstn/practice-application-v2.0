@@ -21,7 +21,7 @@ $( document ).ready(function() {
             data: JSON.stringify(practicesId),
             dataType: 'json',
             success: function (result) {
-                $('#universityModal').modal('hide');
+                $('#deleteStudentFromPracticeModal').modal('hide');
                 console.log(result);
             },
             error: function (e) {

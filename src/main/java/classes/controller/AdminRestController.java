@@ -75,7 +75,7 @@ public class AdminRestController {
     }
 
     @RequestMapping(value = "/userInfo/{id}/postStudentOnPractice", method = RequestMethod.POST)
-    public @ResponseBody void postStudentOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
+    public @ResponseBody ResponseEntity<StudentDto> postStudentOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
 
         ArrayList practicesIds = new ArrayList();
 
@@ -86,10 +86,12 @@ public class AdminRestController {
         studentDto.setPracticesId(practicesIds);
 
         setStudentOnPractice(studentDto);
+
+        return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/userInfo/{id}/deleteStudentFromPractice", method = RequestMethod.DELETE)
-    public @ResponseBody void deleteStudentFromPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
+    public @ResponseBody ResponseEntity<StudentDto> deleteStudentFromPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
 
         ArrayList practicesIds = new ArrayList();
 
@@ -100,6 +102,7 @@ public class AdminRestController {
         studentDto.setPracticesId(practicesIds);
 
         deleteFromPractice(studentDto);
+        return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 
     private void createFaculty(FacultyDto facultyDto) {
