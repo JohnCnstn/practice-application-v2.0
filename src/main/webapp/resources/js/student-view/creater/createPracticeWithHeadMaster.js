@@ -1,7 +1,7 @@
 $( document ).ready(function() {
 
     // SUBMIT FORM
-    $("#specialityForm").submit(function(event) {
+    $("#customerForm").submit(function(event) {
         // Prevent the form from submitting via the browser.
         event.preventDefault();
         ajaxPost();
@@ -15,18 +15,19 @@ $( document ).ready(function() {
         var formData;
 
         formData = {
-            name : $("#specialityName").val(),
-            facultyId : $("#facultyId").val()
+            startDate : $("#startDate").val(),
+            endDate :  $("#endDate").val()
         };
 
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: window.location + "/postSpeciality",
+            url: window.location + "/postPractice",
             data: JSON.stringify(formData),
             dataType: 'json',
             success: function (result) {
-                $('#specialityModal').modal('hide');
+                $('#myModal').modal('hide');
+                callSuccessAlert('You created practice!');
                 console.log(result);
             },
             error: function (e) {
@@ -40,6 +41,7 @@ $( document ).ready(function() {
     }
 
     function resetData(){
-        $("#specialityName").val("");
+        $("#startDate").val("");
+        $("#endDate").val("");
     }
 });

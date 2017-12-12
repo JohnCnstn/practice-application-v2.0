@@ -1,7 +1,7 @@
 $( document ).ready(function() {
 
     // SUBMIT FORM
-    $("#headMasterForm").submit(function(event) {
+    $("#universityForm").submit(function(event) {
         // Prevent the form from submitting via the browser.
         event.preventDefault();
         ajaxPost();
@@ -15,23 +15,19 @@ $( document ).ready(function() {
         var formData;
 
         formData = {
-            firstName : $("#firstName").val(),
-            lastName : $("#lastName").val(),
-            userName : $("#userName").val(),
-            email : $("#email").val(),
-            password : $("#password").val(),
-            companyId : $("#companyId").val()
+            name : $("#universityName").val()
         };
 
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: window.location + "/postHeadMaster",
+            url: window.location + "/postUniversity",
             data: JSON.stringify(formData),
             dataType: 'json',
-            success: function (result) {
-                $('#headMasterModal').modal('hide');
-                console.log(result);
+            success: function (data) {
+                $('#universityModal').modal('hide');
+                callSuccessAlert('You created the university!');
+                console.log(data);
             },
             error: function (e) {
                 alert("Error!");
@@ -44,10 +40,6 @@ $( document ).ready(function() {
     }
 
     function resetData(){
-        $("#firstName").val("");
-        $("#lastName").val("");
-        $("#userName").val("");
-        $("#email").val("");
-        $("#password").val("");
+        $("#universityName").val("");
     }
 });

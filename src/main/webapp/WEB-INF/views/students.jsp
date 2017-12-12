@@ -16,14 +16,17 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/sideBar.css"/>">
 
     <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/createPracticeWithHeadMaster.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/createPractice.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/createUniversity.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/createFaculty.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/createHeadMaster.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/createStudent.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/createSpeciality.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/createPracticeWithHeadMaster.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/createPractice.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/createUniversity.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/createFaculty.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/createHeadMaster.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/createStudent.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/createSpeciality.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/slideMenu/BootSlideMenu.js"/>"></script>
+
+    <script type="text/javascript" src="<c:url value="/resources/js/alert/successalert.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/alert/sweetalert/sweetalert.js"/>"></script>
 
     <script type="text/javascript" src="<c:url value="/resources/bower_components/datatables.net/js/jquery.dataTables.min.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"/>"></script>
@@ -104,15 +107,25 @@
         });
     </script>
 
-    <style>
-        .alertWrapper {
-            padding-left: 300px;
-            padding-right: 300px;
-        }
-    </style>
-
 </head>
 <body>
+
+<div class="navbar navbar-default navbar-fixed-top">
+
+    <div class="container">
+
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Practice application</a>
+        </div>
+
+        <form:form action="logout" method="get">
+            <button type="submit" class="btn navbar-btn navbar-right" id="header-btn">
+                Logout
+            </button>
+        </form:form>
+
+    </div>
+</div>
 
     <sec:authorize access="hasRole('ADMIN')">
 
@@ -605,14 +618,6 @@
 
     <div id="wrapper">
 
-        <div class="alertWrapper">
-            <div id="universitySuccess" class="alert alert-success collapse">
-                <strong>Success!</strong>
-            </div>
-        </div>
-
-        <div id="table-wrapper">
-
         <%--<div class="overlay"></div>--%>
 
         <!-- Sidebar -->
@@ -663,6 +668,9 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
+
+            <div id="table-wrapper">
+
             <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
                 <span class="hamb-top"></span>
                 <span class="hamb-middle"></span>
@@ -708,23 +716,6 @@
 
                 </tbody>
             </table>
-
-            <div class="navbar navbar-default navbar-fixed-top">
-
-                <div class="container">
-
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#">Practice application</a>
-                    </div>
-
-                    <form:form action="logout" method="get">
-                        <button type="submit" class="btn navbar-btn navbar-right" id="header-btn">
-                            Logout
-                        </button>
-                    </form:form>
-
-                </div>
-            </div>
 
         </div>
         <!-- /#page-content-wrapper -->

@@ -1,7 +1,7 @@
 $( document ).ready(function() {
 
     // SUBMIT FORM
-    $("#facultyForm").submit(function(event) {
+    $("#specialityForm").submit(function(event) {
         // Prevent the form from submitting via the browser.
         event.preventDefault();
         ajaxPost();
@@ -15,18 +15,19 @@ $( document ).ready(function() {
         var formData;
 
         formData = {
-            name : $("#facultyName").val(),
-            universityId : $("#universityId").val()
+            name : $("#specialityName").val(),
+            facultyId : $("#facultyId").val()
         };
 
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: window.location + "/postFaculty",
+            url: window.location + "/postSpeciality",
             data: JSON.stringify(formData),
             dataType: 'json',
             success: function (result) {
-                $('#facultyModal').modal('hide');
+                $('#specialityModal').modal('hide');
+                callSuccessAlert('You created a speciality!');
                 console.log(result);
             },
             error: function (e) {
@@ -40,6 +41,6 @@ $( document ).ready(function() {
     }
 
     function resetData(){
-        $("#facultyName").val("");
+        $("#specialityName").val("");
     }
 });

@@ -1,7 +1,7 @@
 $( document ).ready(function() {
 
     // SUBMIT FORM
-    $("#practiceForm").submit(function(event) {
+    $("#facultyForm").submit(function(event) {
         // Prevent the form from submitting via the browser.
         event.preventDefault();
         ajaxPost();
@@ -15,20 +15,19 @@ $( document ).ready(function() {
         var formData;
 
         formData = {
-            startDate : $("#startDateAdmin").val(),
-            endDate :  $("#endDateAdmin").val(),
-            quantity :  $("#quantity").val(),
-            headMasterId :  $("#headMasterId").val()
+            name : $("#facultyName").val(),
+            universityId : $("#universityId").val()
         };
 
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: window.location + "/postPractice",
+            url: window.location + "/postFaculty",
             data: JSON.stringify(formData),
             dataType: 'json',
             success: function (result) {
-                $('#practiceModal').modal('hide');
+                $('#facultyModal').modal('hide');
+                callSuccessAlert('You created faculty!');
                 console.log(result);
             },
             error: function (e) {
@@ -42,8 +41,6 @@ $( document ).ready(function() {
     }
 
     function resetData(){
-        $("#startDateAdmin").val("");
-        $("#endDateAdmin").val("");
-        $("#quantity").val("");
+        $("#facultyName").val("");
     }
 });

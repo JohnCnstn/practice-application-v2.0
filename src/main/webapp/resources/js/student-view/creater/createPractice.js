@@ -1,7 +1,7 @@
 $( document ).ready(function() {
 
     // SUBMIT FORM
-    $("#customerForm").submit(function(event) {
+    $("#practiceForm").submit(function(event) {
         // Prevent the form from submitting via the browser.
         event.preventDefault();
         ajaxPost();
@@ -15,8 +15,10 @@ $( document ).ready(function() {
         var formData;
 
         formData = {
-            startDate : $("#startDate").val(),
-            endDate :  $("#endDate").val()
+            startDate : $("#startDateAdmin").val(),
+            endDate :  $("#endDateAdmin").val(),
+            quantity :  $("#quantity").val(),
+            headMasterId :  $("#headMasterId").val()
         };
 
         $.ajax({
@@ -26,7 +28,8 @@ $( document ).ready(function() {
             data: JSON.stringify(formData),
             dataType: 'json',
             success: function (result) {
-                $('#myModal').modal('hide');
+                $('#practiceModal').modal('hide');
+                callSuccessAlert('You created practice!');
                 console.log(result);
             },
             error: function (e) {
@@ -40,7 +43,8 @@ $( document ).ready(function() {
     }
 
     function resetData(){
-        $("#startDate").val("");
-        $("#endDate").val("");
+        $("#startDateAdmin").val("");
+        $("#endDateAdmin").val("");
+        $("#quantity").val("");
     }
 });

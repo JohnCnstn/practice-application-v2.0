@@ -33,6 +33,7 @@ $( document ).ready(function() {
             dataType: 'json',
             success: function (result) {
                 $('#createStudentModal').modal('hide');
+                callSuccessAlert('You created a student!');
                 console.log(result);
             },
             error: function (e) {
