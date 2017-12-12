@@ -23,6 +23,7 @@
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/createHeadMaster.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/createStudent.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/createSpeciality.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/loadUniversity.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/slideMenu/BootSlideMenu.js"/>"></script>
 
     <script type="text/javascript" src="<c:url value="/resources/js/alert/successalert.js"/>"></script>
@@ -53,16 +54,6 @@
                 window.location = $(this).data("href");
             });
         });
-    </script>
-
-    <script>
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-        }
-
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-        }
     </script>
 
     <script>
@@ -109,6 +100,13 @@
 
 </head>
 <body>
+
+<div class="col-sm-7" style="margin:20px 0px 20px 0px">
+    <div id="getResultDiv" style="padding:20px 10px 20px 50px">
+        <ul class="list-group">
+        </ul>
+    </div>
+</div>
 
 <div class="navbar navbar-default navbar-fixed-top">
 
@@ -191,8 +189,13 @@
 
                                         <label>Select university:
 
+                                            <%--<form:select path="u" id="universityId">--%>
+                                                <%--<form:option value="" label="--Choose A Value--"/>--%>
+                                                <%--<form:options items="${stateList}" itemValue="id"/>--%>
+                                            <%--</form:select>--%>
+
                                             <select id="universityId" name="universityId">
-                                                <c:forEach items="${universityList}" var="i">
+                                                <c:forEach items="${html}" var="i">
                                                     <option value="${i.id}">${i.name}</option>
                                                 </c:forEach>
                                             </select>
@@ -646,7 +649,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">University<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Dropdown heading</li>
-                        <li><a href="#" data-toggle="modal" data-target="#universityModal">Create University</a></li>
+                        <li><a href="#" id="getAllUniversities" data-toggle="modal" data-target="#universityModal">Create University</a></li>
                         <li><a href="#"  data-toggle="modal" data-target="#facultyModal">Create Faculty</a></li>
                         <li><a href="#"  data-toggle="modal" data-target="#specialityModal">Create Speciality</a></li>
                     </ul>

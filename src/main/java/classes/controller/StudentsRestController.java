@@ -2,6 +2,7 @@ package classes.controller;
 
 import classes.data.detail.CustomUserDetail;
 import classes.data.dto.*;
+import classes.data.entity.University;
 import classes.data.entity.User;
 import classes.data.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/students")
@@ -103,6 +105,12 @@ public class StudentsRestController {
 
     private void createPractice(PracticeDto practiceDto, User user) {
         practiceService.registerPracticeWithHeadMaster(practiceDto, user);
+    }
+
+    @RequestMapping(value = "/getAllUniversities", method = RequestMethod.GET)
+    public ResponseEntity<List<University>> getAllUniversities() {
+        List<University> cust = universityService.getAll();
+        return new ResponseEntity<>(cust, HttpStatus.OK);
     }
 
     private void whatCreatePracticeMethodShouldBeUsed (PracticeDto practiceDto) {

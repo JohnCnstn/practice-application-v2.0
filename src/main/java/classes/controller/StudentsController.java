@@ -48,7 +48,7 @@ public class StudentsController {
     public String showUserPage(Model model) {
         model.addAttribute("user", getPrincipal());
         model.addAttribute("listOfStudents", studentService.getAll());
-        model.addAttribute("universityList", universityService.getAll());
+//        model.addAttribute("universityList", universityService.getAll());
         model.addAttribute("universityDto", new UniversityDto());
         model.addAttribute("facultyDto", new FacultyDto());
         model.addAttribute("headMasterDto", new HeadMasterDto());
