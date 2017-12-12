@@ -671,17 +671,7 @@
                                 </thead>
                                 <tbody id="myTable">
 
-                                <sec:authorize access="hasRole('HEAD_MASTER')">
-
-                                    <spring:url value="/head-master/userInfo" var="userProfileUrl" />
-
-                                </sec:authorize>
-
-                                <sec:authorize access="hasRole('ADMIN')">
-
-                                    <spring:url value="/admin/userInfo" var="userProfileUrl" />
-
-                                </sec:authorize>
+                                <spring:url value="/userInfo" var="userProfileUrl" />
 
                                 <c:forEach items="${listOfStudents}" var="i" varStatus="status">
                                     <tr>

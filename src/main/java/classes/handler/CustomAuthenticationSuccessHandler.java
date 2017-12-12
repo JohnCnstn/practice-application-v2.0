@@ -30,43 +30,13 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                         HttpServletResponse response, Authentication authentication)
             throws IOException {
 
-        String targetUrl = determineTargetUrl(authentication);
+        String targetUrl = DetermineTargetUrl.determineTargetUrl(authentication);
 
         if (response.isCommitted()) {
             return;
         }
 
         redirectStrategy.sendRedirect(request, response, targetUrl);
-    }
-
-    private String determineTargetUrl(Authentication authentication) {
-        boolean isStudent = false;
-        boolean isAdmin = false;
-        boolean isHeadMaster = false;
-        Collection<? extends GrantedAuthority> authorities
-                = authentication.getAuthorities();
-        for (GrantedAuthority grantedAuthority : authorities) {
-            if (grantedAuthority.getAuthority().equals("ROLE_STUDENT")) {
-                isStudent = true;
-                break;
-            } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
-                isAdmin = true;
-                break;
-            } else if (grantedAuthority.getAuthority().equals("ROLE_HEAD_MASTER")) {
-                isHeadMaster = true;
-                break;
-            }
-        }
-
-        if (isStudent) {
-            return "student";
-        } else if (isAdmin) {
-            return "admin";
-        } else if (isHeadMaster) {
-            return "head-master";
-        } else {
-            throw new IllegalStateException();
-        }
     }
 
     private void clearAuthenticationAttributes(HttpServletRequest request) {

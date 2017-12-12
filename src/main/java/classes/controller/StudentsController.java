@@ -21,8 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-@RequestMapping("/admin")
-public class AdminController {
+public class StudentsController {
 
     @Autowired
     private StudentService studentService;
@@ -45,7 +44,7 @@ public class AdminController {
     @Autowired
     private SpecialityService specialityService;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/students", method = RequestMethod.GET)
     public String showUserPage(Model model) {
         model.addAttribute("user", getPrincipal());
         model.addAttribute("listOfStudents", studentService.getAll());

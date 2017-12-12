@@ -7,14 +7,17 @@ import classes.data.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 @RestController
-@RequestMapping("/admin")
-public class AdminRestController {
+@RequestMapping("/students")
+public class StudentsRestController {
 
     private final UniversityService universityService;
 
@@ -33,7 +36,7 @@ public class AdminRestController {
     private StudentService studentService;
 
     @Autowired
-    public AdminRestController(UniversityService universityService, FacultyService facultyService) {
+    public StudentsRestController(UniversityService universityService, FacultyService facultyService) {
         this.universityService = universityService;
         this.facultyService = facultyService;
     }
@@ -70,39 +73,8 @@ public class AdminRestController {
 
     @RequestMapping(value = "/postPractice", method = RequestMethod.POST)
     public ResponseEntity<PracticeDto> postPractice(@RequestBody PracticeDto practiceDto) {
-        createPractice(practiceDto);
+        whatCreatePracticeMethodShouldBeUsed(practiceDto);
         return new ResponseEntity<>(practiceDto, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/userInfo/{id}/postStudentOnPractice", method = RequestMethod.POST)
-    public @ResponseBody ResponseEntity<StudentDto> postStudentOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
-
-        ArrayList practicesIds = new ArrayList();
-
-        for (Long id : dataArrayToSend) {
-            practicesIds.add(id);
-        }
-
-        studentDto.setPracticesId(practicesIds);
-
-        setStudentOnPractice(studentDto);
-
-        return new ResponseEntity<>(studentDto, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/userInfo/{id}/deleteStudentFromPractice", method = RequestMethod.DELETE)
-    public @ResponseBody ResponseEntity<StudentDto> deleteStudentFromPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
-
-        ArrayList practicesIds = new ArrayList();
-
-        for (Long id : dataArrayToSend) {
-            practicesIds.add(id);
-        }
-
-        studentDto.setPracticesId(practicesIds);
-
-        deleteFromPractice(studentDto);
-        return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 
     private void createFaculty(FacultyDto facultyDto) {
@@ -129,12 +101,23 @@ public class AdminRestController {
         practiceService.registerNewPractice(practiceDto);
     }
 
-    private void deleteFromPractice(StudentDto studentDto) {
-        studentService.deleteStudentFromPractice(studentDto);
+    private void createPractice(PracticeDto practiceDto, User user) {
+        practiceService.registerPracticeWithHeadMaster(practiceDto, user);
     }
 
-    private void setStudentOnPractice(StudentDto studentDto) {
-        studentService.setStudentOnPractice(studentDto);
+    private void whatCreatePracticeMethodShouldBeUsed (PracticeDto practiceDto) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Collection<? extends GrantedAuthority> authorities
+                = authentication.getAuthorities();
+        for (GrantedAuthority grantedAuthority : authorities) {
+            if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+                createPractice(practiceDto);
+                break;
+            } else if (grantedAuthority.getAuthority().equals("ROLE_HEAD_MASTER")) {
+                createPractice(practiceDto, getPrincipal());
+                break;
+            }
+        }
     }
 
     private User getPrincipal(){
