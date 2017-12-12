@@ -26,6 +26,8 @@ $( document ).ready(function() {
             dataType: 'json',
             success: function (data) {
                 $('#universityModal').modal('hide');
+                $('#universitySuccess').show();
+                hideAlertOnTimeOut();
                 console.log(data);
             },
             error: function (e) {
@@ -40,5 +42,13 @@ $( document ).ready(function() {
 
     function resetData(){
         $("#name").val("");
+    }
+
+    function hideAlertOnTimeOut(){
+        window.setTimeout(function() {
+            $('#universitySuccess').fadeTo(500, 0).slideUp(500, function(){
+                $(this).remove();
+            });
+        }, 4000);
     }
 });
