@@ -16,16 +16,20 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/sideBar.css"/>">
 
     <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/createPracticeWithHeadMaster.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/createPractice.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/createUniversity.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/createFaculty.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/createHeadMaster.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/createStudent.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/createSpeciality.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creater/loadUniversity.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/slideMenu/BootSlideMenu.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creator/createPracticeWithHeadMaster.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creator/createPractice.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creator/createUniversity.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creator/createFaculty.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creator/createHeadMaster.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creator/createStudent.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/creator/createSpeciality.js"/>"></script>
 
+
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/loader/loadUniversities.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/loader/loadFaculties.js"/>"></script>
+
+
+    <script type="text/javascript" src="<c:url value="/resources/js/slideMenu/BootSlideMenu.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/alert/successalert.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/alert/sweetalert/sweetalert.js"/>"></script>
 
@@ -189,11 +193,6 @@
 
                                         <label>Select university:
 
-                                            <%--<form:select path="u" id="universityId">--%>
-                                                <%--<form:option value="" label="--Choose A Value--"/>--%>
-                                                <%--<form:options items="${stateList}" itemValue="id"/>--%>
-                                            <%--</form:select>--%>
-
                                             <select id="universityId" name="universityId">
                                                 <c:forEach items="${html}" var="i">
                                                     <option value="${i.id}">${i.name}</option>
@@ -253,8 +252,8 @@
 
                                         <label>Select a faculty:
 
-                                            <select id="facultyId" name="facultyId">
-                                                <c:forEach items="${listOfFaculties}" var="i">
+                                            <select id="facultyId" name="universityId">
+                                                <c:forEach items="${facultiesList}" var="i">
                                                     <option value="${i.id}">${i.name}</option>
                                                 </c:forEach>
                                             </select>
@@ -651,7 +650,7 @@
                         <li class="dropdown-header">Dropdown heading</li>
                         <li><a href="#" data-toggle="modal" data-target="#universityModal">Create University</a></li>
                         <li><a href="#" id="getAllUniversities" data-toggle="modal" data-target="#facultyModal">Create Faculty</a></li>
-                        <li><a href="#"  data-toggle="modal" data-target="#specialityModal">Create Speciality</a></li>
+                        <li><a href="#" id="getAllFaculties" data-toggle="modal" data-target="#specialityModal">Create Speciality</a></li>
                     </ul>
                 </li>
 

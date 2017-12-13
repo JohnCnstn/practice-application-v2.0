@@ -54,7 +54,7 @@ public class StudentsController {
         model.addAttribute("headMasterDto", new HeadMasterDto());
         model.addAttribute("listOfCompanies", companyService.getAll());
         model.addAttribute("studentDto", new StudentDto());
-        model.addAttribute("listOfFaculties", facultyService.getAll());
+//        model.addAttribute("listOfFaculties", facultyService.getAll());
         model.addAttribute("practiceDto", new PracticeDto());
         model.addAttribute("specialityDto", new SpecialityDto());
         model.addAttribute("listOfHeadMasters", headMasterService.getAll());
