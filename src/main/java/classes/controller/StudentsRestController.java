@@ -2,6 +2,7 @@ package classes.controller;
 
 import classes.data.detail.CustomUserDetail;
 import classes.data.dto.*;
+import classes.data.entity.Company;
 import classes.data.entity.Faculty;
 import classes.data.entity.University;
 import classes.data.entity.User;
@@ -37,6 +38,9 @@ public class StudentsRestController {
 
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private CompanyService companyService;
 
     @Autowired
     public StudentsRestController(UniversityService universityService, FacultyService facultyService) {
@@ -118,6 +122,12 @@ public class StudentsRestController {
     public ResponseEntity<List<Faculty>> getAllFaculties() {
         List<Faculty> faculties = facultyService.getAll();
         return new ResponseEntity<>(faculties, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getAllCompanies", method = RequestMethod.GET)
+    public ResponseEntity<List<Company>> getAllCompanies() {
+        List<Company> companies = companyService.getAll();
+        return new ResponseEntity<>(companies, HttpStatus.OK);
     }
 
     private void whatCreatePracticeMethodShouldBeUsed (PracticeDto practiceDto) {

@@ -27,6 +27,7 @@
 
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/loader/loadUniversities.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/loader/loadFaculties.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/loader/loadCompanies.js"/>"></script>
 
 
     <script type="text/javascript" src="<c:url value="/resources/js/slideMenu/BootSlideMenu.js"/>"></script>
@@ -193,7 +194,7 @@
 
                                         <label>Select university:
 
-                                            <select id="universityId" name="universityId">
+                                            <select id="universityId">
                                                 <c:forEach items="${html}" var="i">
                                                     <option value="${i.id}">${i.name}</option>
                                                 </c:forEach>
@@ -252,7 +253,7 @@
 
                                         <label>Select a faculty:
 
-                                            <select id="facultyId" name="universityId">
+                                            <select id="facultyId">
                                                 <c:forEach items="${facultiesList}" var="i">
                                                     <option value="${i.id}">${i.name}</option>
                                                 </c:forEach>
@@ -332,8 +333,8 @@
 
                                         <label>Select Company:
 
-                                            <select id="companyId" name="companyId">
-                                                <c:forEach items="${listOfCompanies}" var="i">
+                                            <select id="companyId">
+                                                <c:forEach items="${companiesList}" var="i">
                                                     <option value="${i.id}">${i.name}</option>
                                                 </c:forEach>
                                             </select>
@@ -635,7 +636,7 @@
                 <sec:authorize access="hasRole('ADMIN')">
 
                 <li>
-                    <a href="#"  data-toggle="modal" data-target="#headMasterModal">Create Head Master</a>
+                    <a href="#" id="getAllCompanies"  data-toggle="modal" data-target="#headMasterModal">Create Head Master</a>
                 </li>
                 <li>
                     <a href="#"  data-toggle="modal" data-target="#createStudentModal">Create Student</a>
