@@ -28,6 +28,7 @@
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/loader/loadUniversities.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/loader/loadFaculties.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/loader/loadCompanies.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/loader/loadSpecialities.js"/>"></script>
 
 
     <script type="text/javascript" src="<c:url value="/resources/js/slideMenu/BootSlideMenu.js"/>"></script>
@@ -420,8 +421,8 @@
 
                                             <label>Select speciality:
 
-                                                <select id="specialityId" name="specialityId">
-                                                    <c:forEach items="${specialityList}" var="i">
+                                                <select id="specialityId">
+                                                    <c:forEach items="${specialitiesList}" var="i">
                                                         <option value="${i.id}">${i.name}</option>
                                                     </c:forEach>
                                                 </select>
@@ -639,7 +640,7 @@
                     <a href="#" id="getAllCompanies"  data-toggle="modal" data-target="#headMasterModal">Create Head Master</a>
                 </li>
                 <li>
-                    <a href="#"  data-toggle="modal" data-target="#createStudentModal">Create Student</a>
+                    <a href="#" id="getAllSpecialities" data-toggle="modal" data-target="#createStudentModal">Create Student</a>
                 </li>
                 <li>
                     <a href="#"  data-toggle="modal" data-target="#practiceModal">Create Practice</a>

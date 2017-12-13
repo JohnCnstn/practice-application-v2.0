@@ -130,6 +130,12 @@ public class StudentsRestController {
         return new ResponseEntity<>(companies, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/getAllSpecialities", method = RequestMethod.GET)
+    public ResponseEntity<List<Faculty>> getAllSpecialities() {
+        List<Faculty> faculties= facultyService.getAll();
+        return new ResponseEntity<>(faculties, HttpStatus.OK);
+    }
+
     private void whatCreatePracticeMethodShouldBeUsed (PracticeDto practiceDto) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Collection<? extends GrantedAuthority> authorities
