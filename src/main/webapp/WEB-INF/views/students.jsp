@@ -649,8 +649,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">University<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Dropdown heading</li>
-                        <li><a href="#" id="getAllUniversities" data-toggle="modal" data-target="#universityModal">Create University</a></li>
-                        <li><a href="#"  data-toggle="modal" data-target="#facultyModal">Create Faculty</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#universityModal">Create University</a></li>
+                        <li><a href="#" id="getAllUniversities" data-toggle="modal" data-target="#facultyModal">Create Faculty</a></li>
                         <li><a href="#"  data-toggle="modal" data-target="#specialityModal">Create Speciality</a></li>
                     </ul>
                 </li>
