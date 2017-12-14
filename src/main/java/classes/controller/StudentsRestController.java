@@ -2,11 +2,9 @@ package classes.controller;
 
 import classes.data.detail.CustomUserDetail;
 import classes.data.dto.*;
-import classes.data.entity.Company;
-import classes.data.entity.Faculty;
-import classes.data.entity.University;
-import classes.data.entity.User;
+import classes.data.entity.*;
 import classes.data.service.*;
+import org.hibernate.LazyInitializationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -132,8 +130,26 @@ public class StudentsRestController {
 
     @RequestMapping(value = "/getAllSpecialities", method = RequestMethod.GET)
     public ResponseEntity<List<Faculty>> getAllSpecialities() {
-        List<Faculty> faculties= facultyService.getAll();
+        List<Faculty> faculties = facultyService.getAll();
         return new ResponseEntity<>(faculties, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getAllHeadMasters", method = RequestMethod.GET)
+    public ResponseEntity<List<HeadMasterDto>> getAllHeadMasters() {
+        List<HeadMaster> headMasters = headMasterService.getAll();
+        List<HeadMasterDto> headMasterDtoList = new ArrayList<>();
+
+        setHeadMasterDto(headMasters, headMasterDtoList);
+
+        return new ResponseEntity<>(headMasterDtoList, HttpStatus.OK);
+    }
+
+    private void setHeadMasterDto(List<HeadMaster> headMasters, List<HeadMasterDto> headMasterDtoList) {
+        for (HeadMaster headMaster : headMasters) {
+            HeadMasterDto headMasterDto = new HeadMasterDto();
+            headMasterDto.setUserName(headMaster.getUserName());
+            headMasterDtoList.add(headMasterDto);
+        }
     }
 
     private void whatCreatePracticeMethodShouldBeUsed (PracticeDto practiceDto) {

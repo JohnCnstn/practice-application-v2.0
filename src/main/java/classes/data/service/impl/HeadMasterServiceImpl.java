@@ -71,6 +71,7 @@ public class HeadMasterServiceImpl implements HeadMasterService {
         headMasterRepository.delete(id);
     }
 
+    @Transactional
     @Override
     public List<HeadMaster> getAll() {
         return headMasterRepository.findAll();

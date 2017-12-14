@@ -54,9 +54,6 @@ public class StudentsController {
         model.addAttribute("studentDto", new StudentDto());
         model.addAttribute("practiceDto", new PracticeDto());
         model.addAttribute("specialityDto", new SpecialityDto());
-        model.addAttribute("listOfHeadMasters", headMasterService.getAll());
-        model.addAttribute("specialityList", specialityService.getAll());
-
         return "students";
     }
 

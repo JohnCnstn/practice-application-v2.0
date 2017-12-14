@@ -29,6 +29,7 @@
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/loader/loadFaculties.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/loader/loadCompanies.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/loader/loadSpecialities.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/loader/loadHeadMasters.js"/>"></script>
 
 
     <script type="text/javascript" src="<c:url value="/resources/js/slideMenu/BootSlideMenu.js"/>"></script>
@@ -512,9 +513,9 @@
 
                                     <label>Select HeadMaster:
 
-                                        <select id="headMasterId" name="headMasterId">
-                                            <c:forEach items="${listOfHeadMasters}" var="i">
-                                                <option value="${i.id}">${i.userName}</option>
+                                        <select id="headMasterId">
+                                            <c:forEach items="${headMasterList}" var="i">
+                                                <option value="${i.id}">${i.name}</option>
                                             </c:forEach>
                                         </select>
 
@@ -643,7 +644,7 @@
                     <a href="#" id="getAllSpecialities" data-toggle="modal" data-target="#createStudentModal">Create Student</a>
                 </li>
                 <li>
-                    <a href="#"  data-toggle="modal" data-target="#practiceModal">Create Practice</a>
+                    <a href="#" id="getAllHeadMasters" data-toggle="modal" data-target="#practiceModal">Create Practice</a>
                 </li>
 
                 <li class="dropdown">
@@ -661,7 +662,7 @@
                 <sec:authorize access="hasRole('HEAD_MASTER')">
 
                     <li>
-                        <a href="#"  data-toggle="modal" data-target="#myModal">Create Practice</a>
+                        <a href="#" data-toggle="modal" data-target="#myModal">Create Practice</a>
                     </li>
 
                 </sec:authorize>
