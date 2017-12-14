@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/tableStudent.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/slideMenu/slideMenu.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/sideBar.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/dataTable/dataTable.min.css"/>">
 
     <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/creator/createPracticeWithHeadMaster.js"/>"></script>
@@ -36,24 +37,14 @@
     <script type="text/javascript" src="<c:url value="/resources/js/alert/successalert.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/alert/sweetalert/sweetalert.js"/>"></script>
 
-    <script type="text/javascript" src="<c:url value="/resources/bower_components/datatables.net/js/jquery.dataTables.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/dataTables/datatables.min.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"/>"></script>
+
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/selectRows.js"/>"></script>
 
     <script type="text/javascript" src="<c:url value="/resources/js/test.js"/>"></script>
 
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-    <script>
-        $(function () {
-            $('#example1').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": true,
-                "info": false,
-                "autoWidth": false
-            });
-        });
-    </script>
 
     <script>
         jQuery(document).ready(function($) {
