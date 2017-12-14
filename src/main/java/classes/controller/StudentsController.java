@@ -27,22 +27,7 @@ public class StudentsController {
     private StudentService studentService;
 
     @Autowired
-    private UniversityService universityService;
-
-    @Autowired
-    private FacultyService facultyService;
-
-    @Autowired
-    private CompanyService companyService;
-
-    @Autowired
-    private HeadMasterService headMasterService;
-
-    @Autowired
     private PracticeService practiceService;
-
-    @Autowired
-    private SpecialityService specialityService;
 
     @RequestMapping(value = "/students", method = RequestMethod.GET)
     public String showUserPage(Model model) {

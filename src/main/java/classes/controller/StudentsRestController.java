@@ -148,6 +148,7 @@ public class StudentsRestController {
         for (HeadMaster headMaster : headMasters) {
             HeadMasterDto headMasterDto = new HeadMasterDto();
             headMasterDto.setUserName(headMaster.getUserName());
+            headMasterDto.setId(headMaster.getId());
             headMasterDtoList.add(headMasterDto);
         }
     }
