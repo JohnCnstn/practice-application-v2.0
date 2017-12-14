@@ -37,11 +37,15 @@ public class Practice {
     @Setter
     private byte quantity;
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "practice_student", joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "practice_id", referencedColumnName = "id"))
-//    @Getter
-//    @Setter
-//    private List<Student> students;
+    @Column(name = "numberOfStudents")
+    @Getter
+    @Setter
+    private byte numberOfStudents;
+
+    @Column(name = "enabled")
+    @Getter
+    @Setter
+    private boolean enabled;
 
     @ManyToMany(mappedBy = "practices")
     @Getter
