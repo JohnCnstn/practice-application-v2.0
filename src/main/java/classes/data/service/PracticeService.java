@@ -7,6 +7,7 @@ import classes.data.entity.User;
 import java.util.List;
 
 public interface PracticeService {
+    List<Practice> findAllByEnabled();
     List<Practice> getAll();
     Practice findOne(long id);
     Practice registerPracticeWithHeadMaster(PracticeDto practiceDto, User user);

@@ -22,6 +22,11 @@ public class PracticeServiceImpl implements PracticeService {
     private PracticeRepository practiceRepository;
 
     @Override
+    public List<Practice> findAllByEnabled() {
+        return practiceRepository.findAllByEnabled(true);
+    }
+
+    @Override
     public List<Practice> getAll() {
         return practiceRepository.findAll();
     }

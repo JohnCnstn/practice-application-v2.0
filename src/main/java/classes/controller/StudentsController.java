@@ -26,9 +26,6 @@ public class StudentsController {
     @Autowired
     private StudentService studentService;
 
-    @Autowired
-    private PracticeService practiceService;
-
     @RequestMapping(value = "/students", method = RequestMethod.GET)
     public String showUserPage(Model model) {
         model.addAttribute("user", getPrincipal());
@@ -40,25 +37,6 @@ public class StudentsController {
         model.addAttribute("practiceDto", new PracticeDto());
         model.addAttribute("specialityDto", new SpecialityDto());
         return "students";
-    }
-
-    @RequestMapping(value = "/userInfo/{id}", method = RequestMethod.GET)
-    public ModelAndView showStudentInfo(@PathVariable("id") int id, @ModelAttribute("studentDto") StudentDto studentDto) {
-
-        Student student = studentService.findOne(id);
-
-        ModelAndView modelAndView = new ModelAndView("student-info");
-
-        modelAndView.addObject("student", student);
-        modelAndView.addObject("listOfPractice", practiceService.getAll());
-        modelAndView.addObject("studentDto", studentDto);
-        modelAndView.addObject("arrayParam",  new ArrayList<Long>());
-
-        List studentPractices = studentService.getStudentPractices(id);
-
-        modelAndView.addObject("studentPractices", studentPractices);
-
-        return modelAndView;
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
