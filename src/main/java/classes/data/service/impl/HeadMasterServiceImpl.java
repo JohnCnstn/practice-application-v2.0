@@ -4,9 +4,11 @@ import classes.data.dto.HeadMasterDto;
 import classes.data.dto.PracticeDto;
 import classes.data.entity.Company;
 import classes.data.entity.HeadMaster;
+import classes.data.entity.Practice;
 import classes.data.entity.Student;
 import classes.data.repository.HeadMasterRepository;
 import classes.data.service.HeadMasterService;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -40,8 +42,11 @@ public class HeadMasterServiceImpl implements HeadMasterService {
     }
 
     @Override
-    public void setStudentOnPractice(Student student, PracticeDto practiceDto) {
-
+    @Transactional
+    public Company getCompany(long id) {
+        HeadMaster headMaster = headMasterRepository.findOne(id);
+        Hibernate.initialize(headMaster.getCompany());
+        return headMaster.getCompany();
     }
 
     @Transactional

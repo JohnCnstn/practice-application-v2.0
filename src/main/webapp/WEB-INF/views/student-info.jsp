@@ -6,219 +6,276 @@
 <html>
 <head>
     <title>Title</title>
-        <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>">
-        <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>">
-        <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
-        <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
-        <script type="text/javascript" src="<c:url value="/resources/js/setUserOnPractice.js"/>"></script>
-        <script type="text/javascript" src="<c:url value="/resources/js/deleteStudentFromPractice.js"/>"></script>
-        <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/tableStudent.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/dataTable/dataTable.min.css"/>">
+
+
+
+    <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/setUserOnPractice.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/deleteStudentFromPractice.js"/>"></script>
+
+
+    <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+
+    <script type="text/javascript" src="<c:url value="/resources/js/dataTables/datatables.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"/>"></script>
+
 </head>
 <body>
 
 <form:form name="form-SetOnPractice" commandName="arrayParam" method="POST" id="studentOnPracticeForm">
 
-        <div class="container">
+    <div class="container">
 
-                <!-- Modal -->
-                <div class="modal fade" id="studentOnPracticeModal" role="dialog">
-                        <div class="modal-dialog">
+        <!-- Modal -->
+        <div class="modal fade" id="studentOnPracticeModal" role="dialog">
+            <div class="modal-dialog">
 
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                        <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Select practice</h4>
-                                        </div>
-                                        <div class="modal-body">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Select practice</h4>
+                    </div>
+                    <div class="modal-body">
 
-                                                <div id = "create_faculty">
+                        <div id = "create_faculty">
 
-                                                        <div class="form-group">
+                            <div class="form-group">
 
-                                                                <label>Select practice:
+                                <label>Select practice:
 
-                                                                        <select id="practiceId">
-                                                                                <c:forEach items="${listOfPractice}" var="i">
-                                                                                        <option value="${i.id}">${i.headMaster.userName}</option>
-                                                                                </c:forEach>
-                                                                        </select>
+                                    <table class="table table-hover myTable" id="setOnPracticeTable" cellspacing="0" cellpadding="0" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th><span>Company</span></th>
+                                            <th><span>Head master</span></th>
+                                            <th><span>Start date</span></th>
+                                            <th><span>End date</span></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="myTable">
 
-                                                                </label>
+                                        <spring:url value="/userInfo" var="userProfileUrl" />
 
-                                                        </div>
+                                        <c:forEach items="${practiceDtoList}" var="i">
+                                            <tr data-toggle="${i.id}">
+                                                <td>${i.companyName}</td>
+                                                <td>${i.headMasterName}</td>
+                                                <td>${i.startDate}</td>
+                                                <td>${i.endDate}</td>
+                                            </tr>
+                                        </c:forEach>
 
-                                                        <div class="sign-up button">
-                                                                <input type="submit" value="Submit" />
-                                                        </div>
+                                        </tbody>
 
-                                                </div>
+                                    </table>
 
-                                        </div>
+                                    <%--<select id="practiceId">--%>
+                                        <%--<c:forEach items="${listOfPractice}" var="i">--%>
+                                            <%--<option value="${i.id}">${i.headMaster.userName}</option>--%>
+                                        <%--</c:forEach>--%>
+                                    <%--</select>--%>
 
-                                        <div class="modal-footer">
-                                                <div class="col-sm-7" id="postResultDiv"></div>
-                                        </div>
+                                </label>
 
-                                </div>
+                            </div>
+
+                            <div class="sign-up button">
+                                <input type="submit" value="Submit" />
+                            </div>
 
                         </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="col-sm-7" id="postResultDiv"></div>
+                    </div>
+
                 </div>
 
+            </div>
         </div>
+
+    </div>
 
 </form:form>
 
 <form:form name="form-DeleteFromPractice" commandName="arrayParam" method="POST" id="deleteStudentFromPracticeForm">
 
-        <div class="container">
+    <div class="container">
 
-                <!-- Modal -->
-                <div class="modal fade" id="deleteStudentFromPracticeModal" role="dialog">
-                        <div class="modal-dialog">
+        <!-- Modal -->
+        <div class="modal fade" id="deleteStudentFromPracticeModal" role="dialog">
+            <div class="modal-dialog">
 
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                        <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Select practice</h4>
-                                        </div>
-                                        <div class="modal-body">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Select practice</h4>
+                    </div>
+                    <div class="modal-body">
 
-                                                <div id = "delete_from_practice">
+                        <div id = "delete_from_practice">
 
-                                                        <div class="form-group">
+                            <div class="form-group">
 
-                                                                <label>Select practice:
+                                <label>Select practice:
 
-                                                                        <select id="practiceId" name="practiceId">
-                                                                                <c:forEach items="${studentPractices}" var="i">
-                                                                                        <option value="${i.id}">${i}</option>
-                                                                                </c:forEach>
-                                                                        </select>
+                                    <table class="table table-hover myTable" id="removeFromPracticeTable" cellspacing="0" cellpadding="0" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th><span>Company</span></th>
+                                            <th><span>Head master</span></th>
+                                            <th><span>Start date</span></th>
+                                            <th><span>End date</span></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
 
-                                                                </label>
+                                        <spring:url value="/userInfo" var="userProfileUrl" />
 
-                                                        </div>
+                                        <c:forEach items="${practiceDtoList}" var="i">
+                                            <tr data-toggle="${i.id}">
+                                                <td>${i.companyName}</td>
+                                                <td>${i.headMasterName}</td>
+                                                <td>${i.startDate}</td>
+                                                <td>${i.endDate}</td>
+                                            </tr>
+                                        </c:forEach>
 
-                                                        <div class="sign-up button">
-                                                                <input type="submit" value="Submit" />
-                                                        </div>
+                                        </tbody>
 
-                                                </div>
+                                    </table>
 
-                                        </div>
+                                </label>
 
-                                </div>
+                            </div>
+
+                            <div class="sign-up button">
+                                <input type="submit" value="Submit" />
+                            </div>
 
                         </div>
+
+                    </div>
+
                 </div>
 
+            </div>
         </div>
+
+    </div>
 
 </form:form>
 
-        <div class="navbar navbar-default navbar-fixed-top">
+<div class="navbar navbar-default navbar-fixed-top">
 
-                <div class="container">
+    <div class="container">
 
-                        <div class="navbar-header">
-                                <a class="navbar-brand" href="#">Practice application</a>
-                        </div>
-
-                        <form:form action="logout" method="get">
-                                <button type="submit" class="btn navbar-btn navbar-right" id="header-btn">
-                                        Logout
-                                </button>
-                        </form:form>
-
-                </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Practice application</a>
         </div>
 
-        <div class="form-group" id="wrapper">
-                <div class="row">
-                        <div class="col-lg-6 col-lg-offset-3" >
+        <form:form action="logout" method="get">
+            <button type="submit" class="btn navbar-btn navbar-right" id="header-btn">
+                Logout
+            </button>
+        </form:form>
 
-                                <div class="panel panel-info">
-                                        <div class="panel-heading">
-                                                <h3 class="panel-title">${student.userName}</h3>
-                                        </div>
-                                        <div class="panel-body">
-                                                <div class="row">
+    </div>
+</div>
 
-                                                        <div class=" col-md-9 col-lg-9 ">
+<div class="form-group" id="wrapper">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3" >
 
-                                                                <table id="example1" class="table table-bordered table-user-information">
-                                                                        <tbody id="userInfoTable">
-                                                                                <tr>
-                                                                                        <td>First name:</td>
-                                                                                        <td>${student.firstName}</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                        <td>Last name:</td>
-                                                                                        <td>${student.lastName}</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                        <td>Email:</td>
-                                                                                        <td>${student.email}</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                        <td>University:</td>
-                                                                                        <td>${student.speciality.faculty.university.name}</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                        <td>Faculty:</td>
-                                                                                        <td>${student.speciality.faculty.name}</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                        <td>Speciality:</td>
-                                                                                        <td>${student.speciality.name}</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                        <td>Is budget:</td>
-                                                                                        <td>${student.budget}</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                        <td>Average score:</td>
-                                                                                        <td>${student.avgScore}</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                        <td>Status:</td>
-                                                                                        <td>${student.status}</td>
-                                                                                </tr>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">${student.userName}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
 
-                                                                        </tbody>
-                                                                </table>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                        <sec:authorize access="hasRole('ADMIN')">
-                                                <div class="panel-footer">
-                                                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-                                                        <span class="pull-right">
+                        <div class=" col-md-9 col-lg-9 ">
+
+                            <table class="table table-bordered table-user-information">
+                                <tbody id="userInfoTable">
+                                <tr>
+                                    <td>First name:</td>
+                                    <td>${student.firstName}</td>
+                                </tr>
+                                <tr>
+                                    <td>Last name:</td>
+                                    <td>${student.lastName}</td>
+                                </tr>
+                                <tr>
+                                    <td>Email:</td>
+                                    <td>${student.email}</td>
+                                </tr>
+                                <tr>
+                                    <td>University:</td>
+                                    <td>${student.speciality.faculty.university.name}</td>
+                                </tr>
+                                <tr>
+                                    <td>Faculty:</td>
+                                    <td>${student.speciality.faculty.name}</td>
+                                </tr>
+                                <tr>
+                                    <td>Speciality:</td>
+                                    <td>${student.speciality.name}</td>
+                                </tr>
+                                <tr>
+                                    <td>Is budget:</td>
+                                    <td>${student.budget}</td>
+                                </tr>
+                                <tr>
+                                    <td>Average score:</td>
+                                    <td>${student.avgScore}</td>
+                                </tr>
+                                <tr>
+                                    <td>Status:</td>
+                                    <td>${student.status}</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <sec:authorize access="hasRole('ADMIN')">
+                    <div class="panel-footer">
+                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                        <span class="pull-right">
                                                                 <button data-original-title="Remove from practice" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteStudentFromPracticeModal"><i class="glyphicon glyphicon-remove"></i></button>
                                                                 <button data-original-title="Set on practice" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#studentOnPracticeModal"><i class="glyphicon glyphicon-edit"></i></button>
                                                                 <%--<a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>--%>
                                                                 <%--<a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>--%>
-                                                        </span>
-                                                </div>
-                                        </sec:authorize>
-                                        <sec:authorize access="hasRole('HEAD_MASTER')">
-                                                <div class="panel-footer">
-                                                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-                                                        <span class="pull-right">
+                        </span>
+                    </div>
+                </sec:authorize>
+                <sec:authorize access="hasRole('HEAD_MASTER')">
+                    <div class="panel-footer">
+                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                        <span class="pull-right">
                                                                 <button data-original-title="Remove from practice" type="button" class="btn btn-sm btn-danger" data-toggle="modal"><i class="glyphicon glyphicon-remove"></i></button>
                                                                 <button data-original-title="Set on practice" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#studentOnPracticeModal"><i class="glyphicon glyphicon-edit"></i></button>
                                                                 <%--<a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>--%>
                                                                 <%--<a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>--%>
-                                                        </span>
-                                                </div>
-                                        </sec:authorize>
+                        </span>
+                    </div>
+                </sec:authorize>
 
-                                </div>
-                        </div>
-                </div>
+            </div>
         </div>
+    </div>
+</div>
 
 </body>
 </html>

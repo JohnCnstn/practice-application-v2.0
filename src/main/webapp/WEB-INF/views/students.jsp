@@ -44,15 +44,9 @@
 
     <script type="text/javascript" src="<c:url value="/resources/js/dataTables/colreoder.min.js"/>"></script>
 
-    <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/dataTables/checkboxes.min.js"/>"></script>
 
-    <%--<script>--%>
-        <%--jQuery(document).ready(function($) {--%>
-            <%--$(".clickable-row").click(function() {--%>
-                <%--window.location = $(this).data("href");--%>
-            <%--});--%>
-        <%--});--%>
-    <%--</script>--%>
+    <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 
     <script>
         $(document).ready(function(){
@@ -556,11 +550,31 @@
 
                                         <label>Select practice:
 
-                                            <%--<select id="practiceId">--%>
-                                                <%--<c:forEach items="${listOfPractice}" var="i">--%>
-                                                    <%--<option value="${i.id}">${i.headMaster.userName}</option>--%>
-                                                <%--</c:forEach>--%>
-                                            <%--</select>--%>
+                                            <table class="table table-hover myTable" id="practiceTable" cellspacing="0" cellpadding="0" width="100%">
+                                                <thead>
+                                                <tr>
+                                                    <th><span>Company</span></th>
+                                                    <th><span>Head master</span></th>
+                                                    <th><span>Start date</span></th>
+                                                    <th><span>End date</span></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody id="myTable">
+
+                                                <spring:url value="/userInfo" var="userProfileUrl" />
+
+                                                <c:forEach items="${practiceDtoList}" var="i">
+                                                    <tr data-toggle="${i.id}">
+                                                        <td>${i.companyName}</td>
+                                                        <td>${i.headMasterName}</td>
+                                                        <td>${i.startDate}</td>
+                                                        <td>${i.endDate}</td>
+                                                    </tr>
+                                                </c:forEach>
+
+                                                </tbody>
+
+                                            </table>
 
                                         </label>
 
@@ -716,10 +730,9 @@
                 <span class="hamb-middle"></span>
                 <span class="hamb-bottom"></span>
             </button>
-            <table class="table table-hover" id="example1" cellspacing="0" cellpadding="0" width="100%">
+            <table class="table table-hover myTable" id="example1" cellspacing="0" cellpadding="0" width="100%">
                 <thead>
                 <tr>
-                    <%--<th data-checkbox="true"></th>--%>
                     <th><span>First Name</span></th>
                     <th><span>Second Name</span></th>
                     <th><span>University</span></th>
@@ -754,7 +767,7 @@
 
                 </tbody>
 
-                <button data-toggle="modal" data-target="#assignOnPracticeModal" class="btn btn-info" id="button">Assign</button>
+                <button data-toggle="modal" data-target="#assignOnPracticeModal" class="btn btn-info" id="assignButton">Assign</button>
 
             </table>
 

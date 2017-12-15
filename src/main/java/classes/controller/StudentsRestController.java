@@ -112,8 +112,8 @@ public class StudentsRestController {
 
     @RequestMapping(value = "/getAllUniversities", method = RequestMethod.GET)
     public ResponseEntity<List<University>> getAllUniversities() {
-        List<University> cust = universityService.getAll();
-        return new ResponseEntity<>(cust, HttpStatus.OK);
+        List<University> universityList = universityService.getAll();
+        return new ResponseEntity<>(universityList, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/getAllFaculties", method = RequestMethod.GET)

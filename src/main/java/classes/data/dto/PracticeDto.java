@@ -9,6 +9,9 @@ import java.util.Date;
 public class PracticeDto {
     @Getter
     @Setter
+    private long id;
+    @Getter
+    @Setter
     private Date startDate;
 
     @Getter
@@ -30,4 +33,12 @@ public class PracticeDto {
     @Getter
     @Setter
     private long headMasterId;
+
+    @Getter
+    @Setter
+    private String headMasterName;
+
+    @Getter
+    @Setter
+    private String companyName;
 }

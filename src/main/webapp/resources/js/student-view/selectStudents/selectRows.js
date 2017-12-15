@@ -16,7 +16,7 @@ $(document).ready(function() {
         $(this).toggleClass('selected');
     } );
 
-    $('#button').click( function () {
+    $('#assignButton').click( function () {
         alert( studentList );
         // alert( table.rows('.selected').data().length +' row(s) selected' );
     } );

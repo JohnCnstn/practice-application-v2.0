@@ -7,30 +7,30 @@
     -webkit-box-shadow: 2px 2px 3px -1px rgba(0,0,0,0.35);
 }
 
-#example1 thead {
+.myTable thead {
     cursor: pointer;
     background: #c9dff0;
 }
-#example1 thead tr th {
+.myTable thead tr th {
     font-weight: bold;
     padding: 12px 20px 12px 32px;
 }
-#example1 thead tr th span {
+.myTable thead tr th span {
     padding-right: 20px;
     background: no-repeat 100% 100%;
 }
 
-#example1 thead tr th.headerSortUp, #example1 thead tr th.headerSortDown {
+.myTable thead tr th.headerSortUp, .myTable thead tr th.headerSortDown {
     background: #acc8dd;
 }
 
-#example1 tbody tr {
+.myTable tbody tr {
     color: #555;
 }
-#example1 tbody tr td {
+.myTable tbody tr td {
     text-align: center;
     padding: 15px 10px;
 }
-#example1 tbody tr td.lalign {
+.myTable tbody tr td.lalign {
     text-align: left;
 }
