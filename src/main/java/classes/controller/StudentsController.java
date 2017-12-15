@@ -46,6 +46,8 @@ public class StudentsController {
 
         model.addAttribute("practiceDtoList", setListOfPracticeDto(practiceList));
 
+        model.addAttribute("arrayParam",  new ArrayList<Long>());
+
         return "students";
     }
 

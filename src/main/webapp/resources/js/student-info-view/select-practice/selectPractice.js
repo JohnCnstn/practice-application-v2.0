@@ -1,9 +1,9 @@
 $(document).ready(function() {
-    var table =  $('#example1').DataTable({
-        "paging": true,
+    var table =  $('#setOnPracticeTable').DataTable({
+        "paging": false,
         "lengthChange": false,
-        "searching": true,
-        "ordering": true,
+        "searching": false,
+        "ordering": false,
         "info": false,
         "autoWidth": false,
         "colReorder": true
@@ -11,18 +11,18 @@ $(document).ready(function() {
 
     var studentList = [];
 
-    $('#example1 tbody').on( 'click', 'tr', function () {
+    $('#setOnPracticeTable tbody').on( 'click', 'tr', function () {
         studentList.push($(this).data("toggle"));
         $(this).toggleClass('selected');
     } );
 
-    $('#assignButton').click( function () {
-        alert( studentList );
+    // $('#assignButton').click( function () {
+        // alert( studentList );
         // alert( table.rows('.selected').data().length +' row(s) selected' );
-    } );
+    // } );
 
 
-    $("#assignOnPracticeForm").submit(function(event) {
+    $("#studentOnPracticeForm").submit(function(event) {
         event.preventDefault();
         ajaxPost(studentList);
     });
@@ -35,11 +35,11 @@ function ajaxPost(studentList){
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: window.location + "/assignOnPractice",
+        url: window.location + "/setStudentOnPractice",
         data: JSON.stringify(studentList),
         dataType: 'json',
         success: function (result) {
-            $('#assignOnPracticeModal').modal('hide');
+            $('#studentOnPracticeModal').modal('hide');
             callSuccessAlert('You assigned students!');
             console.log(result);
         },

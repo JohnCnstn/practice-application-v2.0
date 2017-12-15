@@ -16,23 +16,6 @@ public class UserInfoRestController {
     @Autowired
     private StudentService studentService;
 
-    @RequestMapping(value = "/{id}/postStudentOnPractice", method = RequestMethod.POST)
-    public @ResponseBody
-    ResponseEntity<StudentDto> postStudentOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
-
-        ArrayList practicesIds = new ArrayList();
-
-        for (Long id : dataArrayToSend) {
-            practicesIds.add(id);
-        }
-
-        studentDto.setPracticesId(practicesIds);
-
-        setStudentOnPractice(studentDto);
-
-        return new ResponseEntity<>(studentDto, HttpStatus.OK);
-    }
-
     @RequestMapping(value = "/{id}/deleteStudentFromPractice", method = RequestMethod.DELETE)
     public @ResponseBody ResponseEntity<StudentDto> deleteStudentFromPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
 
@@ -45,6 +28,23 @@ public class UserInfoRestController {
         studentDto.setPracticesId(practicesIds);
 
         deleteFromPractice(studentDto);
+        return new ResponseEntity<>(studentDto, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{id}/setStudentOnPractice", method = RequestMethod.POST)
+    public @ResponseBody
+    ResponseEntity<StudentDto> setStudentOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
+
+        ArrayList practicesIds = new ArrayList();
+
+        for (Long id : dataArrayToSend) {
+            practicesIds.add(id);
+        }
+
+        studentDto.setPracticesId(practicesIds);
+
+        setStudentOnPractice(studentDto);
+
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 

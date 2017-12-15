@@ -82,6 +82,23 @@ public class StudentsRestController {
         return new ResponseEntity<>(practiceDto, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/assignOnPractice", method = RequestMethod.POST)
+    public @ResponseBody
+    ResponseEntity<StudentDto> assignOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
+
+        ArrayList practicesIds = new ArrayList();
+
+        for (Long id : dataArrayToSend) {
+            practicesIds.add(id);
+        }
+
+//        studentDto.setPracticesId(practicesIds);
+//
+//        setStudentOnPractice(studentDto);
+
+        return new ResponseEntity<>(studentDto, HttpStatus.OK);
+    }
+
     private void createFaculty(FacultyDto facultyDto) {
         facultyService.registerNewFaculty(facultyDto);
     }

@@ -44,8 +44,6 @@
 
     <script type="text/javascript" src="<c:url value="/resources/js/dataTables/colreoder.min.js"/>"></script>
 
-    <script type="text/javascript" src="<c:url value="/resources/js/dataTables/checkboxes.min.js"/>"></script>
-
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 
     <script>
