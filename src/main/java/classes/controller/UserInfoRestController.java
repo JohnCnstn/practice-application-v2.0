@@ -16,8 +16,9 @@ public class UserInfoRestController {
     @Autowired
     private StudentService studentService;
 
-    @RequestMapping(value = "/{id}/deleteStudentFromPractice", method = RequestMethod.DELETE)
-    public @ResponseBody ResponseEntity<StudentDto> deleteStudentFromPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
+    @RequestMapping(value = "/{id}/removeFromPractice", method = RequestMethod.POST)
+    public @ResponseBody
+    ResponseEntity<StudentDto> removeFromPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
 
         ArrayList practicesIds = new ArrayList();
 
@@ -28,12 +29,13 @@ public class UserInfoRestController {
         studentDto.setPracticesId(practicesIds);
 
         deleteFromPractice(studentDto);
+
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}/setStudentOnPractice", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}/assignOnPractice", method = RequestMethod.POST)
     public @ResponseBody
-    ResponseEntity<StudentDto> setStudentOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
+    ResponseEntity<StudentDto> assignOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
 
         ArrayList practicesIds = new ArrayList();
 

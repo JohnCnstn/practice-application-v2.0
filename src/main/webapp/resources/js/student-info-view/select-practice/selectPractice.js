@@ -16,11 +16,6 @@ $(document).ready(function() {
         $(this).toggleClass('selected');
     } );
 
-    // $('#assignButton').click( function () {
-        // alert( studentList );
-        // alert( table.rows('.selected').data().length +' row(s) selected' );
-    // } );
-
 
     $("#studentOnPracticeForm").submit(function(event) {
         event.preventDefault();
@@ -35,7 +30,7 @@ function ajaxPost(studentList){
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: window.location + "/setStudentOnPractice",
+        url: window.location + "/assignOnPractice",
         data: JSON.stringify(studentList),
         dataType: 'json',
         success: function (result) {
