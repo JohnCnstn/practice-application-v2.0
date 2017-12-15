@@ -40,21 +40,19 @@
     <script type="text/javascript" src="<c:url value="/resources/js/dataTables/datatables.min.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"/>"></script>
 
-    <script type="text/javascript" src="<c:url value="/resources/js/student-view/selectRows.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/selectStudents/selectRows.js"/>"></script>
 
     <script type="text/javascript" src="<c:url value="/resources/js/dataTables/colreoder.min.js"/>"></script>
 
-    <script type="text/javascript" src="<c:url value="/resources/js/test.js"/>"></script>
-
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 
-    <script>
-        jQuery(document).ready(function($) {
-            $(".clickable-row").click(function() {
-                window.location = $(this).data("href");
-            });
-        });
-    </script>
+    <%--<script>--%>
+        <%--jQuery(document).ready(function($) {--%>
+            <%--$(".clickable-row").click(function() {--%>
+                <%--window.location = $(this).data("href");--%>
+            <%--});--%>
+        <%--});--%>
+    <%--</script>--%>
 
     <script>
         $(document).ready(function(){
@@ -536,6 +534,55 @@
 
         </form:form>
 
+        <form:form name="form-SetOnPractice" commandName="studentDto" method="POST" id="assignOnPracticeForm">
+
+            <div class="container">
+
+                <!-- Modal -->
+                <div class="modal fade" id="assignOnPracticeModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Select practice</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <div id = "assignOnPractice">
+
+                                    <div class="form-group">
+
+                                        <label>Select practice:
+
+                                            <%--<select id="practiceId">--%>
+                                                <%--<c:forEach items="${listOfPractice}" var="i">--%>
+                                                    <%--<option value="${i.id}">${i.headMaster.userName}</option>--%>
+                                                <%--</c:forEach>--%>
+                                            <%--</select>--%>
+
+                                        </label>
+
+                                    </div>
+
+                                    <div class="sign-up button">
+                                        <input type="submit" value="Submit" />
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </form:form>
+
     </sec:authorize>
 
     <sec:authorize access="hasRole('HEAD_MASTER')">
@@ -596,11 +643,6 @@
 
                                 </div>
 
-                            </div>
-
-                            <div class="modal-footer">
-                                    <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
-                                <div class="col-sm-7" id="postResultDiv"></div>
                             </div>
 
                         </div>
@@ -693,8 +735,7 @@
                 <spring:url value="/userInfo" var="userProfileUrl" />
 
                 <c:forEach items="${listOfStudents}" var="i" varStatus="status">
-                    <tr>
-                            <%--<td><form:checkbox path="students[${status}]" value="${i}"/></td>--%>
+                    <tr data-toggle="${i.id}">
                         <td class='clickable-row' data-href="${userProfileUrl}/${i.id}">${i.firstName}</td>
                         <td>${i.lastName}</td>
                         <td>${i.speciality.faculty.university.name}</td>
@@ -703,7 +744,6 @@
                         <td>${i.avgScore}</td>
                         <td>${i.status}</td>
                         <td>
-
                             <button class="btn btn-info" onclick="location.href='${userProfileUrl}/${i.id}'">Info
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                             </button>
@@ -713,6 +753,9 @@
                 </c:forEach>
 
                 </tbody>
+
+                <button data-toggle="modal" data-target="#assignOnPracticeModal" class="btn btn-info" id="button">Assign</button>
+
             </table>
 
         </div>

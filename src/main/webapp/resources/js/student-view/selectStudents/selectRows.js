@@ -9,8 +9,15 @@ $(document).ready(function() {
         "colReorder": true
     });
 
+    var studentList='';
+
     $('#example1 tbody').on( 'click', 'tr', function () {
+        studentList += $(this).data("toggle");
         $(this).toggleClass('selected');
     } );
 
+    $('#button').click( function () {
+        alert( studentList );
+        // alert( table.rows('.selected').data().length +' row(s) selected' );
+    } );
 } );

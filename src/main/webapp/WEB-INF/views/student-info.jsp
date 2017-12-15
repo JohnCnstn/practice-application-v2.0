@@ -38,7 +38,7 @@
 
                                                                 <label>Select practice:
 
-                                                                        <select id="practiceId" name="practiceId">
+                                                                        <select id="practiceId">
                                                                                 <c:forEach items="${listOfPractice}" var="i">
                                                                                         <option value="${i.id}">${i.headMaster.userName}</option>
                                                                                 </c:forEach>

@@ -36,6 +36,7 @@ public class StudentsController {
         model.addAttribute("studentDto", new StudentDto());
         model.addAttribute("practiceDto", new PracticeDto());
         model.addAttribute("specialityDto", new SpecialityDto());
+
         return "students";
     }
 
