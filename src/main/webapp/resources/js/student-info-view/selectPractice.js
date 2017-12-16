@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var table =  $('#setOnPracticeTable').DataTable({
+    var assignTable =  $('#setOnPracticeTable').DataTable({
         "paging": false,
         "lengthChange": false,
         "searching": false,
@@ -9,21 +9,21 @@ $(document).ready(function() {
         "colReorder": true
     });
 
-    var studentList = [];
+    var assignPracticeList = [];
 
     $('#setOnPracticeTable tbody').on( 'click', 'tr', function () {
-        studentList.push($(this).data("toggle"));
+        assignPracticeList.push($(this).data("toggle"));
         $(this).toggleClass('selected');
     } );
 
 
     $("#studentOnPracticeForm").submit(function(event) {
         event.preventDefault();
-        ajaxPost(studentList);
+        setOnPractice(assignPracticeList);
     });
 } );
 
-function ajaxPost(studentList){
+function setOnPractice(practiceList){
 
     // PREPARE FORM DATA
 
@@ -31,7 +31,7 @@ function ajaxPost(studentList){
         type: "POST",
         contentType: "application/json",
         url: window.location + "/assignOnPractice",
-        data: JSON.stringify(studentList),
+        data: JSON.stringify(practiceList),
         dataType: 'json',
         success: function (result) {
             $('#studentOnPracticeModal').modal('hide');
@@ -42,8 +42,5 @@ function ajaxPost(studentList){
             alert("Error!");
             console.log("ERROR: ", e);
         }
-    });
-
-    // Reset FormData after Posting
-    // resetData();
+    });;
 }

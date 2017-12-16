@@ -16,15 +16,11 @@
 
     <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
 
-    <%--<script type="text/javascript" src="<c:url value="/resources/js/setUserOnPractice.js"/>"></script>--%>
-
     <script type="text/javascript" src="<c:url value="/resources/js/alert/successalert.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/alert/sweetalert/sweetalert.js"/>"></script>
 
-    <script type="text/javascript" src="<c:url value="/resources/js/deleteStudentFromPractice.js"/>"></script>
-
-    <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/select-practice/selectPractice.js"/>"></script>
-
+    <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/selectPractice.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/removeFromPractice.js"/>"></script>
 
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 
@@ -166,7 +162,7 @@
                             </div>
 
                             <div class="sign-up button">
-                                <input id="assignButton" type="submit" value="Submit" />
+                                <input id="removeButton" type="submit" value="Submit" />
                             </div>
 
                         </div>
