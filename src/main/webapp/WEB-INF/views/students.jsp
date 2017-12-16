@@ -683,26 +683,34 @@
                 </li>
 
                 <sec:authorize access="hasRole('ADMIN')">
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Student<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li class="dropdown-header">Dropdown heading</li>
+                            <li><a href="#" id="getAllSpecialities" data-toggle="modal" data-target="#createStudentModal">Create Student</a></li>
+                            <li><a href="#" id="assignButton" data-toggle="modal" data-target="#assignOnPracticeModal">Assign</a></li>
+                            <li><a href="#" id="releaseButton" data-toggle="modal" data-target="#assignOnPracticeModal">Release</a></li>
+                            <li><a href="#" id="deleteButton" data-toggle="modal" data-target="#assignOnPracticeModal">Delete</a></li>
+                        </ul>
+                    </li>
 
-                <li>
-                    <a href="#" id="getAllCompanies"  data-toggle="modal" data-target="#headMasterModal">Create Head Master</a>
-                </li>
-                <li>
-                    <a href="#" id="getAllSpecialities" data-toggle="modal" data-target="#createStudentModal">Create Student</a>
-                </li>
-                <li>
-                    <a href="#" id="getAllHeadMasters" data-toggle="modal" data-target="#practiceModal">Create Practice</a>
-                </li>
+                    <li>
+                        <a href="#" id="getAllCompanies"  data-toggle="modal" data-target="#headMasterModal">Create Head Master</a>
+                    </li>
+                    <li>
+                        <a href="#" id="getAllHeadMasters" data-toggle="modal" data-target="#practiceModal">Create Practice</a>
+                    </li>
 
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">University<span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li class="dropdown-header">Dropdown heading</li>
-                        <li><a href="#" data-toggle="modal" data-target="#universityModal">Create University</a></li>
-                        <li><a href="#" id="getAllUniversities" data-toggle="modal" data-target="#facultyModal">Create Faculty</a></li>
-                        <li><a href="#" id="getAllFaculties" data-toggle="modal" data-target="#specialityModal">Create Speciality</a></li>
-                    </ul>
-                </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">University<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li class="dropdown-header">Dropdown heading</li>
+                            <li><a href="#" data-toggle="modal" data-target="#universityModal">Create University</a></li>
+                            <li><a href="#" id="getAllUniversities" data-toggle="modal" data-target="#facultyModal">Create Faculty</a></li>
+                            <li><a href="#" id="getAllFaculties" data-toggle="modal" data-target="#specialityModal">Create Speciality</a></li>
+                        </ul>
+                    </li>
 
                 </sec:authorize>
 
@@ -764,8 +772,6 @@
                 </c:forEach>
 
                 </tbody>
-
-                <button data-toggle="modal" data-target="#assignOnPracticeModal" class="btn btn-info" id="assignButton">Assign</button>
 
             </table>
 
