@@ -12,33 +12,46 @@ $(document).ready(function() {
     var removeFromPracticeList = [];
 
     $('#removeFromPracticeTable tbody').on( 'click', 'tr', function () {
-        removeFromPracticeList.push($(this).data("toggle"));
         $(this).toggleClass('selected');
     } );
 
-
     $("#deleteStudentFromPracticeForm").submit(function(event) {
-        callDeleteAlert();
+
+        var elements = document.getElementsByClassName('selected');
+
+        for (var i = 0; i < elements.length; i++) {
+            var element = elements[i];
+            removeFromPracticeList.push(element.id);
+        }
+
+        $(".selected").removeClass("selected");
+
         event.preventDefault();
         removeFromPractice(removeFromPracticeList);
     });
-} );
 
-function removeFromPractice(removeFromPracticeList){
-    $.ajax({
-        type: "POST",
-        contentType: "application/json",
-        url: window.location + "/removeFromPractice",
-        data: JSON.stringify(removeFromPracticeList),
-        dataType: 'json',
-        success: function (result) {
-            $('#deleteStudentFromPracticeModal').modal('hide');
-            // callSuccessAlert('You removed students from practice!');
-            console.log(result);
-        },
-        error: function (e) {
-            alert("Error!");
-            console.log("ERROR: ", e);
-        }
-    });
-}
+    function removeFromPractice(removeFromPracticeList){
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: window.location + "/removeFromPractice",
+            data: JSON.stringify(removeFromPracticeList),
+            dataType: 'json',
+            success: function (result) {
+                $('#deleteStudentFromPracticeModal').modal('hide');
+                callDeleteAlert('You released student from practices!');
+                console.log(result);
+            },
+            error: function (e) {
+                alert("Error!");
+                console.log("ERROR: ", e);
+            }
+        });
+
+        resetData();
+    }
+
+    function resetData(){
+        removeFromPracticeList = [];
+    }
+} );

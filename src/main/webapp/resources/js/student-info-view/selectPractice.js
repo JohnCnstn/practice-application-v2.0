@@ -29,26 +29,32 @@ $(document).ready(function() {
         event.preventDefault();
         setOnPractice(assignPracticeList);
     });
+
+    function setOnPractice(assignPracticeList){
+
+        // PREPARE FORM DATA
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: window.location + "/assignOnPractice",
+            data: JSON.stringify(assignPracticeList),
+            dataType: 'json',
+            success: function (result) {
+                $('#studentOnPracticeModal').modal('hide');
+                callSuccessAlert('You assigned students!');
+                console.log(result);
+            },
+            error: function (e) {
+                alert("Error!");
+                console.log("ERROR: ", e);
+            }
+        });
+
+        resetData();
+    }
+
+    function resetData(){
+        assignPracticeList = [];
+    }
 } );
-
-function setOnPractice(practiceList){
-
-    // PREPARE FORM DATA
-
-    $.ajax({
-        type: "POST",
-        contentType: "application/json",
-        url: window.location + "/assignOnPractice",
-        data: JSON.stringify(practiceList),
-        dataType: 'json',
-        success: function (result) {
-            $('#studentOnPracticeModal').modal('hide');
-            callSuccessAlert('You assigned students!');
-            console.log(result);
-        },
-        error: function (e) {
-            alert("Error!");
-            console.log("ERROR: ", e);
-        }
-    });;
-}
