@@ -68,7 +68,7 @@
                                         <spring:url value="/userInfo" var="userProfileUrl" />
 
                                         <c:forEach items="${practiceDtoList}" var="i">
-                                            <tr data-toggle="${i.id}">
+                                            <tr id="${i.id}" data-toggle="${i.id}">
                                                 <td>${i.companyName}</td>
                                                 <td>${i.headMasterName}</td>
                                                 <td>${i.startDate}</td>
@@ -147,7 +147,7 @@
                                         <spring:url value="/userInfo" var="userProfileUrl" />
 
                                         <c:forEach items="${practiceDtoList}" var="i">
-                                            <tr data-toggle="${i.id}">
+                                            <tr id="${i.id}" data-toggle="${i.id}">
                                                 <td>${i.companyName}</td>
                                                 <td>${i.headMasterName}</td>
                                                 <td>${i.startDate}</td>

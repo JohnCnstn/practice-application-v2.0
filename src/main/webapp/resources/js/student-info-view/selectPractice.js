@@ -12,12 +12,20 @@ $(document).ready(function() {
     var assignPracticeList = [];
 
     $('#setOnPracticeTable tbody').on( 'click', 'tr', function () {
-        assignPracticeList.push($(this).data("toggle"));
         $(this).toggleClass('selected');
     } );
 
-
     $("#studentOnPracticeForm").submit(function(event) {
+
+        var elements = document.getElementsByClassName('selected');
+
+        for (var i = 0; i < elements.length; i++) {
+            var element = elements[i];
+            assignPracticeList.push(element.id);
+        }
+
+        $(".selected").removeClass("selected");
+
         event.preventDefault();
         setOnPractice(assignPracticeList);
     });
