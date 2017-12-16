@@ -22,6 +22,8 @@
     <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/selectPractice.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/removeFromPractice.js"/>"></script>
 
+    <script type="text/javascript" src="<c:url value="/resources/js/alert/deletealert.js"/>"></script>
+
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 
     <script type="text/javascript" src="<c:url value="/resources/js/dataTables/datatables.min.js"/>"></script>
