@@ -51,11 +51,6 @@ public class StudentsController {
         return "students";
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String testAdmin() {
-        return "test";
-    }
-
     private List<PracticeDto> setListOfPracticeDto (List<Practice> practiceList) {
         List<PracticeDto> practiceDtoList = new ArrayList<>();
         for (Practice practice : practiceList) {

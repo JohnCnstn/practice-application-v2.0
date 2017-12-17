@@ -1,15 +1,16 @@
 package classes.controller;
 
+import classes.data.detail.CustomUserDetail;
 import classes.data.dto.PracticeDto;
 import classes.data.dto.StudentDto;
-import classes.data.entity.Company;
-import classes.data.entity.HeadMaster;
-import classes.data.entity.Practice;
-import classes.data.entity.Student;
+import classes.data.entity.*;
 import classes.data.service.HeadMasterService;
 import classes.data.service.PracticeService;
 import classes.data.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Controller

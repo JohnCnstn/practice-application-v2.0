@@ -22,6 +22,8 @@
     <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/selectPractice.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/removeFromPractice.js"/>"></script>
 
+    <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/head-master/head-master-assignOnPractice.js"/>"></script>
+
     <script type="text/javascript" src="<c:url value="/resources/js/alert/deletealert.js"/>"></script>
 
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
@@ -79,12 +81,6 @@
                                         </tbody>
 
                                     </table>
-
-                                    <%--<select id="practiceId">--%>
-                                        <%--<c:forEach items="${listOfPractice}" var="i">--%>
-                                            <%--<option value="${i.id}">${i.headMaster.userName}</option>--%>
-                                        <%--</c:forEach>--%>
-                                    <%--</select>--%>
 
                                 </label>
 
@@ -260,8 +256,6 @@
                         <span class="pull-right">
                                                                 <button data-original-title="Remove from practice" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteStudentFromPracticeModal"><i class="glyphicon glyphicon-remove"></i></button>
                                                                 <button data-original-title="Set on practice" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#studentOnPracticeModal"><i class="glyphicon glyphicon-edit"></i></button>
-                                                                <%--<a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>--%>
-                                                                <%--<a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>--%>
                         </span>
                     </div>
                 </sec:authorize>
@@ -269,10 +263,8 @@
                     <div class="panel-footer">
                         <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
                         <span class="pull-right">
-                                                                <button data-original-title="Remove from practice" type="button" class="btn btn-sm btn-danger" data-toggle="modal"><i class="glyphicon glyphicon-remove"></i></button>
-                                                                <button data-original-title="Set on practice" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#studentOnPracticeModal"><i class="glyphicon glyphicon-edit"></i></button>
-                                                                <%--<a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>--%>
-                                                                <%--<a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>--%>
+                                                                <button id="headMasterRemoveFromPractice" data-original-title="Remove from practice" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+                                                                <button id="headMasterSetOnPractice" data-original-title="Set on practice" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></button>
                         </span>
                     </div>
                 </sec:authorize>
