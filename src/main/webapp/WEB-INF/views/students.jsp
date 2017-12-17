@@ -51,12 +51,15 @@
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 
     <script>
-        $(document).ready(function(){
-            $("#myInput").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
+        $(document).ready(function () {
+            var table = $('#example1').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": false,
+                "autoWidth": false,
+                "colReorder": true
             });
         });
     </script>

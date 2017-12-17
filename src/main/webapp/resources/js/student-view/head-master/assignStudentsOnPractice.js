@@ -1,13 +1,4 @@
 $(document).ready(function() {
-    var assignTable =  $('#example1').DataTable({
-        "paging": false,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": false,
-        "info": false,
-        "autoWidth": false,
-        "colReorder": true
-    });
 
     var assignStudentList = [];
 
