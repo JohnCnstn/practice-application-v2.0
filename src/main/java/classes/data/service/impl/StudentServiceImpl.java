@@ -9,6 +9,7 @@ import classes.data.service.StudentService;
 import classes.data.validation.exception.EmailExistsException;
 import classes.data.validation.exception.UserNameExistsException;
 import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
+import classes.data.validation.exception.studentOnPractice.StudentNotOnYourPracticeException;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;

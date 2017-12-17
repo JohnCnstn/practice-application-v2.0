@@ -57,4 +57,30 @@ public class Practice {
     @Getter
     @Setter
     private HeadMaster headMaster;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Practice practice = (Practice) o;
+
+        if (id != practice.id) return false;
+        if (quantity != practice.quantity) return false;
+        if (numberOfStudents != practice.numberOfStudents) return false;
+        if (enabled != practice.enabled) return false;
+        if (!startDate.equals(practice.startDate)) return false;
+        return endDate.equals(practice.endDate);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + startDate.hashCode();
+        result = 31 * result + endDate.hashCode();
+        result = 31 * result + (int) quantity;
+        result = 31 * result + (int) numberOfStudents;
+        result = 31 * result + (enabled ? 1 : 0);
+        return result;
+    }
 }

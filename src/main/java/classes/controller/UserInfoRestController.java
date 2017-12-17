@@ -4,10 +4,12 @@ import classes.data.detail.CustomUserDetail;
 import classes.data.dto.StudentDto;
 import classes.data.entity.HeadMaster;
 import classes.data.entity.Practice;
+import classes.data.entity.Student;
 import classes.data.entity.User;
 import classes.data.service.HeadMasterService;
 import classes.data.service.StudentService;
 import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
+import classes.data.validation.exception.studentOnPractice.StudentNotOnYourPracticeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -84,9 +86,15 @@ public class UserInfoRestController {
 
     @RequestMapping(value = "/{id}/headMasterRemoveFromPractice", method = RequestMethod.GET)
     public @ResponseBody
-    ResponseEntity<StudentDto> headMasterRemoveFromPractice(@ModelAttribute StudentDto studentDto) {
+    ResponseEntity<StudentDto> headMasterRemoveFromPractice(@ModelAttribute StudentDto studentDto) throws StudentNotOnYourPracticeException {
 
-        User headMaster = getPrincipal();
+        HeadMaster headMaster = (HeadMaster) getPrincipal();
+
+
+
+        if (studentNotOnYourPractice(headMaster, studentDto)) {
+            throw new StudentNotOnYourPracticeException();
+        }
 
         List practicesIds = new ArrayList();
 
@@ -114,6 +122,20 @@ public class UserInfoRestController {
         HeadMaster headMaster = headMasterService.findOne(id);
 
         return headMaster.getPractice();
+    }
+
+    private boolean studentNotOnYourPractice(HeadMaster headMaster, StudentDto studentDto) {
+
+        Practice headMasterPractice = headMasterService.getPractice(headMaster.getId());
+
+        List<Practice> practiceList = studentService.getStudentPractices(studentDto.getId());
+
+        for (Practice practice: practiceList) {
+            if (practice.equals(headMasterPractice)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private User getPrincipal(){
