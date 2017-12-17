@@ -606,7 +606,7 @@
 
     <sec:authorize access="hasRole('HEAD_MASTER')">
 
-        <form:form name="form-Customer" commandName="practiceDto" action="sign-up" method="POST" id="customerForm">
+        <form:form name="form-Customer" commandName="practiceDto" method="POST" id="customerForm">
 
             <div class="container">
 
@@ -656,8 +656,13 @@
 
                                     </div>
 
+                                    <div class="form-group">
+                                        <form:label path="quantity" for="quantity">Quantity of students:</form:label>
+                                        <form:input path="quantity" type="quantity" class="form-control" id="quantity" required="required"/>
+                                    </div>
+
                                     <div class="sign-up button">
-                                        <input type="submit" value="Sign up" />
+                                        <input type="submit"/>
                                     </div>
 
                                 </div>

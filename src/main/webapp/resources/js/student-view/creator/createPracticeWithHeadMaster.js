@@ -16,7 +16,8 @@ $( document ).ready(function() {
 
         formData = {
             startDate : $("#startDate").val(),
-            endDate :  $("#endDate").val()
+            endDate :  $("#endDate").val(),
+            quantity :  $("#quantity").val()
         };
 
         $.ajax({
@@ -43,5 +44,6 @@ $( document ).ready(function() {
     function resetData(){
         $("#startDate").val("");
         $("#endDate").val("");
+        $("#quantity").val("");
     }
 });

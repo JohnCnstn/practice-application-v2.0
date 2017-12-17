@@ -40,8 +40,10 @@ public class PracticeServiceImpl implements PracticeService {
     @Transactional
     public Practice registerPracticeWithHeadMaster(PracticeDto practiceDto, User user) {
         Practice practice = new Practice();
+        practice.setEnabled(true);
         practice.setStartDate(practiceDto.getStartDate());
         practice.setEndDate(practiceDto.getEndDate());
+        practice.setQuantity(practiceDto.getQuantity());
         practice.setHeadMaster(headMasterService.findOne(user.getId()));
         return practiceRepository.save(practice);
     }
@@ -50,6 +52,7 @@ public class PracticeServiceImpl implements PracticeService {
     @Transactional
     public Practice registerNewPractice(PracticeDto practiceDto) {
         Practice practice = new Practice();
+        practice.setEnabled(true);
         practice.setStartDate(practiceDto.getStartDate());
         practice.setEndDate(practiceDto.getEndDate());
         practice.setQuantity(practiceDto.getQuantity());
