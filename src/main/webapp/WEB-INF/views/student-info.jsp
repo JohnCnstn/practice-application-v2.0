@@ -16,7 +16,6 @@
 
     <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
 
-    <script type="text/javascript" src="<c:url value="/resources/js/alert/successalert.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/alert/sweetalert/sweetalert.js"/>"></script>
 
     <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/selectPractice.js"/>"></script>
@@ -25,7 +24,10 @@
     <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/head-master/head-master-assignOnPractice.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/head-master/head-master-romoveFromPractice.js"/>"></script>
 
+    <script type="text/javascript" src="<c:url value="/resources/js/alert/successalert.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/alert/deletealert.js"/>"></script>
+
+    <script type="text/javascript" src="<c:url value="/resources/js/alert/erroralert.js"/>"></script>
 
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 

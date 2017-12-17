@@ -16,6 +16,7 @@ $( document ).ready(function() {
                 console.log("Success: ", result);
             },
             error : function(e) {
+                callErrorAlert('Something went wrong!');
                 console.log("ERROR: ", e);
             }
         });
