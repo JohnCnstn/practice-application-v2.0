@@ -34,13 +34,16 @@
 
 
     <script type="text/javascript" src="<c:url value="/resources/js/slideMenu/BootSlideMenu.js"/>"></script>
+
     <script type="text/javascript" src="<c:url value="/resources/js/alert/successalert.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/alert/erroralert.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/alert/sweetalert/sweetalert.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/alert/confirmalert.js"/>"></script>
 
     <script type="text/javascript" src="<c:url value="/resources/js/dataTables/datatables.min.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"/>"></script>
 
-    <script type="text/javascript" src="<c:url value="/resources/js/student-view/selectStudents/selectRows.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/head-master/assignStudentsOnPractice.js"/>"></script>
 
     <script type="text/javascript" src="<c:url value="/resources/js/dataTables/colreoder.min.js"/>"></script>
 
@@ -718,7 +721,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Student<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown-header">Actions with students</li>
-                            <li><a href="#" id="headMasterAssignButton">Assign</a></li>
+                            <li><a type="submit" id="headMasterAssignButton">Assign</a></li>
                             <li><a href="#" id="headMasterReleaseButton">Release</a></li>
                         </ul>
                     </li>
@@ -760,7 +763,7 @@
                 <spring:url value="/userInfo" var="userProfileUrl" />
 
                 <c:forEach items="${listOfStudents}" var="i" varStatus="status">
-                    <tr data-toggle="${i.id}">
+                    <tr id="${i.id}">
                         <td class='clickable-row' data-href="${userProfileUrl}/${i.id}">${i.firstName}</td>
                         <td>${i.lastName}</td>
                         <td>${i.speciality.faculty.university.name}</td>

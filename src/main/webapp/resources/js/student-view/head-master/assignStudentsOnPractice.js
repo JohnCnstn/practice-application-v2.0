@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var assignTable =  $('#setOnPracticeTable').DataTable({
+    var assignTable =  $('#example1').DataTable({
         "paging": false,
         "lengthChange": false,
         "searching": false,
@@ -9,28 +9,28 @@ $(document).ready(function() {
         "colReorder": true
     });
 
-    var assignPracticeList = [];
+    var assignStudentList = [];
 
-    $('#setOnPracticeTable tbody').on( 'click', 'tr', function () {
+    $('#example1 tbody').on( 'click', 'tr', function () {
         $(this).toggleClass('selected');
     } );
 
-    $("#studentOnPracticeForm").click(function(event) {
+    $("#headMasterAssignButton").click(function(event) {
 
         var elements = document.getElementsByClassName('selected');
 
         for (var i = 0; i < elements.length; i++) {
             var element = elements[i];
-            assignPracticeList.push(element.id);
+            assignStudentList.push(element.id);
         }
 
         $(".selected").removeClass("selected");
 
         event.preventDefault();
-        setOnPractice(assignPracticeList);
+        setOnPractice(assignStudentList);
     });
 
-    function setOnPractice(assignPracticeList){
+    function setOnPractice(assignStudentList){
 
         // PREPARE FORM DATA
 
@@ -38,15 +38,14 @@ $(document).ready(function() {
             type: "POST",
             contentType: "application/json",
             url: window.location + "/assignOnPractice",
-            data: JSON.stringify(assignPracticeList),
+            data: JSON.stringify(assignStudentList),
             dataType: 'json',
             success: function (result) {
-                $('#studentOnPracticeModal').modal('hide');
                 callSuccessAlert('You assigned students!');
                 console.log(result);
             },
             error: function (e) {
-                callErrorAlert('Student already on one of those practices!');
+                callErrorAlert('One of students already on your practice!');
                 console.log("ERROR: ", e);
             }
         });
@@ -55,6 +54,6 @@ $(document).ready(function() {
     }
 
     function resetData(){
-        assignPracticeList = [];
+        assignStudentList = [];
     }
 } );

@@ -4,6 +4,7 @@ import classes.data.detail.CustomUserDetail;
 import classes.data.dto.*;
 import classes.data.entity.*;
 import classes.data.service.*;
+import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
 import org.hibernate.LazyInitializationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -84,12 +85,21 @@ public class StudentsRestController {
 
     @RequestMapping(value = "/assignOnPractice", method = RequestMethod.POST)
     public @ResponseBody
-    ResponseEntity<StudentDto> assignOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
+    ResponseEntity<StudentDto> assignOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException {
 
-        ArrayList practicesIds = new ArrayList();
+        User headMaster = getPrincipal();
+
+        Practice practice = getHeadMasterPractice(headMaster.getId());
+
+        List practices = new ArrayList();
+
+        practices.add(practice.getId());
+
+        studentDto.setPracticesId(practices);
 
         for (Long id : dataArrayToSend) {
-            practicesIds.add(id);
+            studentDto.setId(id);
+            setStudentOnPractice(studentDto);
         }
 
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
@@ -179,6 +189,17 @@ public class StudentsRestController {
                 break;
             }
         }
+    }
+
+    private void setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException {
+        studentService.setStudentOnPractice(studentDto);
+    }
+
+    private Practice getHeadMasterPractice (long id) {
+
+        HeadMaster headMaster = headMasterService.findOne(id);
+
+        return headMaster.getPractice();
     }
 
     private User getPrincipal(){
