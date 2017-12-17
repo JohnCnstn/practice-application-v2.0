@@ -5,6 +5,7 @@ import classes.data.dto.*;
 import classes.data.entity.*;
 import classes.data.service.*;
 import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
+import classes.data.validation.exception.studentOnPractice.StudentNotOnYourPracticeException;
 import org.hibernate.LazyInitializationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -105,6 +106,32 @@ public class StudentsRestController {
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/headMasterRemoveFromPractice", method = RequestMethod.POST)
+    public @ResponseBody
+    ResponseEntity<StudentDto> headMasterRemoveFromPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, StudentNotOnYourPracticeException {
+
+        HeadMaster headMaster = (HeadMaster) getPrincipal();
+
+        if (studentNotOnYourPractice(headMaster, studentDto)) {
+            throw new StudentNotOnYourPracticeException();
+        }
+
+        Practice practice = getHeadMasterPractice(headMaster.getId());
+
+        List practices = new ArrayList();
+
+        practices.add(practice.getId());
+
+        studentDto.setPracticesId(practices);
+
+        for (Long id : dataArrayToSend) {
+            studentDto.setId(id);
+            deleteFromPractice(studentDto);
+        }
+
+        return new ResponseEntity<>(studentDto, HttpStatus.OK);
+    }
+
     private void createFaculty(FacultyDto facultyDto) {
         facultyService.registerNewFaculty(facultyDto);
     }
@@ -200,6 +227,24 @@ public class StudentsRestController {
         HeadMaster headMaster = headMasterService.findOne(id);
 
         return headMaster.getPractice();
+    }
+
+    private void deleteFromPractice(StudentDto studentDto) {
+        studentService.deleteStudentFromPractice(studentDto);
+    }
+
+    private boolean studentNotOnYourPractice(HeadMaster headMaster, StudentDto studentDto) {
+
+        Practice headMasterPractice = headMasterService.getPractice(headMaster.getId());
+
+        List<Practice> practiceList = studentService.getStudentPractices(studentDto.getId());
+
+        for (Practice practice: practiceList) {
+            if (practice.equals(headMasterPractice)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private User getPrincipal(){

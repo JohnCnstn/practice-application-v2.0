@@ -90,8 +90,6 @@ public class UserInfoRestController {
 
         HeadMaster headMaster = (HeadMaster) getPrincipal();
 
-
-
         if (studentNotOnYourPractice(headMaster, studentDto)) {
             throw new StudentNotOnYourPracticeException();
         }
