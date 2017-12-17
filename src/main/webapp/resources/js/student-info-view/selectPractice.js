@@ -46,7 +46,7 @@ $(document).ready(function() {
                 console.log(result);
             },
             error: function (e) {
-                callErrorAlert('Something went wrong!');
+                callErrorAlert('Student already on one of those practices!');
                 console.log("ERROR: ", e);
             }
         });
