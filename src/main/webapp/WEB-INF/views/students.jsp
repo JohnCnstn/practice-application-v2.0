@@ -45,6 +45,7 @@
 
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/head-master/assignStudentsOnPractice.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/head-master/releaseStudentsFromPractice.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-view/admin/deleteStudents.js"/>"></script>
 
     <script type="text/javascript" src="<c:url value="/resources/js/dataTables/colreoder.min.js"/>"></script>
 
@@ -698,10 +699,10 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Student<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown-header">Actions with students</li>
-                            <li><a href="#" id="getAllSpecialities" data-toggle="modal" data-target="#createStudentModal">Create Student</a></li>
+                            <li><a id="getAllSpecialities" data-toggle="modal" data-target="#createStudentModal">Create</a></li>
+                            <li><a id="deleteButton">Delete</a></li>
                             <li><a href="#" id="assignButton" data-toggle="modal" data-target="#assignOnPracticeModal">Assign</a></li>
                             <li><a href="#" id="releaseButton" data-toggle="modal" data-target="#assignOnPracticeModal">Release</a></li>
-                            <li><a href="#" id="deleteButton" data-toggle="modal" data-target="#assignOnPracticeModal">Delete</a></li>
                         </ul>
                     </li>
 

@@ -133,6 +133,17 @@ public class StudentsRestController {
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/deleteStudents", method = RequestMethod.POST)
+    public @ResponseBody
+    ResponseEntity<StudentDto> deleteStudents(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
+
+        for (Long id : dataArrayToSend) {
+            deleteStudent(id);
+        }
+
+        return new ResponseEntity<>(studentDto, HttpStatus.OK);
+    }
+
     private void createFaculty(FacultyDto facultyDto) {
         facultyService.registerNewFaculty(facultyDto);
     }
@@ -221,6 +232,10 @@ public class StudentsRestController {
 
     private void setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException {
         studentService.setStudentOnPractice(studentDto);
+    }
+
+    private void deleteStudent(long id) {
+        studentService.delete(id);
     }
 
     private Practice getHeadMasterPractice (long id) {
