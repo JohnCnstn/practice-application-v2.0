@@ -81,6 +81,25 @@ public class UserInfoRestController {
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/{id}/headMasterRemoveFromPractice", method = RequestMethod.GET)
+    public @ResponseBody
+    ResponseEntity<StudentDto> headMasterRemoveFromPractice(@ModelAttribute StudentDto studentDto) {
+
+        User headMaster = getPrincipal();
+
+        List practicesIds = new ArrayList();
+
+        Practice practice = getHeadMasterPractice(headMaster.getId());
+
+        practicesIds.add(practice.getId());
+
+        studentDto.setPracticesId(practicesIds);
+
+        deleteFromPractice(studentDto);
+
+        return new ResponseEntity<>(studentDto, HttpStatus.OK);
+    }
+
     private void deleteFromPractice(StudentDto studentDto) {
         studentService.deleteStudentFromPractice(studentDto);
     }

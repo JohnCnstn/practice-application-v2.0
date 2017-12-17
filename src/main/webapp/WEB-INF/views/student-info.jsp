@@ -23,6 +23,7 @@
     <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/removeFromPractice.js"/>"></script>
 
     <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/head-master/head-master-assignOnPractice.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/head-master/head-master-romoveFromPractice.js"/>"></script>
 
     <script type="text/javascript" src="<c:url value="/resources/js/alert/deletealert.js"/>"></script>
 
