@@ -16,7 +16,7 @@ $( document ).ready(function() {
                 console.log("Success: ", result);
             },
             error : function(e) {
-                callErrorAlert('Something went wrong!');
+                callErrorAlert('Student already on your practice!');
                 console.log("ERROR: ", e);
             }
         });

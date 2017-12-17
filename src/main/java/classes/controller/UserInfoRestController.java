@@ -7,6 +7,7 @@ import classes.data.entity.Practice;
 import classes.data.entity.User;
 import classes.data.service.HeadMasterService;
 import classes.data.service.StudentService;
+import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +48,7 @@ public class UserInfoRestController {
 
     @RequestMapping(value = "/{id}/assignOnPractice", method = RequestMethod.POST)
     public @ResponseBody
-    ResponseEntity<StudentDto> assignOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
+    ResponseEntity<StudentDto> assignOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException {
 
         List practicesIds = new ArrayList();
 
@@ -64,7 +65,7 @@ public class UserInfoRestController {
 
     @RequestMapping(value = "/{id}/headMasterAssignOnPractice", method = RequestMethod.GET)
     public @ResponseBody
-    ResponseEntity<StudentDto> headMasterAssignOnPractice(@ModelAttribute StudentDto studentDto) {
+    ResponseEntity<StudentDto> headMasterAssignOnPractice(@ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException {
 
         User headMaster = getPrincipal();
 
@@ -104,7 +105,7 @@ public class UserInfoRestController {
         studentService.deleteStudentFromPractice(studentDto);
     }
 
-    private void setStudentOnPractice(StudentDto studentDto) {
+    private void setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException {
         studentService.setStudentOnPractice(studentDto);
     }
 

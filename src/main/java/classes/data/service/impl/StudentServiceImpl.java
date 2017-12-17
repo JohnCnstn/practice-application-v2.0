@@ -8,6 +8,7 @@ import classes.data.service.SpecialityService;
 import classes.data.service.StudentService;
 import classes.data.validation.exception.EmailExistsException;
 import classes.data.validation.exception.UserNameExistsException;
+import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,11 +51,15 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Transactional
-    public Student setStudentOnPractice(StudentDto studentDto) {
+    public Student setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException {
 
         Student student = studentRepository.findOne(studentDto.getId());
 
-        List practices = student.getPractices();
+        List<Practice> practices = student.getPractices();
+
+        if (studentAlreadyOnThisPractice(practices)) {
+            throw new StudentAlreadyOnThisPracticeException();
+        }
 
         for (Long practiceId : studentDto.getPracticesId()) {
 
@@ -171,5 +176,19 @@ public class StudentServiceImpl implements StudentService {
     private boolean emailExist(String email) {
         User user = studentRepository.findByEmail(email);
         return user != null;
+    }
+
+    private boolean studentAlreadyOnThisPractice(List<Practice> practices) {
+
+        List<Practice> practiceList = practiceService.getAll();
+
+        for (Practice practice: practiceList) {
+            for (Practice setPractice : practices) {
+                if (practice.equals(setPractice)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
