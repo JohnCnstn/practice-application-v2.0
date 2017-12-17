@@ -1,11 +1,13 @@
 package classes.data.service.impl;
 
 import classes.data.dto.PracticeDto;
+import classes.data.entity.HeadMaster;
 import classes.data.entity.Practice;
 import classes.data.entity.User;
 import classes.data.repository.PracticeRepository;
 import classes.data.service.HeadMasterService;
 import classes.data.service.PracticeService;
+import classes.data.validation.exception.HeadMasterAlreadyHavePractice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +40,12 @@ public class PracticeServiceImpl implements PracticeService {
 
     @Override
     @Transactional
-    public Practice registerPracticeWithHeadMaster(PracticeDto practiceDto, User user) {
+    public Practice registerPracticeWithHeadMaster(PracticeDto practiceDto, User user) throws HeadMasterAlreadyHavePractice {
+
+        if (checkIfHeadMasterHavePractice(practiceDto)) {
+            throw new HeadMasterAlreadyHavePractice();
+        }
+
         Practice practice = new Practice();
         practice.setEnabled(true);
         practice.setStartDate(practiceDto.getStartDate());
@@ -50,7 +57,12 @@ public class PracticeServiceImpl implements PracticeService {
 
     @Override
     @Transactional
-    public Practice registerNewPractice(PracticeDto practiceDto) {
+    public Practice registerNewPractice(PracticeDto practiceDto) throws HeadMasterAlreadyHavePractice {
+
+        if (checkIfHeadMasterHavePractice(practiceDto)) {
+            throw new HeadMasterAlreadyHavePractice();
+        }
+
         Practice practice = new Practice();
         practice.setEnabled(true);
         practice.setStartDate(practiceDto.getStartDate());
@@ -58,5 +70,10 @@ public class PracticeServiceImpl implements PracticeService {
         practice.setQuantity(practiceDto.getQuantity());
         practice.setHeadMaster(headMasterService.findOne(practiceDto.getHeadMasterId()));
         return practiceRepository.save(practice);
+    }
+
+    private boolean checkIfHeadMasterHavePractice(PracticeDto practiceDto) {
+        Practice headMasterPractice = headMasterService.getPractice(practiceDto.getHeadMasterId());
+        return headMasterPractice != null;
     }
 }

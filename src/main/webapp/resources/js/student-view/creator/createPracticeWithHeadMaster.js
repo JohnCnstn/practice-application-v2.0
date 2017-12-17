@@ -32,7 +32,8 @@ $( document ).ready(function() {
                 console.log(result);
             },
             error: function (e) {
-                alert("Error!");
+                $('#myModal').modal('hide');
+                callErrorAlert('You already have practice!');
                 console.log("ERROR: ", e);
             }
         });

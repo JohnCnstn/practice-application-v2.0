@@ -4,6 +4,7 @@ import classes.data.detail.CustomUserDetail;
 import classes.data.dto.*;
 import classes.data.entity.*;
 import classes.data.service.*;
+import classes.data.validation.exception.HeadMasterAlreadyHavePractice;
 import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
 import classes.data.validation.exception.studentOnPractice.StudentNotOnYourPracticeException;
 import org.hibernate.LazyInitializationException;
@@ -79,7 +80,7 @@ public class StudentsRestController {
     }
 
     @RequestMapping(value = "/postPractice", method = RequestMethod.POST)
-    public ResponseEntity<PracticeDto> postPractice(@RequestBody PracticeDto practiceDto) {
+    public ResponseEntity<PracticeDto> postPractice(@RequestBody PracticeDto practiceDto) throws HeadMasterAlreadyHavePractice {
         whatCreatePracticeMethodShouldBeUsed(practiceDto);
         return new ResponseEntity<>(practiceDto, HttpStatus.OK);
     }
@@ -152,11 +153,11 @@ public class StudentsRestController {
         studentService.registerStudent(studentDto);
     }
 
-    private void createPractice(PracticeDto practiceDto) {
+    private void createPractice(PracticeDto practiceDto) throws HeadMasterAlreadyHavePractice {
         practiceService.registerNewPractice(practiceDto);
     }
 
-    private void createPractice(PracticeDto practiceDto, User user) {
+    private void createPractice(PracticeDto practiceDto, User user) throws HeadMasterAlreadyHavePractice {
         practiceService.registerPracticeWithHeadMaster(practiceDto, user);
     }
 
@@ -203,7 +204,7 @@ public class StudentsRestController {
         }
     }
 
-    private void whatCreatePracticeMethodShouldBeUsed (PracticeDto practiceDto) {
+    private void whatCreatePracticeMethodShouldBeUsed (PracticeDto practiceDto) throws HeadMasterAlreadyHavePractice {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Collection<? extends GrantedAuthority> authorities
                 = authentication.getAuthorities();

@@ -6,15 +6,14 @@ import classes.data.service.FacultyService;
 import classes.data.service.SpecialityService;
 import classes.data.service.StudentService;
 import classes.data.service.UniversityService;
-import classes.data.validation.exception.EmailExistsException;
-import classes.data.validation.exception.UserNameExistsException;
+import classes.data.validation.exception.signUp.EmailExistsException;
+import classes.data.validation.exception.signUp.UserNameExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;

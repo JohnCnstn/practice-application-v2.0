@@ -6,18 +6,15 @@ import classes.data.repository.StudentRepository;
 import classes.data.service.PracticeService;
 import classes.data.service.SpecialityService;
 import classes.data.service.StudentService;
-import classes.data.validation.exception.EmailExistsException;
-import classes.data.validation.exception.UserNameExistsException;
+import classes.data.validation.exception.signUp.EmailExistsException;
+import classes.data.validation.exception.signUp.UserNameExistsException;
 import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
-import classes.data.validation.exception.studentOnPractice.StudentNotOnYourPracticeException;
 import org.hibernate.Hibernate;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service("studentServiceImpl")

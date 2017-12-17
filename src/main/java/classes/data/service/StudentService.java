@@ -2,8 +2,8 @@ package classes.data.service;
 
 import classes.data.dto.StudentDto;
 import classes.data.entity.Student;
-import classes.data.validation.exception.EmailExistsException;
-import classes.data.validation.exception.UserNameExistsException;
+import classes.data.validation.exception.signUp.EmailExistsException;
+import classes.data.validation.exception.signUp.UserNameExistsException;
 import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
 
 import java.util.List;

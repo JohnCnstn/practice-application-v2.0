@@ -33,7 +33,8 @@ $( document ).ready(function() {
                 console.log(result);
             },
             error: function (e) {
-                alert("Error!");
+                $('#practiceModal').modal('hide');
+                callErrorAlert('This headmaster already have practice!');
                 console.log("ERROR: ", e);
             }
         });
