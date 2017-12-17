@@ -92,10 +92,6 @@ public class StudentsRestController {
             practicesIds.add(id);
         }
 
-//        studentDto.setPracticesId(practicesIds);
-//
-//        setStudentOnPractice(studentDto);
-
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 
