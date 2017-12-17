@@ -43,6 +43,9 @@ public class UserInfoController {
 
         modelAndView.addObject("student", student);
         modelAndView.addObject("practiceDtoList", setListOfPracticeDto(practiceList));
+
+        modelAndView.addObject("studentPracticeList", getStudentsPractices(id));
+
         modelAndView.addObject("studentDto", studentDto);
         modelAndView.addObject("arrayParam",  new ArrayList<Long>());
 
@@ -70,6 +73,29 @@ public class UserInfoController {
             practiceDto.setEndDate(practice.getEndDate());
             practiceDtoList.add(practiceDto);
         }
+        return practiceDtoList;
+    }
+
+    private List<PracticeDto> getStudentsPractices (long id) {
+        List<Practice> practiceList = studentService.getStudentPractices(id);
+
+        List<PracticeDto> practiceDtoList = new ArrayList<>();
+        for (Practice practice : practiceList) {
+            PracticeDto practiceDto = new PracticeDto();
+            practiceDto.setId(practice.getId());
+
+            HeadMaster headMaster = practice.getHeadMaster();
+
+            Company company = headMasterService.getCompany(headMaster.getId());
+
+            practiceDto.setCompanyName(company.getName());
+
+            practiceDto.setHeadMasterName(practice.getHeadMaster().getUserName());
+            practiceDto.setStartDate(practice.getStartDate());
+            practiceDto.setEndDate(practice.getEndDate());
+            practiceDtoList.add(practiceDto);
+        }
+
         return practiceDtoList;
     }
 }

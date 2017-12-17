@@ -146,7 +146,7 @@
 
                                         <spring:url value="/userInfo" var="userProfileUrl" />
 
-                                        <c:forEach items="${practiceDtoList}" var="i">
+                                        <c:forEach items="${studentPracticeList}" var="i">
                                             <tr id="${i.id}" data-toggle="${i.id}">
                                                 <td>${i.companyName}</td>
                                                 <td>${i.headMasterName}</td>
