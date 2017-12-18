@@ -15,7 +15,7 @@ $(document).ready(function() {
         $(this).toggleClass('selected');
     } );
 
-    $("#studentOnPracticeForm").click(function(event) {
+    $("#studentOnPracticeForm").submit(function(event) {
 
         var elements = document.getElementsByClassName('selected');
 
