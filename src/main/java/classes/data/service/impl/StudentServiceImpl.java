@@ -50,7 +50,6 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findByUserName(studentName);
     }
 
-    @Transactional
     public Student setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
 
         Student student = studentRepository.findOne(studentDto.getId());
@@ -71,6 +70,47 @@ public class StudentServiceImpl implements StudentService {
             byte numberOfStudents = practice.getNumberOfStudents();
             numberOfStudents++;
             byte quantity = practice.getQuantity();
+            if (numberOfStudents == quantity) {
+                practice.setEnabled(false);
+            }
+            if (numberOfStudents > quantity) {
+                throw new NumberOfStudentsEqualsQuantity();
+            }
+            practice.setNumberOfStudents(numberOfStudents);
+        }
+
+        student.setPractices(practices);
+
+        studentDto = CheckStudentStatus.checkStatus(studentDto, practices);
+
+        student.setStatus(studentDto.getStatus());
+
+        return studentRepository.save(student);
+    }
+
+    public Student setStudentsOnPractice(StudentDto studentDto, List id) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
+
+        Student student = studentRepository.findOne(studentDto.getId());
+
+        List<Practice> practices = student.getPractices();
+
+        if (studentAlreadyOnThisPractice(practices)) {
+            throw new StudentAlreadyOnThisPracticeException();
+        }
+
+        for (Long practiceId : studentDto.getPracticesId()) {
+
+            practices.add(practiceService.findOne(practiceId));
+
+        }
+
+        for (Practice practice : practices) {
+            byte numberOfStudents = practice.getNumberOfStudents();
+            numberOfStudents++;
+            byte quantity = practice.getQuantity();
+            if (numberOfStudents == quantity) {
+                practice.setEnabled(false);
+            }
             if (numberOfStudents > quantity) {
                 throw new NumberOfStudentsEqualsQuantity();
             }

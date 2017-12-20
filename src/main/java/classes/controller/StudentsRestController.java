@@ -105,6 +105,11 @@ public class StudentsRestController {
             setStudentOnPractice(studentDto);
         }
 
+        for (Long id : dataArrayToSend) {
+            studentDto.setId(id);
+            setStudentOnPractice(studentDto);
+        }
+
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 
