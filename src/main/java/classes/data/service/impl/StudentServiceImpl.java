@@ -6,6 +6,7 @@ import classes.data.repository.StudentRepository;
 import classes.data.service.PracticeService;
 import classes.data.service.SpecialityService;
 import classes.data.service.StudentService;
+import classes.data.validation.exception.practice.NumberOfStudentsEqualsQuantity;
 import classes.data.validation.exception.signUp.EmailExistsException;
 import classes.data.validation.exception.signUp.UserNameExistsException;
 import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
@@ -50,7 +51,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Transactional
-    public Student setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException {
+    public Student setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
 
         Student student = studentRepository.findOne(studentDto.getId());
 
@@ -69,6 +70,10 @@ public class StudentServiceImpl implements StudentService {
         for (Practice practice : practices) {
             byte numberOfStudents = practice.getNumberOfStudents();
             numberOfStudents++;
+            byte quantity = practice.getQuantity();
+            if (numberOfStudents > quantity) {
+                throw new NumberOfStudentsEqualsQuantity();
+            }
             practice.setNumberOfStudents(numberOfStudents);
         }
 

@@ -5,6 +5,7 @@ import classes.data.dto.*;
 import classes.data.entity.*;
 import classes.data.service.*;
 import classes.data.validation.exception.HeadMasterAlreadyHavePractice;
+import classes.data.validation.exception.practice.NumberOfStudentsEqualsQuantity;
 import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
 import classes.data.validation.exception.studentOnPractice.StudentNotOnYourPracticeException;
 import org.hibernate.LazyInitializationException;
@@ -87,7 +88,7 @@ public class StudentsRestController {
 
     @RequestMapping(value = "/assignOnPractice", method = RequestMethod.POST)
     public @ResponseBody
-    ResponseEntity<StudentDto> assignOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException {
+    ResponseEntity<StudentDto> assignOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
 
         User headMaster = getPrincipal();
 
@@ -233,7 +234,7 @@ public class StudentsRestController {
         }
     }
 
-    private void setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException {
+    private void setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
         studentService.setStudentOnPractice(studentDto);
     }
 

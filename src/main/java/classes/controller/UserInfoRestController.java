@@ -4,22 +4,19 @@ import classes.data.detail.CustomUserDetail;
 import classes.data.dto.StudentDto;
 import classes.data.entity.HeadMaster;
 import classes.data.entity.Practice;
-import classes.data.entity.Student;
 import classes.data.entity.User;
 import classes.data.service.HeadMasterService;
 import classes.data.service.StudentService;
+import classes.data.validation.exception.practice.NumberOfStudentsEqualsQuantity;
 import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
 import classes.data.validation.exception.studentOnPractice.StudentNotOnYourPracticeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -50,7 +47,7 @@ public class UserInfoRestController {
 
     @RequestMapping(value = "/{id}/assignOnPractice", method = RequestMethod.POST)
     public @ResponseBody
-    ResponseEntity<StudentDto> assignOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException {
+    ResponseEntity<StudentDto> assignOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
 
         List practicesIds = new ArrayList();
 
@@ -67,7 +64,7 @@ public class UserInfoRestController {
 
     @RequestMapping(value = "/{id}/headMasterAssignOnPractice", method = RequestMethod.GET)
     public @ResponseBody
-    ResponseEntity<StudentDto> headMasterAssignOnPractice(@ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException {
+    ResponseEntity<StudentDto> headMasterAssignOnPractice(@ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
 
         User headMaster = getPrincipal();
 
@@ -111,7 +108,7 @@ public class UserInfoRestController {
         studentService.deleteStudentFromPractice(studentDto);
     }
 
-    private void setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException {
+    private void setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
         studentService.setStudentOnPractice(studentDto);
     }
 
