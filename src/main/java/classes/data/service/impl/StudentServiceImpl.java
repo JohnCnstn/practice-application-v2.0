@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("studentServiceImpl")
@@ -50,23 +51,56 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findByUserName(studentName);
     }
 
-    public Student setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
+//    public Student setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
+//
+//        Student student = studentRepository.findOne(studentDto.getId());
+//
+//        List<Practice> practices = student.getPractices();
+//
+//        if (studentAlreadyOnThisPractice(practices)) {
+//            throw new StudentAlreadyOnThisPracticeException();
+//        }
+//
+//        for (Long practiceId : studentDto.getPracticesId()) {
+//
+//            practices.add(practiceService.findOne(practiceId));
+//
+//        }
+//
+//        for (Practice practice : practices) {
+//            byte numberOfStudents = practice.getNumberOfStudents();
+//            numberOfStudents++;
+//            byte quantity = practice.getQuantity();
+//            if (numberOfStudents == quantity) {
+//                practice.setEnabled(false);
+//            }
+//            if (numberOfStudents > quantity) {
+//                throw new NumberOfStudentsEqualsQuantity();
+//            }
+//            practice.setNumberOfStudents(numberOfStudents);
+//        }
+//
+//        student.setPractices(practices);
+//
+//        studentDto = CheckStudentStatus.checkStatus(studentDto, practices);
+//
+//        student.setStatus(studentDto.getStatus());
+//
+//        return studentRepository.save(student);
+//    }
 
-        Student student = studentRepository.findOne(studentDto.getId());
+    @Transactional(rollbackFor = Exception.class)
+    public void setStudentsOnPractice(Practice practice, Long[] ids) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
 
-        List<Practice> practices = student.getPractices();
-
-        if (studentAlreadyOnThisPractice(practices)) {
+        if (studentAlreadyOnThisPractice(practice, ids)) {
             throw new StudentAlreadyOnThisPracticeException();
         }
 
-        for (Long practiceId : studentDto.getPracticesId()) {
+        Student student;
 
-            practices.add(practiceService.findOne(practiceId));
+        for (Long id : ids) {
+            student = studentRepository.findOne(id);
 
-        }
-
-        for (Practice practice : practices) {
             byte numberOfStudents = practice.getNumberOfStudents();
             numberOfStudents++;
             byte quantity = practice.getQuantity();
@@ -77,53 +111,18 @@ public class StudentServiceImpl implements StudentService {
                 throw new NumberOfStudentsEqualsQuantity();
             }
             practice.setNumberOfStudents(numberOfStudents);
-        }
 
-        student.setPractices(practices);
+            List<Practice> studentPractice = getStudentPractices(id);
 
-        studentDto = CheckStudentStatus.checkStatus(studentDto, practices);
+            studentPractice.add(practice);
 
-        student.setStatus(studentDto.getStatus());
+            student.setPractices(studentPractice);
 
-        return studentRepository.save(student);
-    }
+            student.setStatus(CheckStudentStatus.checkStatus(practice));
 
-    public Student setStudentsOnPractice(StudentDto studentDto, List id) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
-
-        Student student = studentRepository.findOne(studentDto.getId());
-
-        List<Practice> practices = student.getPractices();
-
-        if (studentAlreadyOnThisPractice(practices)) {
-            throw new StudentAlreadyOnThisPracticeException();
-        }
-
-        for (Long practiceId : studentDto.getPracticesId()) {
-
-            practices.add(practiceService.findOne(practiceId));
+            studentRepository.save(student);
 
         }
-
-        for (Practice practice : practices) {
-            byte numberOfStudents = practice.getNumberOfStudents();
-            numberOfStudents++;
-            byte quantity = practice.getQuantity();
-            if (numberOfStudents == quantity) {
-                practice.setEnabled(false);
-            }
-            if (numberOfStudents > quantity) {
-                throw new NumberOfStudentsEqualsQuantity();
-            }
-            practice.setNumberOfStudents(numberOfStudents);
-        }
-
-        student.setPractices(practices);
-
-        studentDto = CheckStudentStatus.checkStatus(studentDto, practices);
-
-        student.setStatus(studentDto.getStatus());
-
-        return studentRepository.save(student);
     }
 
     @Override
@@ -232,15 +231,20 @@ public class StudentServiceImpl implements StudentService {
         return user != null;
     }
 
-    private boolean studentAlreadyOnThisPractice(List<Practice> practices) {
+    private boolean studentAlreadyOnThisPractice(Practice headMasterPractice, Long[] ids) {
 
-        List<Practice> practiceList = practiceService.getAll();
+        List<Practice> allStudentsPractices = new ArrayList();
 
-        for (Practice practice: practiceList) {
-            for (Practice setPractice : practices) {
-                if (practice.equals(setPractice)) {
-                    return true;
-                }
+        for (Long id : ids) {
+            List<Practice> studentPractices = getStudentPractices(id);
+            for (Practice practice : studentPractices) {
+                allStudentsPractices.add(practice);
+            }
+        }
+
+        for (Practice practice : allStudentsPractices) {
+            if (practice.equals(headMasterPractice)) {
+                return true;
             }
         }
         return false;

@@ -109,7 +109,7 @@ public class UserInfoRestController {
     }
 
     private void setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
-        studentService.setStudentOnPractice(studentDto);
+//        studentService.setStudentOnPractice(studentDto);
     }
 
     private Practice getHeadMasterPractice (long id) {

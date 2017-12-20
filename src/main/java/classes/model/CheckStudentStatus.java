@@ -30,19 +30,19 @@ public class CheckStudentStatus {
         }
     }
 
-    public static StudentDto checkStatus(StudentDto studentDto, List<Practice> practices) {
+    public static String checkStatus(Practice practice) {
         Date today = new Date();
 
-        for (Practice practice : practices) {
-            if(today.after(practice.getStartDate()) && today.before(practice.getEndDate())) {
-                studentDto.setStatus("ON_PRACTICE");
-            } else if (today.before(practice.getStartDate())) {
-                studentDto.setStatus("WAITING");
-                return studentDto;
-            } else {
-                studentDto.setStatus("AVAILABLE");
-            }
+        String status;
+
+        if(today.after(practice.getStartDate()) && today.before(practice.getEndDate())) {
+            status = "ON_PRACTICE";
+        } else if (today.before(practice.getStartDate())) {
+            status = "WAITING";
+            return status;
+        } else {
+            status = "AVAILABLE";
         }
-        return studentDto;
+        return status;
     }
 }

@@ -1,6 +1,7 @@
 package classes.data.service;
 
 import classes.data.dto.StudentDto;
+import classes.data.entity.Practice;
 import classes.data.entity.Student;
 import classes.data.validation.exception.practice.NumberOfStudentsEqualsQuantity;
 import classes.data.validation.exception.signUp.EmailExistsException;
@@ -13,7 +14,8 @@ public interface StudentService {
     Student findOne(long id);
     Student getByFirstName(String firstName);
     Student getByUserName(String studentName);
-    Student setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity;
+//    Student setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity;
+    void setStudentsOnPractice(Practice practice, Long[] id) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity;
     Student deleteStudentFromPractice(StudentDto studentDto);
     List getStudentPractices(long id);
     Student registerNewUserAccount(StudentDto accountDto) throws UserNameExistsException, EmailExistsException;

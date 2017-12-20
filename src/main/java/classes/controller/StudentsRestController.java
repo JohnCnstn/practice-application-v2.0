@@ -8,7 +8,6 @@ import classes.data.validation.exception.HeadMasterAlreadyHavePractice;
 import classes.data.validation.exception.practice.NumberOfStudentsEqualsQuantity;
 import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
 import classes.data.validation.exception.studentOnPractice.StudentNotOnYourPracticeException;
-import org.hibernate.LazyInitializationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -94,21 +93,7 @@ public class StudentsRestController {
 
         Practice practice = getHeadMasterPractice(headMaster.getId());
 
-        List practices = new ArrayList();
-
-        practices.add(practice.getId());
-
-        studentDto.setPracticesId(practices);
-
-        for (Long id : dataArrayToSend) {
-            studentDto.setId(id);
-            setStudentOnPractice(studentDto);
-        }
-
-        for (Long id : dataArrayToSend) {
-            studentDto.setId(id);
-            setStudentOnPractice(studentDto);
-        }
+        setStudentsOnPractice(practice, dataArrayToSend);
 
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
@@ -239,8 +224,8 @@ public class StudentsRestController {
         }
     }
 
-    private void setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
-        studentService.setStudentOnPractice(studentDto);
+    private void setStudentsOnPractice(Practice practice, Long[] id) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
+        studentService.setStudentsOnPractice(practice, id);
     }
 
     private void deleteStudent(long id) {
