@@ -66,6 +66,10 @@ public class StudentDto {
 
     @Getter
     @Setter
+    private String status;
+
+    @Getter
+    @Setter
     private UserProfile userProfile;
 
     @Getter

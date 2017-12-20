@@ -9,6 +9,7 @@ import classes.data.service.StudentService;
 import classes.data.validation.exception.signUp.EmailExistsException;
 import classes.data.validation.exception.signUp.UserNameExistsException;
 import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
+import classes.model.CheckStudentStatus;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -66,6 +67,10 @@ public class StudentServiceImpl implements StudentService {
         }
 
         student.setPractices(practices);
+
+        studentDto = CheckStudentStatus.checkStatus(studentDto, practices);
+
+        student.setStatus(studentDto.getStatus());
 
         return studentRepository.save(student);
     }
