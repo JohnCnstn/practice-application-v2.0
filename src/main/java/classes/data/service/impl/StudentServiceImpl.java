@@ -66,6 +66,12 @@ public class StudentServiceImpl implements StudentService {
 
         }
 
+        for (Practice practice : practices) {
+            byte numberOfStudents = practice.getNumberOfStudents();
+            numberOfStudents++;
+            practice.setNumberOfStudents(numberOfStudents);
+        }
+
         student.setPractices(practices);
 
         studentDto = CheckStudentStatus.checkStatus(studentDto, practices);
