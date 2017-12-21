@@ -54,8 +54,14 @@ public class HeadMasterServiceImpl implements HeadMasterService {
     public Practice getPractice(long id) {
         HeadMaster headMaster = headMasterRepository.findOne(id);
         Hibernate.initialize(headMaster.getPractice());
-        Practice practice = headMaster.getPractice();
-        return practice;
+        return headMaster.getPractice();
+    }
+
+    @Override
+    public void setPracticeForHeadMaster(Practice practice, long id) {
+        HeadMaster headMaster = headMasterRepository.findOne(id);
+        headMaster.setPractice(practice);
+        headMasterRepository.save(headMaster);
     }
 
     @Transactional

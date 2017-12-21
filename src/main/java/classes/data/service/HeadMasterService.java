@@ -17,6 +17,8 @@ public interface HeadMasterService {
 
     Practice getPractice(long id);
 
+    void setPracticeForHeadMaster(Practice practice, long id);
+
     HeadMaster registerNewHeadMasterAccount(HeadMasterDto headMasterDto);
     void delete(long id);
     List<HeadMaster> getAll();
