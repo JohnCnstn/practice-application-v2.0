@@ -53,17 +53,17 @@ public class StudentServiceImpl implements StudentService {
 
     @Transactional(rollbackFor = Exception.class)
     public void setStudentsOnPractice(List<Long> practicesIds, Long[] ids) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
+        for (Long id : ids) {
 
-        for (Long practiceId : practicesIds) {
-            Practice practice = practiceService.findOne(practiceId);
+            Student student = null;
 
-            if (studentAlreadyOnThisPractice(practice, ids)) {
-                throw new StudentAlreadyOnThisPracticeException();
-            }
+            for (Long practiceId : practicesIds) {
+                Practice practice = practiceService.findOne(practiceId);
 
-            Student student;
+                if (studentAlreadyOnThisPractice(practice, id)) {
+                    throw new StudentAlreadyOnThisPracticeException();
+                }
 
-            for (Long id : ids) {
                 student = studentRepository.findOne(id);
 
                 byte numberOfStudents = practice.getNumberOfStudents();
@@ -85,8 +85,10 @@ public class StudentServiceImpl implements StudentService {
 
                 student.setStatus(CheckStudentStatus.checkStatus(practice));
 
-                studentRepository.save(student);
+            }
 
+            if (student != null) {
+                studentRepository.save(student);
             }
         }
     }
@@ -215,15 +217,13 @@ public class StudentServiceImpl implements StudentService {
         return user != null;
     }
 
-    private boolean studentAlreadyOnThisPractice(Practice headMasterPractice, Long[] ids) {
+    private boolean studentAlreadyOnThisPractice(Practice headMasterPractice, long id) {
 
         List<Practice> allStudentsPractices = new ArrayList();
 
-        for (Long id : ids) {
-            List<Practice> studentPractices = getStudentPractices(id);
-            for (Practice practice : studentPractices) {
-                allStudentsPractices.add(practice);
-            }
+        List<Practice> studentPractices = getStudentPractices(id);
+        for (Practice practice : studentPractices) {
+            allStudentsPractices.add(practice);
         }
 
         for (Practice practice : allStudentsPractices) {

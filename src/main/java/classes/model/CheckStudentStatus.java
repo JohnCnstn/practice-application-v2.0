@@ -45,4 +45,22 @@ public class CheckStudentStatus {
         }
         return status;
     }
+
+//    public static String checkStatus(List<Practice> practices) {
+//        Date today = new Date();
+//
+//        String status = "AVAILABLE";
+//
+//        for (Practice practice : practices) {
+//            if(today.after(practice.getStartDate()) && today.before(practice.getEndDate())) {
+//                status = "ON_PRACTICE";
+//            } else if (today.before(practice.getStartDate())) {
+//                status = "WAITING";
+//                return status;
+//            } else {
+//                status = "AVAILABLE";
+//            }
+//        }
+//        return status;
+//    }
 }
