@@ -90,38 +90,42 @@ public class StudentServiceImpl implements StudentService {
 //    }
 
     @Transactional(rollbackFor = Exception.class)
-    public void setStudentsOnPractice(Practice practice, Long[] ids) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
+    public void setStudentsOnPractice(List<Long> practicesIds, Long[] ids) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
 
-        if (studentAlreadyOnThisPractice(practice, ids)) {
-            throw new StudentAlreadyOnThisPracticeException();
-        }
+        for (Long practiceId : practicesIds) {
+            Practice practice = practiceService.findOne(practiceId);
 
-        Student student;
-
-        for (Long id : ids) {
-            student = studentRepository.findOne(id);
-
-            byte numberOfStudents = practice.getNumberOfStudents();
-            numberOfStudents++;
-            byte quantity = practice.getQuantity();
-            if (numberOfStudents == quantity) {
-                practice.setEnabled(false);
+            if (studentAlreadyOnThisPractice(practice, ids)) {
+                throw new StudentAlreadyOnThisPracticeException();
             }
-            if (numberOfStudents > quantity) {
-                throw new NumberOfStudentsEqualsQuantity();
+
+            Student student;
+
+            for (Long id : ids) {
+                student = studentRepository.findOne(id);
+
+                byte numberOfStudents = practice.getNumberOfStudents();
+                numberOfStudents++;
+                byte quantity = practice.getQuantity();
+                if (numberOfStudents == quantity) {
+                    practice.setEnabled(false);
+                }
+                if (numberOfStudents > quantity) {
+                    throw new NumberOfStudentsEqualsQuantity();
+                }
+                practice.setNumberOfStudents(numberOfStudents);
+
+                List<Practice> studentPractice = getStudentPractices(id);
+
+                studentPractice.add(practice);
+
+                student.setPractices(studentPractice);
+
+                student.setStatus(CheckStudentStatus.checkStatus(practice));
+
+                studentRepository.save(student);
+
             }
-            practice.setNumberOfStudents(numberOfStudents);
-
-            List<Practice> studentPractice = getStudentPractices(id);
-
-            studentPractice.add(practice);
-
-            student.setPractices(studentPractice);
-
-            student.setStatus(CheckStudentStatus.checkStatus(practice));
-
-            studentRepository.save(student);
-
         }
     }
 

@@ -93,7 +93,11 @@ public class StudentsRestController {
 
         Practice practice = getHeadMasterPractice(headMaster.getId());
 
-        setStudentsOnPractice(practice, dataArrayToSend);
+        List<Long> practicesIds = new ArrayList<>();
+
+        practicesIds.add(practice.getId());
+
+        setStudentsOnPractice(practicesIds, dataArrayToSend);
 
         return new ResponseEntity<>(studentDto ,HttpStatus.OK);
     }
@@ -224,8 +228,8 @@ public class StudentsRestController {
         }
     }
 
-    private void setStudentsOnPractice(Practice practice, Long[] id) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
-        studentService.setStudentsOnPractice(practice, id);
+    private void setStudentsOnPractice(List<Long> practicesIds, Long[] id) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
+        studentService.setStudentsOnPractice(practicesIds, id);
     }
 
     private void deleteStudent(long id) {
