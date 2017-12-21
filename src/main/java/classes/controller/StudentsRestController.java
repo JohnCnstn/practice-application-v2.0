@@ -108,25 +108,16 @@ public class StudentsRestController {
 
         HeadMaster headMaster = (HeadMaster) getPrincipal();
 
-        for (Long id : dataArrayToSend) {
-            studentDto.setId(id);
-            if (studentNotOnYourPractice(headMaster, studentDto)) {
-                throw new StudentNotOnYourPracticeException();
-            }
+        if (studentNotOnYourPractice(headMaster, dataArrayToSend)) {
+            throw new StudentNotOnYourPracticeException();
         }
 
         Practice practice = getHeadMasterPractice(headMaster.getId());
 
-        List practices = new ArrayList();
+        List<Long> practicesIds = new ArrayList<>();
+        practicesIds.add(practice.getId());
 
-        practices.add(practice.getId());
-
-        studentDto.setPracticesId(practices);
-
-        for (Long id : dataArrayToSend) {
-            studentDto.setId(id);
-            deleteFromPractice(studentDto);
-        }
+        deleteFromPractice(practicesIds, dataArrayToSend);
 
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
@@ -243,22 +234,29 @@ public class StudentsRestController {
         return headMaster.getPractice();
     }
 
-    private void deleteFromPractice(StudentDto studentDto) {
-        studentService.deleteStudentFromPractice(studentDto);
+    private void deleteFromPractice(List<Long> practicesIds, Long[] ids) {
+        studentService.deleteStudentFromPractice(practicesIds, ids);
     }
 
-    private boolean studentNotOnYourPractice(HeadMaster headMaster, StudentDto studentDto) {
+    private boolean studentNotOnYourPractice(HeadMaster headMaster, Long[] studentsIds) {
+
+        boolean flag = true;
 
         Practice headMasterPractice = headMasterService.getPractice(headMaster.getId());
 
-        List<Practice> practiceList = studentService.getStudentPractices(studentDto.getId());
-
-        for (Practice practice: practiceList) {
-            if (practice.equals(headMasterPractice)) {
-                return false;
+        for (Long studentId : studentsIds) {
+            flag = true;
+            List<Practice> practiceList = studentService.getStudentPractices(studentId);
+            for (Practice practice: practiceList) {
+                if (practice.equals(headMasterPractice)) {
+                    flag = false;
+                }
+            }
+            if (flag) {
+                return flag;
             }
         }
-        return true;
+        return flag;
     }
 
     private User getPrincipal(){

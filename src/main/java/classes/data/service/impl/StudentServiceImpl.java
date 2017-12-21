@@ -51,44 +51,6 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findByUserName(studentName);
     }
 
-//    public Student setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
-//
-//        Student student = studentRepository.findOne(studentDto.getId());
-//
-//        List<Practice> practices = student.getPractices();
-//
-//        if (studentAlreadyOnThisPractice(practices)) {
-//            throw new StudentAlreadyOnThisPracticeException();
-//        }
-//
-//        for (Long practiceId : studentDto.getPracticesId()) {
-//
-//            practices.add(practiceService.findOne(practiceId));
-//
-//        }
-//
-//        for (Practice practice : practices) {
-//            byte numberOfStudents = practice.getNumberOfStudents();
-//            numberOfStudents++;
-//            byte quantity = practice.getQuantity();
-//            if (numberOfStudents == quantity) {
-//                practice.setEnabled(false);
-//            }
-//            if (numberOfStudents > quantity) {
-//                throw new NumberOfStudentsEqualsQuantity();
-//            }
-//            practice.setNumberOfStudents(numberOfStudents);
-//        }
-//
-//        student.setPractices(practices);
-//
-//        studentDto = CheckStudentStatus.checkStatus(studentDto, practices);
-//
-//        student.setStatus(studentDto.getStatus());
-//
-//        return studentRepository.save(student);
-//    }
-
     @Transactional(rollbackFor = Exception.class)
     public void setStudentsOnPractice(List<Long> practicesIds, Long[] ids) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
 
@@ -131,21 +93,37 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     @Transactional
-    public Student deleteStudentFromPractice(StudentDto studentDto) {
+    public void deleteStudentFromPractice(List<Long> practicesIds, Long[] ids) {
 
-        Student student = studentRepository.findOne(studentDto.getId());
+        for (Long practiceId : practicesIds) {
+            Practice practice = practiceService.findOne(practiceId);
 
-        List practices = student.getPractices();
+            Student student;
 
-        for (Long practiceId : studentDto.getPracticesId()) {
+            for (Long id : ids) {
 
-            practices.remove(practiceService.findOne(practiceId));
+                student = studentRepository.findOne(id);
 
+                byte numberOfStudents = practice.getNumberOfStudents();
+                numberOfStudents--;
+                if (numberOfStudents == 0) {
+                    practice.setEnabled(true);
+                }
+
+                practice.setNumberOfStudents(numberOfStudents);
+
+                List<Practice> studentPractice = getStudentPractices(id);
+
+                studentPractice.remove(practice);
+
+                student.setPractices(studentPractice);
+
+                student.setStatus(CheckStudentStatus.checkStatus(practice));
+
+                studentRepository.save(student);
+
+            }
         }
-
-        student.setPractices(practices);
-
-        return studentRepository.save(student);
     }
 
     @Override

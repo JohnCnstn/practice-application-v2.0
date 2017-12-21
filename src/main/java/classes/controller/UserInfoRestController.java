@@ -32,15 +32,13 @@ public class UserInfoRestController {
     public @ResponseBody
     ResponseEntity<StudentDto> removeFromPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) {
 
-        List practicesIds = new ArrayList();
+        List<Long> practicesIds = new ArrayList();
 
         for (Long id : dataArrayToSend) {
             practicesIds.add(id);
         }
 
-        studentDto.setPracticesId(practicesIds);
-
-        deleteFromPractice(studentDto);
+        deleteFromPractice(practicesIds , studentDto.getId());
 
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
@@ -86,21 +84,19 @@ public class UserInfoRestController {
             throw new StudentNotOnYourPracticeException();
         }
 
-        List practicesIds = new ArrayList();
-
         Practice practice = getHeadMasterPractice(headMaster.getId());
 
+        List<Long> practicesIds = new ArrayList<>();
         practicesIds.add(practice.getId());
 
-        studentDto.setPracticesId(practicesIds);
-
-        deleteFromPractice(studentDto);
+        deleteFromPractice(practicesIds, studentDto.getId());
 
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 
-    private void deleteFromPractice(StudentDto studentDto) {
-        studentService.deleteStudentFromPractice(studentDto);
+    private void deleteFromPractice(List<Long> practicesIds, long id) {
+        Long[] ids = {id};
+        studentService.deleteStudentFromPractice(practicesIds, ids);
     }
 
     private void setStudentOnPractice(List<Long> practicesIds, long id) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {

@@ -15,7 +15,7 @@ public interface StudentService {
     Student getByFirstName(String firstName);
     Student getByUserName(String studentName);
     void setStudentsOnPractice(List<Long> practicesIds, Long[] id) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity;
-    Student deleteStudentFromPractice(StudentDto studentDto);
+    void deleteStudentFromPractice(List<Long> practicesIds, Long[] id);
     List getStudentPractices(long id);
     Student registerNewUserAccount(StudentDto accountDto) throws UserNameExistsException, EmailExistsException;
     Student registerStudent(StudentDto studentDto);
