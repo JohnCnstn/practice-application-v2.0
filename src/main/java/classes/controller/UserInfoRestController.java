@@ -57,7 +57,7 @@ public class UserInfoRestController {
 
         studentDto.setPracticesId(practicesIds);
 
-        setStudentOnPractice(studentDto);
+//        setStudentOnPractice(studentDto);
 
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
@@ -68,15 +68,9 @@ public class UserInfoRestController {
 
         User headMaster = getPrincipal();
 
-        List practicesIds = new ArrayList();
-
         Practice practice = getHeadMasterPractice(headMaster.getId());
 
-        practicesIds.add(practice.getId());
-
-        studentDto.setPracticesId(practicesIds);
-
-        setStudentOnPractice(studentDto);
+        setStudentOnPractice(practice, studentDto.getId());
 
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
@@ -108,8 +102,9 @@ public class UserInfoRestController {
         studentService.deleteStudentFromPractice(studentDto);
     }
 
-    private void setStudentOnPractice(StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
-//        studentService.setStudentOnPractice(studentDto);
+    private void setStudentOnPractice(Practice practice, long id) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
+        Long[] ids = {id};
+        studentService.setStudentsOnPractice(practice, ids);
     }
 
     private Practice getHeadMasterPractice (long id) {

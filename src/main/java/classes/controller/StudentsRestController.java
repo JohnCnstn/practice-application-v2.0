@@ -95,7 +95,7 @@ public class StudentsRestController {
 
         setStudentsOnPractice(practice, dataArrayToSend);
 
-        return new ResponseEntity<>(studentDto, HttpStatus.OK);
+        return new ResponseEntity<>(studentDto ,HttpStatus.OK);
     }
 
     @RequestMapping(value = "/headMasterRemoveFromPractice", method = RequestMethod.POST)
