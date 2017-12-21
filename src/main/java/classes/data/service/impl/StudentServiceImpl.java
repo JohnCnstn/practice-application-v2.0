@@ -94,13 +94,13 @@ public class StudentServiceImpl implements StudentService {
     @Override
     @Transactional
     public void deleteStudentFromPractice(List<Long> practicesIds, Long[] ids) {
+        for (Long id : ids) {
 
-        for (Long practiceId : practicesIds) {
-            Practice practice = practiceService.findOne(practiceId);
+            Student student = null;
 
-            Student student;
+            for (Long practiceId : practicesIds) {
 
-            for (Long id : ids) {
+                Practice practice = practiceService.findOne(practiceId);
 
                 student = studentRepository.findOne(id);
 
@@ -120,8 +120,10 @@ public class StudentServiceImpl implements StudentService {
 
                 student.setStatus(CheckStudentStatus.checkStatus(practice));
 
-                studentRepository.save(student);
+            }
 
+            if (student != null) {
+                studentRepository.save(student);
             }
         }
     }
