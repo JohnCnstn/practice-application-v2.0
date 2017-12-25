@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/sideBar.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/dataTable/dataTable.min.css"/>">
 
+    <link rel="stylesheet" href="<c:url value="/resources/css/students/buttons/buttons.css"/>">
+
     <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/creator/createPracticeWithHeadMaster.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/creator/createPractice.js"/>"></script>
@@ -54,6 +56,21 @@
     <script>
         $(document).ready(function () {
             var table = $('#example1').DataTable({
+                dom: '<"myTableToolBar">frtip',
+                fnInitComplete: function(){
+                    $('div.myTableToolBar').html(
+                        '<sec:authorize access="hasRole('HEAD_MASTER')">' +
+                        '   <a id="headMasterAssignButton" class="action-button shadow animate green">Assign</a>\n' +
+                        '   <a id="headMasterReleaseButton" class="action-button shadow animate yellow">Release</a>' +
+                        '</sec:authorize>' +
+                        '<sec:authorize access="hasRole('ADMIN')">' +
+                        '   <a id="headMasterAssignButton" class="action-button shadow animate green">Assign</a>\n' +
+                        '   <a id="headMasterReleaseButton" class="action-button shadow animate yellow">Release</a>\n' +
+                        '   <a id="deleteButton" class="action-button shadow animate red">Delete</a>' +
+                        '</sec:authorize>'
+
+                    );
+                },
                 "paging": true,
                 "lengthChange": false,
                 "searching": true,
@@ -64,6 +81,12 @@
             });
         });
     </script>
+
+    <style>
+        .myTableToolBar {
+            float:left;
+        }
+    </style>
 
     <script>
         $(document).ready(function () {
@@ -700,7 +723,6 @@
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown-header">Actions with students</li>
                             <li><a id="getAllSpecialities" data-toggle="modal" data-target="#createStudentModal">Create</a></li>
-                            <li><a id="deleteButton">Delete</a></li>
                             <li><a href="#" id="assignButton" data-toggle="modal" data-target="#assignOnPracticeModal">Assign</a></li>
                             <li><a href="#" id="releaseButton" data-toggle="modal" data-target="#assignOnPracticeModal">Release</a></li>
                         </ul>
@@ -728,16 +750,11 @@
                 <sec:authorize access="hasRole('HEAD_MASTER')">
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Student<span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown">Practice<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li class="dropdown-header">Actions with students</li>
-                            <li><a id="headMasterAssignButton">Assign</a></li>
-                            <li><a id="headMasterReleaseButton">Release</a></li>
+                            <li class="dropdown-header">Actions with practice</li>
+                            <a data-toggle="modal" data-target="#myModal">Create</a>
                         </ul>
-                    </li>
-
-                    <li>
-                        <a href="#" data-toggle="modal" data-target="#myModal">Create Practice</a>
                     </li>
 
                 </sec:authorize>
@@ -750,11 +767,12 @@
 
             <div id="table-wrapper">
 
-            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
-                <span class="hamb-top"></span>
-                <span class="hamb-middle"></span>
-                <span class="hamb-bottom"></span>
-            </button>
+                <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                    <span class="hamb-top"></span>
+                    <span class="hamb-middle"></span>
+                    <span class="hamb-bottom"></span>
+                </button>
+
             <table class="table table-hover myTable" id="example1" cellspacing="0" cellpadding="0" width="100%">
                 <thead>
                 <tr>
@@ -795,7 +813,6 @@
             </table>
 
         </div>
-        <!-- /#page-content-wrapper -->
 
         </div>
 
