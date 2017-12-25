@@ -19,6 +19,55 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/students/buttons/buttons.css"/>">
 
     <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
+
+    <script>
+        $(document).ready(function () {
+            var table = $('#example1').DataTable({
+                dom: '<"myTableToolBar">frtip',
+                fnInitComplete: function(){
+                    $('div.myTableToolBar').html(
+                        '<sec:authorize access="hasRole('HEAD_MASTER')">' +
+                        '   <a id="headMasterAssignButton" class="action-button shadow animate green">Assign</a>\n' +
+                        '   <a id="headMasterReleaseButton" class="action-button shadow animate yellow">Release</a>' +
+                        '</sec:authorize>' +
+                        '<sec:authorize access="hasRole('ADMIN')">' +
+                        '   <a id="headMasterAssignButton" class="action-button shadow animate green">Assign</a>\n' +
+                        '   <a id="headMasterReleaseButton" class="action-button shadow animate yellow">Release</a>\n' +
+                        '   <a id="deleteButton" class="action-button shadow animate red">Delete</a>' +
+                        '</sec:authorize>'
+
+                    );
+                    this.api().columns([0, 1, 2, 3, 4, 5, 6]).every( function () {
+                        var column = this;
+                        var select = $('<select><option value=""></option></select>')
+                            .appendTo( $(column.footer()).empty() )
+                            .on( 'change', function () {
+                                var val = $.fn.dataTable.util.escapeRegex(
+                                    $(this).val()
+                                );
+
+                                column
+                                    .search( val ? '^'+val+'$' : '', true, false )
+                                    .draw();
+                            } );
+
+                        column.data().unique().sort().each( function ( d, j ) {
+                            select.append( '<option value="'+d+'">'+d+'</option>' )
+                        } );
+                    } );
+
+                },
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": false,
+                "autoWidth": false,
+                "colReorder": true
+            });
+        });
+    </script>
+
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/creator/createPracticeWithHeadMaster.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/creator/createPractice.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/student-view/creator/createUniversity.js"/>"></script>
@@ -52,55 +101,6 @@
     <script type="text/javascript" src="<c:url value="/resources/js/dataTables/colreoder.min.js"/>"></script>
 
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-
-    <script>
-        $(document).ready(function () {
-            var table = $('#example1').DataTable({
-                dom: '<"myTableToolBar">frtip',
-                fnInitComplete: function(){
-                    $('div.myTableToolBar').html(
-                        '<sec:authorize access="hasRole('HEAD_MASTER')">' +
-                        '   <a id="headMasterAssignButton" class="action-button shadow animate green">Assign</a>\n' +
-                        '   <a id="headMasterReleaseButton" class="action-button shadow animate yellow">Release</a>' +
-                        '</sec:authorize>' +
-                        '<sec:authorize access="hasRole('ADMIN')">' +
-                        '   <a id="headMasterAssignButton" class="action-button shadow animate green">Assign</a>\n' +
-                        '   <a id="headMasterReleaseButton" class="action-button shadow animate yellow">Release</a>\n' +
-                        '   <a id="deleteButton" class="action-button shadow animate red">Delete</a>' +
-                        '</sec:authorize>'
-
-                    );
-
-                    this.api().columns([0, 1, 2, 3, 4, 5, 6]).every( function () {
-                        var column = this;
-                        var select = $('<select><option value=""></option></select>')
-                            .appendTo( $(column.footer()).empty() )
-                            .on( 'change', function () {
-                                var val = $.fn.dataTable.util.escapeRegex(
-                                    $(this).val()
-                                );
-
-                                column
-                                    .search( val ? '^'+val+'$' : '', true, false )
-                                    .draw();
-                            } );
-
-                        column.data().unique().sort().each( function ( d, j ) {
-                            select.append( '<option value="'+d+'">'+d+'</option>' )
-                        } );
-                    } );
-
-                },
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": true,
-                "info": false,
-                "autoWidth": false,
-                "colReorder": true
-            });
-        });
-    </script>
 
     <style>
         .myTableToolBar {

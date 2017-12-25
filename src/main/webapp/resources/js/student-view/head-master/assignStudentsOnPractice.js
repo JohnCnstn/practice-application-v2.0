@@ -2,8 +2,19 @@ $(document).ready(function() {
 
     var assignStudentList = [];
 
+    alert($("#headMasterAssignButton"));
+
     $('#example1 tbody').on( 'click', 'tr', function () {
         $(this).toggleClass('selected');
+
+        // var numberOfSelectedStudents = document.getElementsByClassName('selected');
+        //
+        // if (numberOfSelectedStudents.length > 0) {
+        //     $('.action-button').prop('disabled', true);
+        // } else {
+        //     $('.action-button').prop('disabled', false);
+        // }
+
     } );
 
     $("#headMasterAssignButton").click(function(event) {
