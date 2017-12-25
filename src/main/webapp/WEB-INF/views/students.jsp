@@ -74,7 +74,7 @@
                     this.api().columns([0, 1, 2, 3, 4, 5, 6]).every( function () {
                         var column = this;
                         var select = $('<select><option value=""></option></select>')
-                            .appendTo( $(column.header()).empty() )
+                            .appendTo( $(column.footer()).empty() )
                             .on( 'change', function () {
                                 var val = $.fn.dataTable.util.escapeRegex(
                                     $(this).val()
@@ -815,7 +815,7 @@
                         <th><span>Is budget</span></th>
                         <th><span>Average score</span></th>
                         <th><span>Status</span></th>
-                        <th><span>Info</span></th>
+                        <th></th>
                     </tr>
                 </tfoot>
                 <tbody id="myTable">
