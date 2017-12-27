@@ -73,7 +73,7 @@ public class StudentServiceImpl implements StudentService {
                     practice.setEnabled(false);
                 }
                 if (numberOfStudents > quantity) {
-                    throw new NumberOfStudentsEqualsQuantity();
+                    throw new NumberOfStudentsEqualsQuantity("There are fewer places left than students!");
                 }
                 practice.setNumberOfStudents(numberOfStudents);
 
