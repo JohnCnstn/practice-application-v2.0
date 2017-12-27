@@ -260,11 +260,6 @@
 
                     </div>
 
-                    <div class="modal-footer">
-                            <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
-                        <div class="col-sm-7" id="postResultDiv"></div>
-                    </div>
-
                 </div>
 
             </div>
@@ -314,11 +309,6 @@
 
                         </div>
 
-                    </div>
-
-                    <div class="modal-footer">
-                            <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
-                        <div class="col-sm-7" id="postResultDiv"></div>
                     </div>
 
                 </div>
@@ -390,11 +380,6 @@
 
                         </div>
 
-                    </div>
-
-                    <div class="modal-footer">
-                            <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
-                        <div class="col-sm-7" id="postResultDiv"></div>
                     </div>
 
                 </div>
@@ -483,11 +468,6 @@
 
                         </div>
 
-                        <div class="modal-footer">
-                                <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
-                            <div class="col-sm-7" id="postResultDiv"></div>
-                        </div>
-
                     </div>
 
                 </div>
@@ -523,7 +503,7 @@
                                             </div>
                                             <form:label path="startDate"
                                                         for="startDateAdmin">Start date of practice:</form:label>
-                                            <form:input path="startDate" type="date" class="form-control"
+                                            <form:input path="startDate" type="date" min="2017-12-27" max="2018-12-31" class="form-control"
                                                         id="startDateAdmin" required="required"
                                                         placeholder="18:12:1997"/>
                                         </div>
@@ -542,7 +522,7 @@
                                             </div>
                                             <form:label path="endDate"
                                                         for="endDateAdmin">End date of practice:</form:label>
-                                            <form:input path="endDate" type="date" class="form-control"
+                                            <form:input path="endDate" type="date" min="2017-12-27" max="2018-12-31" class="form-control"
                                                         id="endDateAdmin" required="required"/>
                                         </div>
                                     </div>
@@ -552,7 +532,7 @@
 
                             <div class="form-group">
                                 <form:label path="quantity" for="quantity">Quantity of students:</form:label>
-                                <form:input path="quantity" type="quantity" class="form-control" id="quantity"
+                                <form:input path="quantity" type="quantity" min="1" max="100" class="form-control" id="quantity"
                                             required="required"/>
                             </div>
 
@@ -572,11 +552,6 @@
 
                         </div>
 
-                    </div>
-
-                    <div class="modal-footer">
-                            <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
-                        <div class="col-sm-7" id="postResultDiv"></div>
                     </div>
 
                 </div>
@@ -682,7 +657,7 @@
                                             </div>
                                             <form:label path="startDate"
                                                         for="startDate">Start date of practice:</form:label>
-                                            <form:input path="startDate" type="date" name="startDate"
+                                            <form:input path="startDate" type="date" min="2017-12-27" max="2018-12-31" name="startDate"
                                                         class="form-control" id="startDate" required="required"
                                                         placeholder="18:12:1997"/>
                                         </div>
@@ -700,7 +675,7 @@
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             <form:label path="endDate" for="endDate">End date of practice:</form:label>
-                                            <form:input path="endDate" type="date" name="endDate" class="form-control"
+                                            <form:input path="endDate" type="date" min="2017-12-27" max="2018-12-31" name="endDate" class="form-control"
                                                         id="endDate" required="required"/>
                                         </div>
                                     </div>
@@ -710,7 +685,7 @@
 
                             <div class="form-group">
                                 <form:label path="quantity" for="quantity">Quantity of students:</form:label>
-                                <form:input path="quantity" type="quantity" class="form-control" id="quantity"
+                                <form:input path="quantity" type="quantity" min="1" max="100" class="form-control" id="quantity"
                                             required="required"/>
                             </div>
 
