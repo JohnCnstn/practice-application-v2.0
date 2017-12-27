@@ -248,7 +248,7 @@
 
                             <div class="form-group">
                                 <form:label path="name" for="facultyName">Your Faculty Name:</form:label>
-                                <form:input path="name" type="text" name="facultyName" class="form-control"
+                                <form:input path="name" type="text" pattern=".{3,}" title="3 символа минимум" maxlength="10" name="facultyName" class="form-control"
                                             id="facultyName" required="required" placeholder="FKSiS"/>
                             </div>
 
@@ -268,8 +268,6 @@
                 </div>
 
             </div>
-        </div>
-
         </div>
 
     </form:form>
@@ -306,7 +304,7 @@
 
                             <div class="form-group">
                                 <form:label path="name" for="specialityName">Your Speciality Name:</form:label>
-                                <form:input path="name" type="text" class="form-control" id="specialityName"
+                                <form:input path="name" type="text" pattern=".{3,}" title="3 символа минимум" maxlength="10" class="form-control" id="specialityName"
                                             required="required" placeholder="POiT"/>
                             </div>
 
