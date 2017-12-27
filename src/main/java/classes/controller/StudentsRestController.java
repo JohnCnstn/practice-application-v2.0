@@ -104,7 +104,7 @@ public class StudentsRestController {
 
     @RequestMapping(value = "/headMasterRemoveFromPractice", method = RequestMethod.POST)
     public @ResponseBody
-    String headMasterRemoveFromPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, StudentNotOnYourPracticeException {
+    ResponseEntity<StudentDto> headMasterRemoveFromPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, StudentNotOnYourPracticeException {
 
         HeadMaster headMaster = (HeadMaster) getPrincipal();
 
@@ -125,7 +125,7 @@ public class StudentsRestController {
 
         deleteFromPractice(practicesIds, dataArrayToSend);
 
-        return "OK";
+        return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/deleteStudents", method = RequestMethod.POST)
