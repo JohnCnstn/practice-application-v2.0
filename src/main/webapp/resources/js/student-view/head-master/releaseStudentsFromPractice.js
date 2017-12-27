@@ -29,7 +29,7 @@ $(document).ready(function() {
                 console.log(result);
             },
             error: function (e) {
-                callErrorAlert('One of students not on your practice!');
+                callErrorAlert(e.responseText);
                 console.log("ERROR: ", e);
             }
         });

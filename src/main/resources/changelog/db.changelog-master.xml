@@ -5,14 +5,14 @@
 
     <!--<include file="changelog/db.fill-tables.xml"/>-->
 
-    <changeSet author="cryst (generated)" id="1513219978333-1">
+    <changeSet author="cryst (generated)" id="1514317391511-1">
         <createTable tableName="admin">
             <column name="id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-2">
+    <changeSet author="cryst (generated)" id="1514317391511-2">
         <createTable tableName="company">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -23,7 +23,7 @@
             <column name="phone" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-3">
+    <changeSet author="cryst (generated)" id="1514317391511-3">
         <createTable tableName="faculty">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -34,7 +34,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-4">
+    <changeSet author="cryst (generated)" id="1514317391511-4">
         <createTable tableName="headmaster">
             <column name="id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -45,7 +45,7 @@
             <column name="practice_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-5">
+    <changeSet author="cryst (generated)" id="1514317391511-5">
         <createTable tableName="practice">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -58,7 +58,7 @@
             <column name="headMaster_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-6">
+    <changeSet author="cryst (generated)" id="1514317391511-6">
         <createTable tableName="speciality">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -69,7 +69,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-7">
+    <changeSet author="cryst (generated)" id="1514317391511-7">
         <createTable tableName="student">
             <column name="avgScore" type="DOUBLE"/>
             <column name="isBudget" type="BIT(1)"/>
@@ -82,7 +82,7 @@
             <column name="speciality_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-8">
+    <changeSet author="cryst (generated)" id="1514317391511-8">
         <createTable tableName="student_practice">
             <column name="student_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -92,7 +92,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-9">
+    <changeSet author="cryst (generated)" id="1514317391511-9">
         <createTable tableName="university">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -100,7 +100,7 @@
             <column name="name" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-10">
+    <changeSet author="cryst (generated)" id="1514317391511-10">
         <createTable tableName="user">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -115,7 +115,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-11">
+    <changeSet author="cryst (generated)" id="1514317391511-11">
         <createTable tableName="user_profile">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -125,97 +125,97 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-12">
+    <changeSet author="cryst (generated)" id="1514317391511-12">
         <addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="admin"/>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-13">
+    <changeSet author="cryst (generated)" id="1514317391511-13">
         <addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="headmaster"/>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-14">
+    <changeSet author="cryst (generated)" id="1514317391511-14">
         <addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="student"/>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-15">
+    <changeSet author="cryst (generated)" id="1514317391511-15">
         <addUniqueConstraint columnNames="type" constraintName="UK_k6d5iiad3vb5isxj1munty17o" tableName="user_profile"/>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-16">
+    <changeSet author="cryst (generated)" id="1514317391511-16">
         <createIndex indexName="FK_2ek1mbe9ojg3q7p83vusnrj15" tableName="user">
             <column name="user_profile_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-17">
+    <changeSet author="cryst (generated)" id="1514317391511-17">
         <createIndex indexName="FK_5n9bg1e1wyma5nujb4f0coudf" tableName="headmaster">
             <column name="company_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-18">
+    <changeSet author="cryst (generated)" id="1514317391511-18">
         <createIndex indexName="FK_b0frils5m3hjpe60p4ha60te3" tableName="speciality">
             <column name="faculty_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-19">
+    <changeSet author="cryst (generated)" id="1514317391511-19">
         <createIndex indexName="FK_b1tymbidrqutcrvcs7qjv8m9b" tableName="student">
             <column name="speciality_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-20">
+    <changeSet author="cryst (generated)" id="1514317391511-20">
         <createIndex indexName="FK_bere55el3wgkmq3cbv8kqupqm" tableName="student_practice">
             <column name="practice_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-21">
+    <changeSet author="cryst (generated)" id="1514317391511-21">
         <createIndex indexName="FK_gp4urwqghtlyhf9jffoskqb0" tableName="faculty">
             <column name="university_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-22">
+    <changeSet author="cryst (generated)" id="1514317391511-22">
         <createIndex indexName="FK_j0co0eb28kiewqv3oupsjybm7" tableName="practice">
             <column name="headMaster_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-23">
+    <changeSet author="cryst (generated)" id="1514317391511-23">
         <createIndex indexName="FK_llo17k7gqc7qdiyh8pfjn07eq" tableName="headmaster">
             <column name="practice_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-24">
+    <changeSet author="cryst (generated)" id="1514317391511-24">
         <createIndex indexName="FK_rjuimg7caidl3mqjjsx8w8w88" tableName="student_practice">
             <column name="student_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-25">
+    <changeSet author="cryst (generated)" id="1514317391511-25">
         <addForeignKeyConstraint baseColumnNames="id" baseTableName="admin" constraintName="FK_2d37nsdu6wfjfoo0q1l857edx" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"/>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-26">
+    <changeSet author="cryst (generated)" id="1514317391511-26">
         <addForeignKeyConstraint baseColumnNames="user_profile_id" baseTableName="user" constraintName="FK_2ek1mbe9ojg3q7p83vusnrj15" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user_profile"/>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-27">
+    <changeSet author="cryst (generated)" id="1514317391511-27">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="headmaster" constraintName="FK_5n9bg1e1wyma5nujb4f0coudf" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-28">
+    <changeSet author="cryst (generated)" id="1514317391511-28">
         <addForeignKeyConstraint baseColumnNames="faculty_id" baseTableName="speciality" constraintName="FK_b0frils5m3hjpe60p4ha60te3" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="faculty"/>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-29">
+    <changeSet author="cryst (generated)" id="1514317391511-29">
         <addForeignKeyConstraint baseColumnNames="speciality_id" baseTableName="student" constraintName="FK_b1tymbidrqutcrvcs7qjv8m9b" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="speciality"/>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-30">
+    <changeSet author="cryst (generated)" id="1514317391511-30">
         <addForeignKeyConstraint baseColumnNames="practice_id" baseTableName="student_practice" constraintName="FK_bere55el3wgkmq3cbv8kqupqm" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="practice"/>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-31">
+    <changeSet author="cryst (generated)" id="1514317391511-31">
         <addForeignKeyConstraint baseColumnNames="university_id" baseTableName="faculty" constraintName="FK_gp4urwqghtlyhf9jffoskqb0" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="university"/>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-32">
+    <changeSet author="cryst (generated)" id="1514317391511-32">
         <addForeignKeyConstraint baseColumnNames="headMaster_id" baseTableName="practice" constraintName="FK_j0co0eb28kiewqv3oupsjybm7" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="headmaster"/>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-33">
+    <changeSet author="cryst (generated)" id="1514317391511-33">
         <addForeignKeyConstraint baseColumnNames="practice_id" baseTableName="headmaster" constraintName="FK_llo17k7gqc7qdiyh8pfjn07eq" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="practice"/>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-34">
+    <changeSet author="cryst (generated)" id="1514317391511-34">
         <addForeignKeyConstraint baseColumnNames="id" baseTableName="student" constraintName="FK_m4oyvjystgi94h8yo4v8oijrr" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"/>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-35">
+    <changeSet author="cryst (generated)" id="1514317391511-35">
         <addForeignKeyConstraint baseColumnNames="student_id" baseTableName="student_practice" constraintName="FK_rjuimg7caidl3mqjjsx8w8w88" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="student"/>
     </changeSet>
-    <changeSet author="cryst (generated)" id="1513219978333-36">
+    <changeSet author="cryst (generated)" id="1514317391511-36">
         <addForeignKeyConstraint baseColumnNames="id" baseTableName="headmaster" constraintName="FK_se08up8o8bgggvooi8fg0eger" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"/>
     </changeSet>
 

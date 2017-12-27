@@ -104,13 +104,19 @@ public class StudentsRestController {
 
     @RequestMapping(value = "/headMasterRemoveFromPractice", method = RequestMethod.POST)
     public @ResponseBody
-    ResponseEntity<StudentDto> headMasterRemoveFromPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, StudentNotOnYourPracticeException {
+    String headMasterRemoveFromPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, StudentNotOnYourPracticeException {
 
         HeadMaster headMaster = (HeadMaster) getPrincipal();
 
         if (studentNotOnYourPractice(headMaster, dataArrayToSend)) {
             throw new StudentNotOnYourPracticeException();
         }
+
+//        try {
+//            studentNotOnYourPractice(headMaster, dataArrayToSend);
+//        } catch (StudentNotOnYourPracticeException e) {
+//            return e.getMessage();
+//        }
 
         Practice practice = getHeadMasterPractice(headMaster.getId());
 
@@ -119,7 +125,7 @@ public class StudentsRestController {
 
         deleteFromPractice(practicesIds, dataArrayToSend);
 
-        return new ResponseEntity<>(studentDto, HttpStatus.OK);
+        return "OK";
     }
 
     @RequestMapping(value = "/deleteStudents", method = RequestMethod.POST)
@@ -253,6 +259,7 @@ public class StudentsRestController {
                 }
             }
             if (flag) {
+//                throw new StudentNotOnYourPracticeException();
                 return flag;
             }
         }
