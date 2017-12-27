@@ -193,7 +193,7 @@
 
                             <div class="form-group">
                                 <form:label path="name" for="universityName">University Name:</form:label>
-                                <form:input path="name" type="text" class="form-control" id="universityName"
+                                <form:input path="name" type="text" pattern=".{3,}" title="3 символа минимум" maxlength="10" class="form-control" id="universityName"
                                             required="required" placeholder="BSUiR"/>
                             </div>
 
@@ -206,7 +206,6 @@
                     </div>
 
                     <div class="modal-footer">
-                            <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
                         <div class="col-sm-7" id="postResultDiv"></div>
                     </div>
 
