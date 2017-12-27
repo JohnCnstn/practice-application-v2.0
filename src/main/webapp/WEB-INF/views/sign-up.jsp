@@ -45,37 +45,37 @@
                     <h1>Sign up</h1>
                     <div class="form-group">
                         <form:label path="firstName" for="firstName">Your First Name:</form:label>
-                        <form:input path="firstName" type="text" name="firstName" class="form-control" id="firstName" required="required" placeholder="Pavel"/>
+                        <form:input path="firstName" type="text" maxlength="20" name="firstName" class="form-control" id="firstName" required="required" placeholder="Pavel"/>
                         <form:errors path="firstName" cssClass="has-error"/>
                     </div>
                     <div class="form-group">
                         <form:label path="lastName" for="lastName">Your Last Name:</form:label>
-                        <form:input path="lastName" type="text" name="lastName" class="form-control" id="lastName" required="required" placeholder="Khankevich"/>
+                        <form:input path="lastName" type="text" maxlength="20" name="lastName" class="form-control" id="lastName" required="required" placeholder="Khankevich"/>
                         <form:errors path="lastName" cssClass="has-error"/>
                     </div>
                     <div class="form-group">
                         <form:label path="userName" for="userName">Your username:</form:label>
-                        <form:input path="userName" type="text" name="userName" class="form-control" id="userName" required="required" placeholder="Username"/>
+                        <form:input path="userName" type="text" maxlength="10" name="userName" class="form-control" id="userName" required="required" placeholder="Username"/>
                         <form:errors path="userName" cssClass="has-error"/>
                     </div>
                     <div class="form-group">
                         <form:label path="email" for="email">Your email:</form:label>
-                        <form:input path="email" type="text" name="email" class="form-control" id="email" required="required" placeholder="email"/>
+                        <form:input path="email" type="text" maxlength="20" name="email" class="form-control" id="email" required="required" placeholder="email"/>
                         <form:errors path="email" cssClass="has-error"/>
                     </div>
                     <div class="form-group">
                         <form:label path="password" for="pwd">Your password:</form:label>
-                        <form:input path="password" type="password" name="password" class="form-control" id="pwd" required="required" placeholder="Password"/>
+                        <form:input path="password" type="password" maxlength="20" name="password" class="form-control" id="pwd" required="required" placeholder="Password"/>
                         <form:errors path="password" cssClass="has-error"/>
                     </div>
                     <div class="form-group">
                         <form:label path="matchingPassword" for="pwdMatches">Confirm your password:</form:label>
-                        <form:input path="matchingPassword" type="password" name="matchingPassword" class="form-control" id="pwdMatches" required="required" placeholder="Password"/>
+                        <form:input path="matchingPassword" type="password" maxlength="20" name="matchingPassword" class="form-control" id="pwdMatches" required="required" placeholder="Password"/>
                     </div>
 
                     <div class="form-group">
                         <form:label path="avgScore" for="avgScore">Set your average score:</form:label>
-                        <form:input path="avgScore" type="number" class="form-control" id="avgScore" required="required"/>
+                        <form:input path="avgScore" type="number" min="0" max="10"  class="form-control" id="avgScore" required="required"/>
                     </div>
 
                     <div class="form-group">
