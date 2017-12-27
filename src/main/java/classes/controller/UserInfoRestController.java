@@ -81,7 +81,7 @@ public class UserInfoRestController {
         HeadMaster headMaster = (HeadMaster) getPrincipal();
 
         if (studentNotOnYourPractice(headMaster, studentDto)) {
-            throw new StudentNotOnYourPracticeException();
+            throw new StudentNotOnYourPracticeException("One of students not on your practice exception!");
         }
 
         Practice practice = getHeadMasterPractice(headMaster.getId());

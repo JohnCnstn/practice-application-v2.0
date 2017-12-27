@@ -61,7 +61,7 @@ public class StudentServiceImpl implements StudentService {
                 Practice practice = practiceService.findOne(practiceId);
 
                 if (studentAlreadyOnThisPractice(practice, id)) {
-                    throw new StudentAlreadyOnThisPracticeException();
+                    throw new StudentAlreadyOnThisPracticeException("One of students already on your practice!");
                 }
 
                 student = studentRepository.findOne(id);

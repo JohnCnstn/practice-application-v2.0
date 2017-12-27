@@ -1,5 +1,6 @@
 package classes.handler;
 
+import classes.data.validation.exception.HeadMasterAlreadyHavePractice;
 import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
 import classes.data.validation.exception.studentOnPractice.StudentNotOnYourPracticeException;
 import org.springframework.http.HttpHeaders;
@@ -13,16 +14,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = { StudentNotOnYourPracticeException.class, IllegalStateException.class })
+    @ExceptionHandler(value = { HeadMasterAlreadyHavePractice.class, StudentAlreadyOnThisPracticeException.class, StudentNotOnYourPracticeException.class, IllegalStateException.class })
     protected ResponseEntity<Object> handleStudentNotOnYourPractice(RuntimeException ex, WebRequest request) {
-        String bodyOfResponse = "Student not on your practice!";
-        return handleExceptionInternal(ex, bodyOfResponse,
-                new HttpHeaders(), HttpStatus.CONFLICT, request);
-    }
-
-    @ExceptionHandler(value = { StudentAlreadyOnThisPracticeException.class })
-    protected ResponseEntity<Object> handleStudentAlreadyOnThisPractice(RuntimeException ex, WebRequest request) {
-        String bodyOfResponse = "Student already on your practice!";
+        String bodyOfResponse = ex.getCause().getMessage();
         return handleExceptionInternal(ex, bodyOfResponse,
                 new HttpHeaders(), HttpStatus.CONFLICT, request);
     }

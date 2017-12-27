@@ -109,14 +109,8 @@ public class StudentsRestController {
         HeadMaster headMaster = (HeadMaster) getPrincipal();
 
         if (studentNotOnYourPractice(headMaster, dataArrayToSend)) {
-            throw new StudentNotOnYourPracticeException();
+            throw new StudentNotOnYourPracticeException("One of students not on your practice!");
         }
-
-//        try {
-//            studentNotOnYourPractice(headMaster, dataArrayToSend);
-//        } catch (StudentNotOnYourPracticeException e) {
-//            return e.getMessage();
-//        }
 
         Practice practice = getHeadMasterPractice(headMaster.getId());
 
@@ -259,7 +253,6 @@ public class StudentsRestController {
                 }
             }
             if (flag) {
-//                throw new StudentNotOnYourPracticeException();
                 return flag;
             }
         }
