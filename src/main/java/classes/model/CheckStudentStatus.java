@@ -1,9 +1,7 @@
 package classes.model;
 
-import classes.data.dto.StudentDto;
 import classes.data.entity.Practice;
 import classes.data.entity.Student;
-import classes.data.service.PracticeService;
 import classes.data.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 

@@ -37,6 +37,20 @@
     <script type="text/javascript"
             src="<c:url value="/resources/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"/>"></script>
 
+    <script>
+        $(document).ready(function () {
+            var getStudentPracticesTable = $('#getStudentPracticesTable').DataTable({
+                "paging": false,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": false,
+                "info": false,
+                "autoWidth": false,
+                "colReorder": true
+            });
+        });
+    </script>
+
 </head>
 <body>
 
@@ -180,6 +194,64 @@
 
 </form:form>
 
+
+    <div class="container">
+
+        <!-- Modal -->
+        <div class="modal fade" id="getStudentPracticesModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <sec:authorize access="hasRole('STUDENT')">
+                            <h4 class="modal-title">My practices</h4>
+                        </sec:authorize>
+                        <h4 class="modal-title">Student practices</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+
+                            <table class="table table-hover myTable" id="getStudentPracticesTable"
+                                   cellspacing="0" cellpadding="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th><span>Company</span></th>
+                                    <th><span>Head master</span></th>
+                                    <th><span>Start date</span></th>
+                                    <th><span>End date</span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <c:forEach items="${studentPracticeList}" var="i">
+                                    <tr id="${i.id}" data-toggle="${i.id}">
+                                        <td>${i.companyName}</td>
+                                        <td>${i.headMasterName}</td>
+                                        <td>${i.startDate}</td>
+                                        <td>${i.endDate}</td>
+                                    </tr>
+                                </c:forEach>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
 <div class="navbar navbar-default navbar-fixed-top">
 
     <div class="container">
@@ -264,10 +336,14 @@
                         </div>
                     </div>
                 </div>
+                    <div class="panel-footer">
+                        <button type="button" title="Student practices"
+                                class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-info-sign"
+                                                                  data-toggle="modal"
+                                                                  data-target="#getStudentPracticesModal"></i></button>
+                    </div>
                 <sec:authorize access="hasRole('ADMIN')">
                     <div class="panel-footer">
-                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button"
-                           class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
                         <span class="pull-right">
                                                                 <button title="Remove from practice" type="button"
                                                                         class="btn btn-sm btn-danger"
@@ -284,8 +360,6 @@
                 </sec:authorize>
                 <sec:authorize access="hasRole('HEAD_MASTER')">
                     <div class="panel-footer">
-                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button"
-                           class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
                         <span class="pull-right">
                                                                 <button id="headMasterRemoveFromPractice"
                                                                         title="Remove from practice" type="button"
