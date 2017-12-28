@@ -5,7 +5,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <html>
 <head>
-    <title>Title</title>
+    <title>Practice application</title>
     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/tableStudent.css"/>">
@@ -257,8 +257,8 @@
                     <div class="panel-footer">
                         <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
                         <span class="pull-right">
-                                                                <button data-original-title="Remove from practice" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteStudentFromPracticeModal"><i class="glyphicon glyphicon-remove"></i></button>
-                                                                <button data-original-title="Set on practice" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#studentOnPracticeModal"><i class="glyphicon glyphicon-edit"></i></button>
+                                                                <button title="Remove from practice" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteStudentFromPracticeModal"><i class="glyphicon glyphicon-remove"></i></button>
+                                                                <button title="Set on practice" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#studentOnPracticeModal"><i class="glyphicon glyphicon-edit"></i></button>
                         </span>
                     </div>
                 </sec:authorize>
@@ -266,8 +266,8 @@
                     <div class="panel-footer">
                         <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
                         <span class="pull-right">
-                                                                <button id="headMasterRemoveFromPractice" data-original-title="Remove from practice" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
-                                                                <button id="headMasterSetOnPractice" data-original-title="Set on practice" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></button>
+                                                                <button id="headMasterRemoveFromPractice" title="Remove from practice" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+                                                                <button id="headMasterSetOnPractice" title="Set on practice" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></button>
                         </span>
                     </div>
                 </sec:authorize>
