@@ -4,6 +4,7 @@ import classes.data.dto.UniversityDto;
 import classes.data.entity.University;
 import classes.data.repository.UniversityRepository;
 import classes.data.service.UniversityService;
+import classes.data.validation.exception.UniversityAlreadyExists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +29,12 @@ public class UniversityServiceImpl implements UniversityService {
 
     @Transactional
     @Override
-    public University registerNewUniversity(UniversityDto universityDto) {
+    public University registerNewUniversity(UniversityDto universityDto) throws UniversityAlreadyExists {
+
+        if (universityExist(universityDto.getName())) {
+            throw new UniversityAlreadyExists("There is a university with such name: "  + universityDto.getName());
+        }
+
         University university = new University();
         university.setName(universityDto.getName());
         return universityRepository.save(university);
@@ -37,5 +43,10 @@ public class UniversityServiceImpl implements UniversityService {
     @Override
     public List<University> getAll() {
         return universityRepository.findAll();
+    }
+
+    private boolean universityExist(String name) {
+        University university = universityRepository.findByName(name);
+        return university != null;
     }
 }

@@ -718,15 +718,6 @@
             <sec:authorize access="hasRole('ADMIN')">
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Student<span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li class="dropdown-header">Actions with students</li>
-                        <li><a id="getAllSpecialities" data-toggle="modal" data-target="#createStudentModal">Create</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown">University<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Actions with university</li>
@@ -739,11 +730,15 @@
                 </li>
 
                 <li>
-                    <a href="#" id="getAllCompanies" data-toggle="modal" data-target="#headMasterModal">Create Head
+                    <a id="getAllSpecialities" data-toggle="modal" data-target="#createStudentModal">Create Student</a>
+                </li>
+
+                <li>
+                    <a id="getAllCompanies" data-toggle="modal" data-target="#headMasterModal">Create Head
                         Master</a>
                 </li>
                 <li>
-                    <a href="#" id="getAllHeadMasters" data-toggle="modal" data-target="#practiceModal">Create
+                    <a id="getAllHeadMasters" data-toggle="modal" data-target="#practiceModal">Create
                         Practice</a>
                 </li>
 

@@ -30,7 +30,7 @@ $( document ).ready(function() {
                 console.log(data);
             },
             error: function (e) {
-                alert("Error!");
+                callErrorAlert(e.responseText);
                 console.log("ERROR: ", e);
             }
         });
