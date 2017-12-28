@@ -20,11 +20,8 @@
     background: no-repeat 100% 100%;
 }
 
-.myTable thead tr th.headerSortUp, .myTable thead tr th.headerSortDown {
-    background: #acc8dd;
-}
-
 .myTable tbody tr {
+    cursor: default;
     color: #555;
 }
 .myTable tbody tr td {

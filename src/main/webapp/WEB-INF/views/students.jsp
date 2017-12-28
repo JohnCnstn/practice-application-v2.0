@@ -54,7 +54,6 @@
                             select.append('<option value="' + d + '">' + d + '</option>')
                         });
                     });
-
                 },
                 "paging": true,
                 "lengthChange": false,
@@ -64,6 +63,15 @@
                 "autoWidth": false,
                 "colReorder": true
             });
+
+            // Filter event handler
+            $( table.table().container() ).on( 'keyup', 'tfoot input', function () {
+                table
+                    .column( $(this).data('index') )
+                    .search( this.value )
+                    .draw();
+            } );
+
         });
     </script>
 
@@ -147,15 +155,20 @@
         });
     </script>
 
+    <style>
+        table.dataTable thead th,
+        table.dataTable tfoot th {
+            text-align: center;
+        }
+        table.dataTable thead th,
+        table.dataTable thead td {
+            padding: 10px 18px 10px 10px;
+            border-right: 1px solid #dddddd;
+        }
+    </style>
+
 </head>
 <body>
-
-<div class="col-sm-7" style="margin:20px 0px 20px 0px">
-    <div id="getResultDiv" style="padding:20px 10px 20px 50px">
-        <ul class="list-group">
-        </ul>
-    </div>
-</div>
 
 <div class="navbar navbar-default navbar-fixed-top">
 
@@ -406,28 +419,28 @@
                                 <div class="form-group">
                                     <form:label path="firstName"
                                                 for="studentFirstName">Student First Name:</form:label>
-                                    <form:input path="firstName" type="text" class="form-control"
+                                    <form:input path="firstName" type="text" pattern=".{2,}" title="2 символа минимум" maxlength="10" class="form-control"
                                                 id="studentFirstName" required="required" placeholder="Pavel"/>
                                 </div>
                                 <div class="form-group">
                                     <form:label path="lastName"
                                                 for="studentLastName">Student Last Name:</form:label>
-                                    <form:input path="lastName" type="text" class="form-control"
+                                    <form:input path="lastName" type="text" pattern=".{2,}" title="2 символа минимум" maxlength="10" class="form-control"
                                                 id="studentLastName" required="required" placeholder="Khankevich"/>
                                 </div>
                                 <div class="form-group">
                                     <form:label path="userName" for="studentUserName">Student userName:</form:label>
-                                    <form:input path="userName" type="text" class="form-control"
+                                    <form:input path="userName" type="text" pattern=".{5,}" title="5 символа минимум" maxlength="10" class="form-control"
                                                 id="studentUserName" required="required" placeholder="Username"/>
                                 </div>
                                 <div class="form-group">
                                     <form:label path="email" for="studentEmail">Student email:</form:label>
-                                    <form:input path="email" type="text" class="form-control" id="studentEmail"
+                                    <form:input path="email" type="text" pattern=".{5,}" title="5 символов минимум" maxlength="20" class="form-control" id="studentEmail"
                                                 required="required" placeholder="email"/>
                                 </div>
                                 <div class="form-group">
                                     <form:label path="password" for="studentPassword">Student password:</form:label>
-                                    <form:input path="password" type="password" class="form-control"
+                                    <form:input path="password" type="password" pattern=".{5,}" title="5 символов минимум" maxlength="20" class="form-control"
                                                 id="studentPassword" required="required" placeholder="Password"/>
                                 </div>
 
@@ -770,14 +783,14 @@
                 <span class="hamb-bottom"></span>
             </button>
 
-            <table class="table table-hover myTable" id="example1" cellspacing="0" cellpadding="0" width="100%">
+            <table class="table order-column table-hover myTable" id="example1" cellspacing="0" cellpadding="0" width="100%">
                 <thead>
                 <tr>
                     <th><span>First Name</span></th>
                     <th><span>Second Name</span></th>
                     <th><span>University</span></th>
                     <th><span>Faculty</span></th>
-                    <th><span>Is budget</span></th>
+                    <th><span>Budget</span></th>
                     <th><span>Average score</span></th>
                     <th><span>Status</span></th>
                     <th><span>Info</span></th>
@@ -789,7 +802,7 @@
                     <th><span>Second Name</span></th>
                     <th><span>University</span></th>
                     <th><span>Faculty</span></th>
-                    <th><span>Is budget</span></th>
+                    <th><span>Budget</span></th>
                     <th><span>Average score</span></th>
                     <th><span>Status</span></th>
                     <th></th>

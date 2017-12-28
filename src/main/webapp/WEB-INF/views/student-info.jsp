@@ -195,61 +195,60 @@
 </form:form>
 
 
-    <div class="container">
+<div class="container">
 
-        <!-- Modal -->
-        <div class="modal fade" id="getStudentPracticesModal" role="dialog">
-            <div class="modal-dialog">
+    <!-- Modal -->
+    <div class="modal fade" id="getStudentPracticesModal" role="dialog">
+        <div class="modal-dialog">
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <sec:authorize access="hasRole('STUDENT')">
-                            <h4 class="modal-title">My practices</h4>
-                        </sec:authorize>
-                        <h4 class="modal-title">Student practices</h4>
-                    </div>
-                    <div class="modal-body">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <sec:authorize access="hasRole('STUDENT')">
+                        <h4 class="modal-title">My practices</h4>
+                    </sec:authorize>
+                    <h4 class="modal-title">Student practices</h4>
+                </div>
+                <div class="modal-body">
 
-                        <div class="form-group">
+                    <div class="form-group">
 
-                            <table class="table table-hover myTable" id="getStudentPracticesTable"
-                                   cellspacing="0" cellpadding="0" width="100%">
-                                <thead>
-                                <tr>
-                                    <th><span>Company</span></th>
-                                    <th><span>Head master</span></th>
-                                    <th><span>Start date</span></th>
-                                    <th><span>End date</span></th>
+                        <table class="table table-hover myTable" id="getStudentPracticesTable"
+                               cellspacing="0" cellpadding="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th><span>Company</span></th>
+                                <th><span>Head master</span></th>
+                                <th><span>Start date</span></th>
+                                <th><span>End date</span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <c:forEach items="${studentPracticeList}" var="i">
+                                <tr id="${i.id}" data-toggle="${i.id}">
+                                    <td>${i.companyName}</td>
+                                    <td>${i.headMasterName}</td>
+                                    <td>${i.startDate}</td>
+                                    <td>${i.endDate}</td>
                                 </tr>
-                                </thead>
-                                <tbody>
+                            </c:forEach>
 
-                                <c:forEach items="${studentPracticeList}" var="i">
-                                    <tr id="${i.id}" data-toggle="${i.id}">
-                                        <td>${i.companyName}</td>
-                                        <td>${i.headMasterName}</td>
-                                        <td>${i.startDate}</td>
-                                        <td>${i.endDate}</td>
-                                    </tr>
-                                </c:forEach>
+                            </tbody>
 
-                                </tbody>
-
-                            </table>
-
-                        </div>
+                        </table>
 
                     </div>
 
                 </div>
 
             </div>
-        </div>
 
+        </div>
     </div>
 
+</div>
 
 
 <div class="navbar navbar-default navbar-fixed-top">
@@ -336,14 +335,15 @@
                         </div>
                     </div>
                 </div>
-                    <div class="panel-footer">
-                        <button type="button" title="Student practices"
-                                class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-info-sign"
-                                                                  data-toggle="modal"
-                                                                  data-target="#getStudentPracticesModal"></i></button>
-                    </div>
-                <sec:authorize access="hasRole('ADMIN')">
-                    <div class="panel-footer">
+                <div class="panel-footer">
+                    <button type="button" title="Student practices"
+                            class="btn btn-sm btn-primary" data-toggle="modal"
+                            data-target="#getStudentPracticesModal">
+                        <i class="glyphicon glyphicon-info-sign">
+                        </i>
+                    </button>
+
+                    <sec:authorize access="hasRole('ADMIN')">
                         <span class="pull-right">
                                                                 <button title="Remove from practice" type="button"
                                                                         class="btn btn-sm btn-danger"
@@ -356,10 +356,8 @@
                                                                         data-target="#studentOnPracticeModal"><i
                                                                         class="glyphicon glyphicon-edit"></i></button>
                         </span>
-                    </div>
-                </sec:authorize>
-                <sec:authorize access="hasRole('HEAD_MASTER')">
-                    <div class="panel-footer">
+                    </sec:authorize>
+                    <sec:authorize access="hasRole('HEAD_MASTER')">
                         <span class="pull-right">
                                                                 <button id="headMasterRemoveFromPractice"
                                                                         title="Remove from practice" type="button"
@@ -370,8 +368,9 @@
                                                                         class="btn btn-sm btn-warning"><i
                                                                         class="glyphicon glyphicon-edit"></i></button>
                         </span>
-                    </div>
-                </sec:authorize>
+                    </sec:authorize>
+
+                </div>
 
             </div>
         </div>
