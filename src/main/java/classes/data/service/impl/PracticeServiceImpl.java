@@ -43,7 +43,7 @@ public class PracticeServiceImpl implements PracticeService {
     public Practice registerPracticeWithHeadMaster(PracticeDto practiceDto, User user) throws HeadMasterAlreadyHavePractice {
 
         if (checkIfHeadMasterHavePractice(user.getId())) {
-            throw new HeadMasterAlreadyHavePractice();
+            throw new HeadMasterAlreadyHavePractice("You already have practice!");
         }
 
         Practice practice = new Practice();
@@ -53,8 +53,6 @@ public class PracticeServiceImpl implements PracticeService {
         practice.setQuantity(practiceDto.getQuantity());
         practice.setHeadMaster(headMasterService.findOne(user.getId()));
 
-//        headMasterService.setPracticeForHeadMaster(practice, user.getId());
-
         return practiceRepository.save(practice);
     }
 
@@ -63,7 +61,7 @@ public class PracticeServiceImpl implements PracticeService {
     public Practice registerNewPractice(PracticeDto practiceDto) throws HeadMasterAlreadyHavePractice {
 
         if (checkIfHeadMasterHavePractice(practiceDto.getHeadMasterId())) {
-            throw new HeadMasterAlreadyHavePractice();
+            throw new HeadMasterAlreadyHavePractice("This Head Master: " + headMasterService.findOne(practiceDto.getHeadMasterId()).getUserName() + ", already have practice!");
         }
 
         Practice practice = new Practice();

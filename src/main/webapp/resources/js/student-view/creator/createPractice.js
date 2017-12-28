@@ -34,7 +34,7 @@ $( document ).ready(function() {
             },
             error: function (e) {
                 $('#practiceModal').modal('hide');
-                callErrorAlert('This headmaster already have practice!');
+                callErrorAlert(e.responseText);
                 console.log("ERROR: ", e);
             }
         });
