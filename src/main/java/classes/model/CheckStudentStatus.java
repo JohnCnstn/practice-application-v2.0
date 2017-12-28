@@ -31,6 +31,7 @@ public class CheckStudentStatus {
     }
 
     public static String checkStatus(Practice practice) {
+
         Date today = new Date();
 
         String status;

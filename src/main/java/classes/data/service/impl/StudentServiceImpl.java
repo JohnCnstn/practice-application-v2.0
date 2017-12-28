@@ -124,7 +124,9 @@ public class StudentServiceImpl implements StudentService {
 
                 student.setPractices(studentPractice);
 
-                student.setStatus(CheckStudentStatus.checkStatus(practice));
+                practice.setEnabled(true);
+
+                student.setStatus("AVAILABLE");
 
             }
 
