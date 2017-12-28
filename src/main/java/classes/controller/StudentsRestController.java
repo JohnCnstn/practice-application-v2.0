@@ -4,23 +4,23 @@ import classes.data.detail.CustomUserDetail;
 import classes.data.dto.*;
 import classes.data.entity.*;
 import classes.data.service.*;
-import classes.data.validation.exception.FacultyAlreadyExists;
-import classes.data.validation.exception.HeadMasterAlreadyHavePractice;
-import classes.data.validation.exception.SpecialityAlreadyExists;
-import classes.data.validation.exception.UniversityAlreadyExists;
+import classes.data.validation.exception.*;
 import classes.data.validation.exception.practice.NumberOfStudentsEqualsQuantity;
 import classes.data.validation.exception.signUp.EmailExistsException;
 import classes.data.validation.exception.signUp.UserNameExistsException;
 import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
 import classes.data.validation.exception.studentOnPractice.StudentNotOnYourPracticeException;
+import com.sun.media.sound.InvalidDataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -55,7 +55,10 @@ public class StudentsRestController {
     }
 
     @RequestMapping(value = "/postUniversity", method = RequestMethod.POST)
-    public ResponseEntity<UniversityDto> postUniversity(@RequestBody UniversityDto universityDto) throws UniversityAlreadyExists {
+    public ResponseEntity<UniversityDto> postUniversity(@Valid @RequestBody UniversityDto universityDto, BindingResult bindingResult) throws UniversityAlreadyExists, CustomInvalidDataException {
+        if (bindingResult.hasErrors()) {
+            throw new CustomInvalidDataException("Name should be from 3 to 10 symbols!");
+        }
         createUniversity(universityDto);
         return new ResponseEntity<>(universityDto, HttpStatus.OK);
     }
