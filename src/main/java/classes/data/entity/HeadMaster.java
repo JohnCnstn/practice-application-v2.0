@@ -15,7 +15,7 @@ public class HeadMaster extends User {
     @Setter
     private Company company;
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "headMaster")
     @JoinColumn(name = "practice_id")
     @Getter
     @Setter

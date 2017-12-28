@@ -52,7 +52,7 @@ public class Practice {
     @Setter
     private List<Student> students;
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "headMaster_id")
     @Getter
     @Setter

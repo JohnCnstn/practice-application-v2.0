@@ -53,7 +53,7 @@ public class PracticeServiceImpl implements PracticeService {
         practice.setQuantity(practiceDto.getQuantity());
         practice.setHeadMaster(headMasterService.findOne(user.getId()));
 
-        headMasterService.setPracticeForHeadMaster(practice, user.getId());
+//        headMasterService.setPracticeForHeadMaster(practice, user.getId());
 
         return practiceRepository.save(practice);
     }
