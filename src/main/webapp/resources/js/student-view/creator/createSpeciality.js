@@ -31,7 +31,7 @@ $( document ).ready(function() {
                 console.log(result);
             },
             error: function (e) {
-                alert("Error!");
+                callErrorAlert(e.responseText);
                 console.log("ERROR: ", e);
             }
         });

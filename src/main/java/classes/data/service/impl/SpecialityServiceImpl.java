@@ -6,6 +6,7 @@ import classes.data.entity.Speciality;
 import classes.data.repository.SpecialityRepository;
 import classes.data.service.FacultyService;
 import classes.data.service.SpecialityService;
+import classes.data.validation.exception.SpecialityAlreadyExists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +29,11 @@ public class SpecialityServiceImpl implements SpecialityService {
 
     @Override
     @Transactional
-    public Speciality registerNewSpeciality(SpecialityDto specialityDto) {
+    public Speciality registerNewSpeciality(SpecialityDto specialityDto) throws SpecialityAlreadyExists {
+
+        if (specialityExist(specialityDto.getName())) {
+            throw new SpecialityAlreadyExists("There is a speciality with such name: "  + specialityDto.getName());
+        }
 
         Speciality speciality = new Speciality();
 
@@ -44,5 +49,10 @@ public class SpecialityServiceImpl implements SpecialityService {
     @Override
     public List<Speciality> getAll() {
         return specialityRepository.findAll();
+    }
+
+    private boolean specialityExist(String name) {
+        Speciality speciality = specialityRepository.findByName(name);
+        return speciality != null;
     }
 }

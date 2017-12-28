@@ -2,6 +2,7 @@ package classes.handler;
 
 import classes.data.validation.exception.FacultyAlreadyExists;
 import classes.data.validation.exception.HeadMasterAlreadyHavePractice;
+import classes.data.validation.exception.SpecialityAlreadyExists;
 import classes.data.validation.exception.UniversityAlreadyExists;
 import classes.data.validation.exception.practice.NumberOfStudentsEqualsQuantity;
 import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
@@ -17,7 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = {FacultyAlreadyExists.class, UniversityAlreadyExists.class, NumberOfStudentsEqualsQuantity.class, HeadMasterAlreadyHavePractice.class, StudentAlreadyOnThisPracticeException.class, StudentNotOnYourPracticeException.class, IllegalStateException.class })
+    @ExceptionHandler(value = {SpecialityAlreadyExists.class, FacultyAlreadyExists.class, UniversityAlreadyExists.class, NumberOfStudentsEqualsQuantity.class, HeadMasterAlreadyHavePractice.class, StudentAlreadyOnThisPracticeException.class, StudentNotOnYourPracticeException.class, IllegalStateException.class })
     protected ResponseEntity<Object> handleStudentNotOnYourPractice(RuntimeException ex, WebRequest request) {
         String bodyOfResponse = ex.getCause().getMessage();
         return handleExceptionInternal(ex, bodyOfResponse,

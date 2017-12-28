@@ -6,6 +6,7 @@ import classes.data.entity.*;
 import classes.data.service.*;
 import classes.data.validation.exception.FacultyAlreadyExists;
 import classes.data.validation.exception.HeadMasterAlreadyHavePractice;
+import classes.data.validation.exception.SpecialityAlreadyExists;
 import classes.data.validation.exception.UniversityAlreadyExists;
 import classes.data.validation.exception.practice.NumberOfStudentsEqualsQuantity;
 import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
@@ -64,7 +65,7 @@ public class StudentsRestController {
     }
 
     @RequestMapping(value = "/postSpeciality", method = RequestMethod.POST)
-    public ResponseEntity<SpecialityDto> postSpeciality(@RequestBody SpecialityDto specialityDto) {
+    public ResponseEntity<SpecialityDto> postSpeciality(@RequestBody SpecialityDto specialityDto) throws SpecialityAlreadyExists {
         createSpeciality(specialityDto);
         return new ResponseEntity<>(specialityDto, HttpStatus.OK);
     }
@@ -139,7 +140,7 @@ public class StudentsRestController {
         facultyService.registerNewFaculty(facultyDto);
     }
 
-    private void createSpeciality(SpecialityDto specialityDto) {
+    private void createSpeciality(SpecialityDto specialityDto) throws SpecialityAlreadyExists {
         specialityService.registerNewSpeciality(specialityDto);
     }
 
