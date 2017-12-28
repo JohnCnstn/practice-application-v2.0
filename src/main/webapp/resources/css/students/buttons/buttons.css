@@ -44,3 +44,11 @@
     -webkit-transform: translate(0px,5px);
     border-bottom: 1px solid;
 }
+
+button:disabled,
+button[disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    text-shadow: none;
+}
