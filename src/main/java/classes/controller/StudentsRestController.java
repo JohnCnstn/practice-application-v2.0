@@ -4,6 +4,7 @@ import classes.data.detail.CustomUserDetail;
 import classes.data.dto.*;
 import classes.data.entity.*;
 import classes.data.service.*;
+import classes.data.validation.exception.FacultyAlreadyExists;
 import classes.data.validation.exception.HeadMasterAlreadyHavePractice;
 import classes.data.validation.exception.UniversityAlreadyExists;
 import classes.data.validation.exception.practice.NumberOfStudentsEqualsQuantity;
@@ -57,7 +58,7 @@ public class StudentsRestController {
     }
 
     @RequestMapping(value = "/postFaculty", method = RequestMethod.POST)
-    public ResponseEntity<FacultyDto> postFaculty(@RequestBody FacultyDto facultyDto) {
+    public ResponseEntity<FacultyDto> postFaculty(@RequestBody FacultyDto facultyDto) throws FacultyAlreadyExists {
         createFaculty(facultyDto);
         return new ResponseEntity<>(facultyDto, HttpStatus.OK);
     }
@@ -134,7 +135,7 @@ public class StudentsRestController {
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 
-    private void createFaculty(FacultyDto facultyDto) {
+    private void createFaculty(FacultyDto facultyDto) throws FacultyAlreadyExists {
         facultyService.registerNewFaculty(facultyDto);
     }
 
