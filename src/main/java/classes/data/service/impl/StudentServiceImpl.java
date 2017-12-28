@@ -126,13 +126,18 @@ public class StudentServiceImpl implements StudentService {
 
                 practice.setEnabled(true);
 
+            }
+
+            List<Practice> studentPractice = getStudentPractices(id);
+            if (studentPractice.size() == 0) {
                 student.setStatus("AVAILABLE");
-
+            } else {
+                for (Practice practice : studentPractice) {
+                    student.setStatus(CheckStudentStatus.checkStatus(practice));
+                }
             }
 
-            if (student != null) {
-                studentRepository.save(student);
-            }
+            studentRepository.save(student);
         }
     }
 
