@@ -1,8 +1,8 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <html>
 <head>
     <title>Practice application</title>
@@ -13,16 +13,18 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/dataTable/dataTable.min.css"/>">
 
 
-
     <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
 
     <script type="text/javascript" src="<c:url value="/resources/js/alert/sweetalert/sweetalert.js"/>"></script>
 
     <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/selectPractice.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/removeFromPractice.js"/>"></script>
+    <script type="text/javascript"
+            src="<c:url value="/resources/js/student-info-view/removeFromPractice.js"/>"></script>
 
-    <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/head-master/head-master-assignOnPractice.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/head-master/head-master-removeFromPractice.js"/>"></script>
+    <script type="text/javascript"
+            src="<c:url value="/resources/js/student-info-view/head-master/head-master-assignOnPractice.js"/>"></script>
+    <script type="text/javascript"
+            src="<c:url value="/resources/js/student-info-view/head-master/head-master-removeFromPractice.js"/>"></script>
 
     <script type="text/javascript" src="<c:url value="/resources/js/alert/successalert.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/alert/deletealert.js"/>"></script>
@@ -32,7 +34,8 @@
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 
     <script type="text/javascript" src="<c:url value="/resources/js/dataTables/datatables.min.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"/>"></script>
+    <script type="text/javascript"
+            src="<c:url value="/resources/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"/>"></script>
 
 </head>
 <body>
@@ -53,13 +56,14 @@
                     </div>
                     <div class="modal-body">
 
-                        <div id = "create_faculty">
+                        <div id="create_faculty">
 
                             <div class="form-group">
 
                                 <label>Select practice:
 
-                                    <table class="table table-hover myTable" id="setOnPracticeTable" cellspacing="0" cellpadding="0" width="100%">
+                                    <table class="table table-hover myTable" id="setOnPracticeTable" cellspacing="0"
+                                           cellpadding="0" width="100%">
                                         <thead>
                                         <tr>
                                             <th><span>Company</span></th>
@@ -70,7 +74,7 @@
                                         </thead>
                                         <tbody id="myTable">
 
-                                        <spring:url value="/userInfo" var="userProfileUrl" />
+                                        <spring:url value="/userInfo" var="userProfileUrl"/>
 
                                         <c:forEach items="${practiceDtoList}" var="i">
                                             <tr id="${i.id}" data-toggle="${i.id}">
@@ -90,7 +94,7 @@
                             </div>
 
                             <div class="sign-up button">
-                                <input id="assignButton" type="submit" value="Submit" />
+                                <input id="assignButton" type="submit" value="Submit"/>
                             </div>
 
                         </div>
@@ -122,13 +126,14 @@
                     </div>
                     <div class="modal-body">
 
-                        <div id = "delete_from_practice">
+                        <div id="delete_from_practice">
 
                             <div class="form-group">
 
                                 <label>Select practice:
 
-                                    <table class="table table-hover myTable" id="removeFromPracticeTable" cellspacing="0" cellpadding="0" width="100%">
+                                    <table class="table table-hover myTable" id="removeFromPracticeTable"
+                                           cellspacing="0" cellpadding="0" width="100%">
                                         <thead>
                                         <tr>
                                             <th><span>Company</span></th>
@@ -139,7 +144,7 @@
                                         </thead>
                                         <tbody>
 
-                                        <spring:url value="/userInfo" var="userProfileUrl" />
+                                        <spring:url value="/userInfo" var="userProfileUrl"/>
 
                                         <c:forEach items="${studentPracticeList}" var="i">
                                             <tr id="${i.id}" data-toggle="${i.id}">
@@ -159,7 +164,7 @@
                             </div>
 
                             <div class="sign-up button">
-                                <input id="removeButton" type="submit" value="Submit" />
+                                <input id="removeButton" type="submit" value="Submit"/>
                             </div>
 
                         </div>
@@ -183,18 +188,28 @@
             <a class="navbar-brand" href="#">Practice application</a>
         </div>
 
-        <form:form action="/userInfo/${id}/home" method="get">
-            <button type="submit" class="btn navbar-btn navbar-right" id="header-btn">
-                Home
-            </button>
-        </form:form>
+        <sec:authorize access="hasAnyRole('ADMIN', 'HEAD_MASTER')">
+            <form:form action="/userInfo/${id}/home" method="get">
+                <button type="submit" class="btn navbar-btn navbar-right" id="header-btn">
+                    Home
+                </button>
+            </form:form>
+        </sec:authorize>
+
+        <sec:authorize access="hasRole('STUDENT')">
+            <form:form action="logout" method="get">
+                <button type="submit" class="btn navbar-btn navbar-right" id="header-btn">
+                    Logout
+                </button>
+            </form:form>
+        </sec:authorize>
 
     </div>
 </div>
 
 <div class="form-group" id="wrapper">
     <div class="row">
-        <div class="col-lg-6 col-lg-offset-3" >
+        <div class="col-lg-6 col-lg-offset-3">
 
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -251,19 +266,35 @@
                 </div>
                 <sec:authorize access="hasRole('ADMIN')">
                     <div class="panel-footer">
-                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button"
+                           class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
                         <span class="pull-right">
-                                                                <button title="Remove from practice" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteStudentFromPracticeModal"><i class="glyphicon glyphicon-remove"></i></button>
-                                                                <button title="Set on practice" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#studentOnPracticeModal"><i class="glyphicon glyphicon-edit"></i></button>
+                                                                <button title="Remove from practice" type="button"
+                                                                        class="btn btn-sm btn-danger"
+                                                                        data-toggle="modal"
+                                                                        data-target="#deleteStudentFromPracticeModal"><i
+                                                                        class="glyphicon glyphicon-remove"></i></button>
+                                                                <button title="Set on practice" type="button"
+                                                                        class="btn btn-sm btn-warning"
+                                                                        data-toggle="modal"
+                                                                        data-target="#studentOnPracticeModal"><i
+                                                                        class="glyphicon glyphicon-edit"></i></button>
                         </span>
                     </div>
                 </sec:authorize>
                 <sec:authorize access="hasRole('HEAD_MASTER')">
                     <div class="panel-footer">
-                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button"
+                           class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
                         <span class="pull-right">
-                                                                <button id="headMasterRemoveFromPractice" title="Remove from practice" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
-                                                                <button id="headMasterSetOnPractice" title="Set on practice" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></button>
+                                                                <button id="headMasterRemoveFromPractice"
+                                                                        title="Remove from practice" type="button"
+                                                                        class="btn btn-sm btn-danger"><i
+                                                                        class="glyphicon glyphicon-remove"></i></button>
+                                                                <button id="headMasterSetOnPractice"
+                                                                        title="Set on practice" type="button"
+                                                                        class="btn btn-sm btn-warning"><i
+                                                                        class="glyphicon glyphicon-edit"></i></button>
                         </span>
                     </div>
                 </sec:authorize>
