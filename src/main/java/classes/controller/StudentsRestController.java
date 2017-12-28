@@ -9,6 +9,8 @@ import classes.data.validation.exception.HeadMasterAlreadyHavePractice;
 import classes.data.validation.exception.SpecialityAlreadyExists;
 import classes.data.validation.exception.UniversityAlreadyExists;
 import classes.data.validation.exception.practice.NumberOfStudentsEqualsQuantity;
+import classes.data.validation.exception.signUp.EmailExistsException;
+import classes.data.validation.exception.signUp.UserNameExistsException;
 import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
 import classes.data.validation.exception.studentOnPractice.StudentNotOnYourPracticeException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +79,7 @@ public class StudentsRestController {
     }
 
     @RequestMapping(value = "/postStudent", method = RequestMethod.POST)
-    public ResponseEntity<StudentDto> postStudent(@RequestBody StudentDto studentDto) {
+    public ResponseEntity<StudentDto> postStudent(@RequestBody StudentDto studentDto) throws UserNameExistsException, EmailExistsException {
         createStudent(studentDto);
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
@@ -152,8 +154,8 @@ public class StudentsRestController {
         headMasterService.registerNewHeadMasterAccount(headMasterDto);
     }
 
-    private void createStudent(StudentDto studentDto) {
-        studentService.registerStudent(studentDto);
+    private void createStudent(StudentDto studentDto) throws UserNameExistsException, EmailExistsException {
+        studentService.registerNewUserAccount(studentDto);
     }
 
     private void createPractice(PracticeDto practiceDto) throws HeadMasterAlreadyHavePractice {

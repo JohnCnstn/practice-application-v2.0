@@ -3,6 +3,7 @@ package classes.data.service.impl;
 import classes.data.dto.StudentDto;
 import classes.data.entity.*;
 import classes.data.repository.StudentRepository;
+import classes.data.repository.UserRepository;
 import classes.data.service.PracticeService;
 import classes.data.service.SpecialityService;
 import classes.data.service.StudentService;
@@ -25,6 +26,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private UserProfileServiceImpl userProfileService;
@@ -208,12 +212,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     private boolean userNameExists(String userName) {
-        User user = studentRepository.findByUserName(userName);
+        User user = userRepository.findByUserName(userName);
         return user != null;
     }
 
     private boolean emailExist(String email) {
-        User user = studentRepository.findByEmail(email);
+        User user = userRepository.findByEmail(email);
         return user != null;
     }
 
