@@ -193,8 +193,8 @@
 
                             <div class="form-group">
                                 <form:label path="name" for="universityName">University Name:</form:label>
-                                <form:input path="name" type="text" pattern=".{3,}" title="3 символа минимум" maxlength="10" class="form-control" id="universityName"
-                                            required="required" placeholder="BSUiR"/>
+                                <form:input path="name" type="text" pattern=".{3,}" title="3 символа минимум" maxlength="10" name="universityName" class="form-control"
+                                            id="universityName" required="required" placeholder="BSUiR"/>
                             </div>
 
                             <div class="sign-up button">
@@ -203,10 +203,6 @@
 
                         </div>
 
-                    </div>
-
-                    <div class="modal-footer">
-                        <div class="col-sm-7" id="postResultDiv"></div>
                     </div>
 
                 </div>
@@ -727,21 +723,17 @@
                         <li class="dropdown-header">Actions with students</li>
                         <li><a id="getAllSpecialities" data-toggle="modal" data-target="#createStudentModal">Create</a>
                         </li>
-                        <li><a href="#" id="assignButton" data-toggle="modal" data-target="#assignOnPracticeModal">Assign</a>
-                        </li>
-                        <li><a href="#" id="releaseButton" data-toggle="modal" data-target="#assignOnPracticeModal">Release</a>
-                        </li>
                     </ul>
                 </li>
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">University<span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown">University<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Actions with university</li>
-                        <li><a href="#" data-toggle="modal" data-target="#universityModal">Create University</a></li>
-                        <li><a href="#" id="getAllUniversities" data-toggle="modal" data-target="#facultyModal">Create
+                        <li><a data-toggle="modal" data-target="#universityModal">Create University</a></li>
+                        <li><a id="getAllUniversities" data-toggle="modal" data-target="#facultyModal">Create
                             Faculty</a></li>
-                        <li><a href="#" id="getAllFaculties" data-toggle="modal" data-target="#specialityModal">Create
+                        <li><a id="getAllFaculties" data-toggle="modal" data-target="#specialityModal">Create
                             Speciality</a></li>
                     </ul>
                 </li>

@@ -4,11 +4,11 @@ $( document ).ready(function() {
     $("#universityForm").submit(function(event) {
         // Prevent the form from submitting via the browser.
         event.preventDefault();
-        ajaxPost();
+        event.stopImmediatePropagation();
+        createUniversity();
     });
 
-
-    function ajaxPost(){
+    function createUniversity(){
 
         // PREPARE FORM DATA
 
