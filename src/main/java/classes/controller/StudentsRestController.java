@@ -185,9 +185,9 @@ public class StudentsRestController {
     }
 
     @RequestMapping(value = "/getAllSpecialities", method = RequestMethod.GET)
-    public ResponseEntity<List<Faculty>> getAllSpecialities() {
-        List<Faculty> faculties = facultyService.getAll();
-        return new ResponseEntity<>(faculties, HttpStatus.OK);
+    public ResponseEntity<List<Speciality>> getAllSpecialities() {
+        List<Speciality> specialities = specialityService.getAll();
+        return new ResponseEntity<>(specialities, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/getAllHeadMasters", method = RequestMethod.GET)

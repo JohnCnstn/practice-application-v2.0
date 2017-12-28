@@ -27,8 +27,8 @@
                 fnInitComplete: function () {
                     $('div.myTableToolBar').html(
                         '<sec:authorize access="hasRole('HEAD_MASTER')">' +
-                        '   <a id="headMasterAssignButton" class="action-button shadow animate green">Assign</a>\n' +
-                        '   <a id="headMasterReleaseButton" class="action-button shadow animate yellow">Release</a>' +
+                        '   <button id="headMasterAssignButton" disabled class="action-button shadow animate green">Assign</button>\n' +
+                        '   <button id="headMasterReleaseButton" disabled class="action-button shadow animate yellow">Release</button>' +
                         '</sec:authorize>' +
                         '<sec:authorize access="hasRole('ADMIN')">' +
                         '   <a id="headMasterAssignButton" class="action-button shadow animate green">Assign</a>\n' +
