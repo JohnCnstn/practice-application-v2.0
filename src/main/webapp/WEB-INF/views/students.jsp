@@ -433,7 +433,7 @@
 
                                 <div class="form-group">
                                     <form:label path="avgScore" for="avgScore">Average score:</form:label>
-                                    <form:input path="avgScore" type="number" class="form-control" id="avgScore"
+                                    <form:input path="avgScore" type="number" step="0.01" min="0" max="10" class="form-control" id="avgScore"
                                                 required="required"/>
                                 </div>
 

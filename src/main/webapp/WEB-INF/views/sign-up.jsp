@@ -75,7 +75,7 @@
 
                     <div class="form-group">
                         <form:label path="avgScore" for="avgScore">Set your average score:</form:label>
-                        <form:input path="avgScore" type="number" min="0" max="10"  class="form-control" id="avgScore" required="required"/>
+                        <form:input path="avgScore" type="number" step="0.01" min="0" max="10"  class="form-control" id="avgScore" required="required"/>
                     </div>
 
                     <div class="form-group">
