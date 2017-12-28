@@ -6,6 +6,8 @@ import classes.data.entity.Company;
 import classes.data.entity.HeadMaster;
 import classes.data.entity.Practice;
 import classes.data.entity.Student;
+import classes.data.validation.exception.signUp.EmailExistsException;
+import classes.data.validation.exception.signUp.UserNameExistsException;
 
 import java.util.List;
 
@@ -19,7 +21,7 @@ public interface HeadMasterService {
 
     void setPracticeForHeadMaster(Practice practice, long id);
 
-    HeadMaster registerNewHeadMasterAccount(HeadMasterDto headMasterDto);
+    HeadMaster registerNewHeadMasterAccount(HeadMasterDto headMasterDto) throws EmailExistsException, UserNameExistsException;
     void delete(long id);
     List<HeadMaster> getAll();
 }

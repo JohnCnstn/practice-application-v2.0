@@ -2,12 +2,12 @@ package classes.data.service.impl;
 
 import classes.data.dto.HeadMasterDto;
 import classes.data.dto.PracticeDto;
-import classes.data.entity.Company;
-import classes.data.entity.HeadMaster;
-import classes.data.entity.Practice;
-import classes.data.entity.Student;
+import classes.data.entity.*;
 import classes.data.repository.HeadMasterRepository;
+import classes.data.repository.UserRepository;
 import classes.data.service.HeadMasterService;
+import classes.data.validation.exception.signUp.EmailExistsException;
+import classes.data.validation.exception.signUp.UserNameExistsException;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,6 +21,9 @@ public class HeadMasterServiceImpl implements HeadMasterService {
 
     @Autowired
     private HeadMasterRepository headMasterRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private UserProfileServiceImpl userProfileService;
@@ -66,7 +69,15 @@ public class HeadMasterServiceImpl implements HeadMasterService {
 
     @Transactional
     @Override
-    public HeadMaster registerNewHeadMasterAccount(HeadMasterDto headMasterDto) {
+    public HeadMaster registerNewHeadMasterAccount(HeadMasterDto headMasterDto) throws EmailExistsException, UserNameExistsException {
+
+        if (userNameExists(headMasterDto.getUserName())) {
+            throw new UserNameExistsException("There is an account with that Username: "  + headMasterDto.getUserName());
+        }
+
+        if (emailExist(headMasterDto.getEmail())) {
+            throw new EmailExistsException("There is an account with that email address: "  + headMasterDto.getEmail());
+        }
 
         HeadMaster headMaster = new HeadMaster();
 
@@ -98,12 +109,12 @@ public class HeadMasterServiceImpl implements HeadMasterService {
     }
 
     private boolean userNameExists(String userName) {
-        HeadMaster headMaster = headMasterRepository.findByUserName(userName);
+        User headMaster = userRepository.findByUserName(userName);
         return headMaster != null;
     }
 
     private boolean emailExist(String email) {
-        HeadMaster headMaster = headMasterRepository.findByEmail(email);
+        User headMaster = userRepository.findByEmail(email);
         return headMaster != null;
     }
 }

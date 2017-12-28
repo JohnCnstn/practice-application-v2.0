@@ -73,7 +73,7 @@ public class StudentsRestController {
     }
 
     @RequestMapping(value = "/postHeadMaster", method = RequestMethod.POST)
-    public ResponseEntity<HeadMasterDto> postHeadMaster(@RequestBody HeadMasterDto headMasterDto) {
+    public ResponseEntity<HeadMasterDto> postHeadMaster(@RequestBody HeadMasterDto headMasterDto) throws EmailExistsException, UserNameExistsException {
         createHeadMasterAccount(headMasterDto);
         return new ResponseEntity<>(headMasterDto, HttpStatus.OK);
     }
@@ -150,7 +150,7 @@ public class StudentsRestController {
         universityService.registerNewUniversity(universityDto);
     }
 
-    private void createHeadMasterAccount(HeadMasterDto headMasterDto) {
+    private void createHeadMasterAccount(HeadMasterDto headMasterDto) throws EmailExistsException, UserNameExistsException {
         headMasterService.registerNewHeadMasterAccount(headMasterDto);
     }
 

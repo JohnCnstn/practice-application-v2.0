@@ -31,9 +31,9 @@
                         '   <button id="headMasterReleaseButton" disabled class="action-button shadow animate yellow">Release</button>' +
                         '</sec:authorize>' +
                         '<sec:authorize access="hasRole('ADMIN')">' +
-                        '   <a id="headMasterAssignButton" class="action-button shadow animate green">Assign</a>\n' +
-                        '   <a id="headMasterReleaseButton" class="action-button shadow animate yellow">Release</a>\n' +
-                        '   <a id="deleteButton" class="action-button shadow animate red">Delete</a>' +
+                        '   <button id="headMasterAssignButton" disabled class="action-button shadow animate green">Assign</button>\n' +
+                        '   <button id="headMasterReleaseButton" disabled class="action-button shadow animate yellow">Release</button>\n' +
+                        '   <button id="deleteButton" disabled class="action-button shadow animate red">Delete</button>' +
                         '</sec:authorize>'
                     );
                     this.api().columns([0, 1, 2, 3, 4, 5, 6]).every(function () {
