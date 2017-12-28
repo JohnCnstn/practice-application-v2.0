@@ -97,10 +97,6 @@
 
                     </div>
 
-                    <div class="modal-footer">
-                        <div class="col-sm-7" id="postResultDiv"></div>
-                    </div>
-
                 </div>
 
             </div>
@@ -187,9 +183,9 @@
             <a class="navbar-brand" href="#">Practice application</a>
         </div>
 
-        <form:form action="logout" method="get">
+        <form:form action="/userInfo/${id}/home" method="get">
             <button type="submit" class="btn navbar-btn navbar-right" id="header-btn">
-                Logout
+                Home
             </button>
         </form:form>
 
