@@ -45,12 +45,12 @@
                     <h1>Sign up</h1>
                     <div class="form-group">
                         <form:label path="firstName" for="firstName">Your First Name:</form:label>
-                        <form:input path="firstName" type="text"  pattern=".{2,}" title="2 символа минимум" maxlength="20" name="firstName" class="form-control" id="firstName" required="required" placeholder="Pavel"/>
+                        <form:input path="firstName" type="text"  pattern=".{2,}" title="2 символа минимум" maxlength="10" name="firstName" class="form-control" id="firstName" required="required" placeholder="Pavel"/>
                         <form:errors path="firstName" cssClass="has-error"/>
                     </div>
                     <div class="form-group">
                         <form:label path="lastName" for="lastName">Your Last Name:</form:label>
-                        <form:input path="lastName" type="text" pattern=".{2,}" title="2 символа минимум" maxlength="20" name="lastName" class="form-control" id="lastName" required="required" placeholder="Khankevich"/>
+                        <form:input path="lastName" type="text" pattern=".{2,}" title="2 символа минимум" maxlength="10" name="lastName" class="form-control" id="lastName" required="required" placeholder="Khankevich"/>
                         <form:errors path="lastName" cssClass="has-error"/>
                     </div>
                     <div class="form-group">

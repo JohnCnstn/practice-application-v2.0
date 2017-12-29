@@ -347,27 +347,27 @@
 
                                 <div class="form-group">
                                     <form:label path="firstName" for="firstName">HeadMaster First Name:</form:label>
-                                    <form:input path="firstName" type="text" class="form-control" id="firstName"
+                                    <form:input path="firstName" type="text" pattern=".{2,}" title="2 символа минимум" maxlength="10" class="form-control" id="firstName"
                                                 required="required" placeholder="Pavel"/>
                                 </div>
                                 <div class="form-group">
                                     <form:label path="lastName" for="lastName">HeadMaster Last Name:</form:label>
-                                    <form:input path="lastName" type="text" class="form-control" id="lastName"
+                                    <form:input path="lastName" type="text" pattern=".{2,}" title="2 символа минимум" maxlength="10" class="form-control" id="lastName"
                                                 required="required" placeholder="Khankevich"/>
                                 </div>
                                 <div class="form-group">
                                     <form:label path="userName" for="userName">HeadMaster userName:</form:label>
-                                    <form:input path="userName" type="text" class="form-control" id="userName"
+                                    <form:input path="userName" type="text" pattern=".{5,}" title="5 символа минимум" maxlength="10" class="form-control" id="userName"
                                                 required="required" placeholder="Username"/>
                                 </div>
                                 <div class="form-group">
                                     <form:label path="email" for="email">HeadMaster email:</form:label>
-                                    <form:input path="email" type="text" class="form-control" id="email"
+                                    <form:input path="email" type="text" pattern=".{5,}" title="5 символов минимум" maxlength="20" class="form-control" id="email"
                                                 required="required" placeholder="email"/>
                                 </div>
                                 <div class="form-group">
                                     <form:label path="password" for="password">HeadMaster password:</form:label>
-                                    <form:input path="password" type="password" class="form-control" id="password"
+                                    <form:input path="password" type="password" pattern=".{5,}" title="5 символов минимум" maxlength="20" class="form-control" id="password"
                                                 required="required" placeholder="Password"/>
                                 </div>
 

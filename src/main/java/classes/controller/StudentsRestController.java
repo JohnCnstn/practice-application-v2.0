@@ -18,6 +18,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -82,13 +83,19 @@ public class StudentsRestController {
     }
 
     @RequestMapping(value = "/postHeadMaster", method = RequestMethod.POST)
-    public ResponseEntity<HeadMasterDto> postHeadMaster(@RequestBody HeadMasterDto headMasterDto) throws EmailExistsException, UserNameExistsException {
+    public ResponseEntity<HeadMasterDto> postHeadMaster(@Valid @RequestBody HeadMasterDto headMasterDto, BindingResult bindingResult) throws EmailExistsException, UserNameExistsException, CustomInvalidDataException {
+        if (bindingResult.hasErrors()) {
+            throw new CustomInvalidDataException(bindingResult.getFieldError().getDefaultMessage());
+        }
         createHeadMasterAccount(headMasterDto);
         return new ResponseEntity<>(headMasterDto, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/postStudent", method = RequestMethod.POST)
-    public ResponseEntity<StudentDto> postStudent(@RequestBody StudentDto studentDto) throws UserNameExistsException, EmailExistsException {
+    public ResponseEntity<StudentDto> postStudent(@Valid @RequestBody StudentDto studentDto, BindingResult bindingResult) throws UserNameExistsException, EmailExistsException, CustomInvalidDataException {
+        if (bindingResult.hasErrors()) {
+            throw new CustomInvalidDataException(bindingResult.getFieldError().getDefaultMessage());
+        }
         createStudent(studentDto);
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
