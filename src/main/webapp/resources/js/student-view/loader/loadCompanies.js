@@ -1,5 +1,7 @@
 $( document ).ready(function() {
 
+    var companiesList = '';
+
     // GET REQUEST
     $("#getAllCompanies").click(function(event){
         event.preventDefault();
@@ -12,13 +14,21 @@ $( document ).ready(function() {
             type : "GET",
             url: window.location + "/getAllCompanies",
             success: function (result) {
-                var companiesList = '';
                 var len = result.length;
-                for(var i=0; i<len; i++){
-                    companiesList += '<option value="' + result[i].id + '">' + result[i].name + '</option>';
+
+                if (len > 0) {
+                    $(".submitHeadMaster").prop('disabled', false);
+                } else {
+                    callErrorAlert("You should create at least 1 company!");
+                    $(".submitHeadMaster").prop('disabled', true);
                 }
-                $('select#companyId').append(companiesList);
-                console.log("Success: ", result);
+                if (companiesList.length == 0) {
+                    for(var i=0; i<len; i++){
+                        companiesList += '<option value="' + result[i].id + '">' + result[i].name + '</option>';
+                    }
+                    $('select#companyId').append(companiesList);
+                    console.log("Success: ", result);
+                }
             },
             error : function(e) {
                 console.log("ERROR: ", e);

@@ -298,7 +298,7 @@
 
                                     <select id="facultyId">
                                         <c:forEach items="${facultiesList}" var="i">
-                                            <option id="faculty" value="${i.id}">${i.name}</option>
+                                            <option value="${i.id}">${i.name}</option>
                                         </c:forEach>
                                     </select>
 
@@ -384,7 +384,7 @@
                             </div>
 
                             <div class="sign-up button">
-                                <input type="submit" value="Create"/>
+                                <input class="submitHeadMaster" type="submit" value="Create"/>
                             </div>
 
                         </div>
