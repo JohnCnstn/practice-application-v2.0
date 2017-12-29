@@ -108,9 +108,13 @@ public class StudentsRestController {
 
     @RequestMapping(value = "/assignOnPractice", method = RequestMethod.POST)
     public @ResponseBody
-    ResponseEntity<StudentDto> assignOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
+    ResponseEntity<StudentDto> assignOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity, HeadMasterHaventPractice {
 
         User headMaster = getPrincipal();
+
+        if (headMasterHaventPractice(headMaster)) {
+            throw new HeadMasterHaventPractice("You haven't practice yet!");
+        }
 
         Practice practice = getHeadMasterPractice(headMaster.getId());
 
@@ -125,9 +129,13 @@ public class StudentsRestController {
 
     @RequestMapping(value = "/headMasterRemoveFromPractice", method = RequestMethod.POST)
     public @ResponseBody
-    ResponseEntity<StudentDto> headMasterRemoveFromPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, StudentNotOnYourPracticeException {
+    ResponseEntity<StudentDto> headMasterRemoveFromPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, StudentNotOnYourPracticeException, HeadMasterHaventPractice {
 
         HeadMaster headMaster = (HeadMaster) getPrincipal();
+
+        if (headMasterHaventPractice(headMaster)) {
+            throw new HeadMasterHaventPractice("You haven't practice yet!");
+        }
 
         if (studentNotOnYourPractice(headMaster, dataArrayToSend)) {
             throw new StudentNotOnYourPracticeException("One of students not on your practice!");
@@ -278,6 +286,10 @@ public class StudentsRestController {
             }
         }
         return flag;
+    }
+
+    private boolean headMasterHaventPractice(User headMaster) {
+        return headMasterService.getPractice(headMaster.getId()) == null;
     }
 
     private User getPrincipal(){

@@ -54,6 +54,7 @@ $(document).ready(function() {
     }
 
     function resetData(){
+        $(".action-button").prop('disabled', true);
         assignStudentList = [];
     }
 } );

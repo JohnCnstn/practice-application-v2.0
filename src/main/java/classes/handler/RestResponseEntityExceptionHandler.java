@@ -16,7 +16,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = { CustomInvalidDataException.class, SpecialityAlreadyExists.class, FacultyAlreadyExists.class, UniversityAlreadyExists.class, NumberOfStudentsEqualsQuantity.class, HeadMasterAlreadyHavePractice.class, StudentAlreadyOnThisPracticeException.class, StudentNotOnYourPracticeException.class, IllegalStateException.class })
+    @ExceptionHandler(value = { HeadMasterHaventPractice.class, CustomInvalidDataException.class,
+            SpecialityAlreadyExists.class, FacultyAlreadyExists.class, UniversityAlreadyExists.class,
+            NumberOfStudentsEqualsQuantity.class, HeadMasterAlreadyHavePractice.class,
+            StudentAlreadyOnThisPracticeException.class, StudentNotOnYourPracticeException.class,
+            IllegalStateException.class })
     protected ResponseEntity<Object> handleStudentNotOnYourPractice(RuntimeException ex, WebRequest request) {
         String bodyOfResponse = ex.getCause().getMessage();
         return handleExceptionInternal(ex, bodyOfResponse,
