@@ -64,13 +64,19 @@ public class StudentsRestController {
     }
 
     @RequestMapping(value = "/postFaculty", method = RequestMethod.POST)
-    public ResponseEntity<FacultyDto> postFaculty(@RequestBody FacultyDto facultyDto) throws FacultyAlreadyExists {
+    public ResponseEntity<FacultyDto> postFaculty(@Valid @RequestBody FacultyDto facultyDto, BindingResult bindingResult) throws FacultyAlreadyExists, CustomInvalidDataException {
+        if (bindingResult.hasErrors()) {
+            throw new CustomInvalidDataException("Name should be from 3 to 10 symbols!");
+        }
         createFaculty(facultyDto);
         return new ResponseEntity<>(facultyDto, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/postSpeciality", method = RequestMethod.POST)
-    public ResponseEntity<SpecialityDto> postSpeciality(@RequestBody SpecialityDto specialityDto) throws SpecialityAlreadyExists {
+    public ResponseEntity<SpecialityDto> postSpeciality(@Valid @RequestBody SpecialityDto specialityDto, BindingResult bindingResult) throws SpecialityAlreadyExists, CustomInvalidDataException {
+        if (bindingResult.hasErrors()) {
+            throw new CustomInvalidDataException("Name should be from 3 to 10 symbols!");
+        }
         createSpeciality(specialityDto);
         return new ResponseEntity<>(specialityDto, HttpStatus.OK);
     }

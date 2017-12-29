@@ -12,7 +12,7 @@ public class UniversityDto {
     private long id;
 
     @NotNull
-    @Size(min = 3, max = 10, message = "University name should be from 3 to 10 symbols!")
+    @Size(min = 3, max = 10)
     @Getter
     @Setter
     private String name;
