@@ -556,7 +556,7 @@
                             </label>
 
                             <div class="sign-up button">
-                                <input type="submit" value="Sign up"/>
+                                <input class="submitPractice" type="submit" value="Sign up"/>
                             </div>
 
                         </div>

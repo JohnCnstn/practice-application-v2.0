@@ -19,7 +19,7 @@ $( document ).ready(function() {
                 if (len > 0) {
                     $(".submitStudent").prop('disabled', false);
                 } else {
-                    callErrorAlert("You should create at least 1 faculty!");
+                    callErrorAlert("You should create at least 1 speciality!");
                     $(".submitStudent").prop('disabled', true);
                 }
                 if (specialitiesList.length == 0) {
