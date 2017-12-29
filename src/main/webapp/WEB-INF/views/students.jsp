@@ -313,7 +313,7 @@
                             </div>
 
                             <div class="sign-up button">
-                                <input type="submit" value="Create"/>
+                                <input class="submitSpeciality" type="submit" value="Create"/>
                             </div>
 
                         </div>
