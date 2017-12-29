@@ -49,7 +49,7 @@ $(document).ready(function() {
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: window.location + "/assignOnPractice",
+            url: window.location + "/headMasterAssignOnPractice",
             data: JSON.stringify(assignStudentList),
             dataType: 'json',
             success: function (result) {

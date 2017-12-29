@@ -101,17 +101,38 @@ public class StudentsRestController {
     }
 
     @RequestMapping(value = "/postPractice", method = RequestMethod.POST)
-    public ResponseEntity<PracticeDto> postPractice(@Valid @RequestBody PracticeDto practiceDto, BindingResult bindingResult) throws HeadMasterAlreadyHavePractice, CustomInvalidDataException {
-        if (bindingResult.hasErrors()) {
-            throw new CustomInvalidDataException(bindingResult.getFieldError().getDefaultMessage());
-        }
+    public ResponseEntity<PracticeDto> postPractice(@RequestBody PracticeDto practiceDto) throws HeadMasterAlreadyHavePractice {
         whatCreatePracticeMethodShouldBeUsed(practiceDto);
         return new ResponseEntity<>(practiceDto, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/assignOnPractice", method = RequestMethod.POST)
     public @ResponseBody
-    ResponseEntity<StudentDto> assignOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity, HeadMasterHaventPractice {
+    ResponseEntity<StudentDto> assignOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
+
+        int flag = 1;
+
+        int dataLength = dataArrayToSend.length;
+
+        List<Long> practicesIds = new ArrayList();
+
+        for (Long id : dataArrayToSend) {
+            if (flag == dataLength) {
+                studentDto.setId(id);
+            } else {
+                practicesIds.add(id);
+                flag++;
+            }
+        }
+
+        setStudentOnPractice(practicesIds ,studentDto.getId());
+
+        return new ResponseEntity<>(studentDto, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/headMasterAssignOnPractice", method = RequestMethod.POST)
+    public @ResponseBody
+    ResponseEntity<StudentDto> headMasterassignOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity, HeadMasterHaventPractice {
 
         User headMaster = getPrincipal();
 
@@ -289,6 +310,11 @@ public class StudentsRestController {
             }
         }
         return flag;
+    }
+
+    private void setStudentOnPractice(List<Long> practicesIds, long id) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
+        Long[] ids = {id};
+        studentService.setStudentsOnPractice(practicesIds, ids);
     }
 
     private boolean headMasterHaventPractice(User headMaster) {

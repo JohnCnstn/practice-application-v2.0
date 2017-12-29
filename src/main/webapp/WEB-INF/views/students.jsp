@@ -31,7 +31,8 @@
                         '   <button id="headMasterReleaseButton" disabled class="action-button shadow animate yellow">Release</button>' +
                         '</sec:authorize>' +
                         '<sec:authorize access="hasRole('ADMIN')">' +
-                        '   <button id="adminAssignButton" disabled class="action-button shadow animate green">Assign</button>\n' +
+                        '   <button id="adminAssignButton" disabled data-toggle="modal" +\n' +
+                        '       data-target="#studentOnPracticeModal" class="action-button shadow animate green">Assign</button>\n' +
                         '   <button id="adminReleaseButton" disabled class="action-button shadow animate yellow">Release</button>\n' +
                         '   <button id="deleteButton" disabled class="action-button shadow animate red">Delete</button>' +
                         '</sec:authorize>'
@@ -65,12 +66,12 @@
             });
 
             // Filter event handler
-            $( table.table().container() ).on( 'keyup', 'tfoot input', function () {
+            $(table.table().container()).on('keyup', 'tfoot input', function () {
                 table
-                    .column( $(this).data('index') )
-                    .search( this.value )
+                    .column($(this).data('index'))
+                    .search(this.value)
                     .draw();
-            } );
+            });
 
         });
     </script>
@@ -103,6 +104,8 @@
     <script type="text/javascript" src="<c:url value="/resources/js/alert/erroralert.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/alert/sweetalert/sweetalert.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/alert/confirmalert.js"/>"></script>
+
+    <script type="text/javascript" src="<c:url value="/resources/js/student-info-view/selectPractice.js"/>"></script>
 
     <script type="text/javascript" src="<c:url value="/resources/js/dataTables/datatables.min.js"/>"></script>
     <script type="text/javascript"
@@ -160,6 +163,7 @@
         table.dataTable tfoot th {
             text-align: center;
         }
+
         table.dataTable thead th,
         table.dataTable thead td {
             padding: 10px 18px 10px 10px;
@@ -189,6 +193,75 @@
 
 <sec:authorize access="hasRole('ADMIN')">
 
+    <form:form name="form-SetOnPractice" commandName="arrayParam" method="POST" id="studentOnPracticeForm">
+
+        <div class="container">
+
+            <!-- Modal -->
+            <div class="modal fade" id="studentOnPracticeModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Select practice</h4>
+                        </div>
+                        <div class="modal-body">
+
+
+                            <div class="form-group">
+
+                                <label>Select practice:
+
+
+                                    <table class="table table-hover myTable" id="setOnPracticeTable" cellspacing="0"
+                                           cellpadding="0" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th><span>Company</span></th>
+                                            <th><span>Head master</span></th>
+                                            <th><span>Start date</span></th>
+                                            <th><span>End date</span></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="myTable">
+
+                                        <spring:url value="/userInfo" var="userProfileUrl"/>
+
+                                        <c:forEach items="${practiceDtoList}" var="i">
+                                            <tr id="${i.id}" data-toggle="${i.id}">
+                                                <td>${i.companyName}</td>
+                                                <td>${i.headMasterName}</td>
+                                                <td>${i.startDate}</td>
+                                                <td>${i.endDate}</td>
+                                            </tr>
+                                        </c:forEach>
+
+                                        </tbody>
+
+                                    </table>
+
+                                </label>
+
+                            </div>
+
+                            <div class="sign-up button">
+                                <input id="assignButton" type="submit" value="Submit"/>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </form:form>
+
     <form:form name="form-University" commandName="universityDto" method="POST" id="universityForm">
         <!-- Modal -->
         <div class="modal fade" id="universityModal" role="dialog">
@@ -206,7 +279,8 @@
 
                             <div class="form-group">
                                 <form:label path="name" for="universityName">University Name:</form:label>
-                                <form:input path="name" type="text" pattern=".{3,}" title="3 символа минимум" maxlength="10" name="universityName" class="form-control"
+                                <form:input path="name" type="text" pattern=".{3,}" title="3 символа минимум"
+                                            maxlength="10" name="universityName" class="form-control"
                                             id="universityName" required="required" placeholder="BSUiR"/>
                             </div>
 
@@ -257,7 +331,8 @@
 
                             <div class="form-group">
                                 <form:label path="name" for="facultyName">Your Faculty Name:</form:label>
-                                <form:input path="name" type="text" pattern=".{3,}" title="3 символа минимум" maxlength="10" name="facultyName" class="form-control"
+                                <form:input path="name" type="text" pattern=".{3,}" title="3 символа минимум"
+                                            maxlength="10" name="facultyName" class="form-control"
                                             id="facultyName" required="required" placeholder="FKSiS"/>
                             </div>
 
@@ -308,7 +383,8 @@
 
                             <div class="form-group">
                                 <form:label path="name" for="specialityName">Your Speciality Name:</form:label>
-                                <form:input path="name" type="text" pattern=".{3,}" title="3 символа минимум" maxlength="10" class="form-control" id="specialityName"
+                                <form:input path="name" type="text" pattern=".{3,}" title="3 символа минимум"
+                                            maxlength="10" class="form-control" id="specialityName"
                                             required="required" placeholder="POiT"/>
                             </div>
 
@@ -347,27 +423,33 @@
 
                                 <div class="form-group">
                                     <form:label path="firstName" for="firstName">HeadMaster First Name:</form:label>
-                                    <form:input path="firstName" type="text" pattern=".{2,}" title="2 символа минимум" maxlength="10" class="form-control" id="firstName"
+                                    <form:input path="firstName" type="text" pattern=".{2,}" title="2 символа минимум"
+                                                maxlength="10" class="form-control" id="firstName"
                                                 required="required" placeholder="Pavel"/>
                                 </div>
                                 <div class="form-group">
                                     <form:label path="lastName" for="lastName">HeadMaster Last Name:</form:label>
-                                    <form:input path="lastName" type="text" pattern=".{2,}" title="2 символа минимум" maxlength="10" class="form-control" id="lastName"
+                                    <form:input path="lastName" type="text" pattern=".{2,}" title="2 символа минимум"
+                                                maxlength="10" class="form-control" id="lastName"
                                                 required="required" placeholder="Khankevich"/>
                                 </div>
                                 <div class="form-group">
                                     <form:label path="userName" for="userName">HeadMaster userName:</form:label>
-                                    <form:input path="userName" type="text" pattern=".{5,}" title="5 символа минимум" maxlength="10" class="form-control" id="userName"
+                                    <form:input path="userName" type="text" pattern=".{5,}" title="5 символа минимум"
+                                                maxlength="10" class="form-control" id="userName"
                                                 required="required" placeholder="Username"/>
                                 </div>
                                 <div class="form-group">
                                     <form:label path="email" for="email">HeadMaster email:</form:label>
-                                    <form:input path="email" type="text" pattern=".{5,}" title="5 символов минимум" maxlength="20" class="form-control" id="email"
+                                    <form:input path="email" type="text" pattern=".{5,}" title="5 символов минимум"
+                                                maxlength="20" class="form-control" id="email"
                                                 required="required" placeholder="email"/>
                                 </div>
                                 <div class="form-group">
                                     <form:label path="password" for="password">HeadMaster password:</form:label>
-                                    <form:input path="password" type="password" pattern=".{5,}" title="5 символов минимум" maxlength="20" class="form-control" id="password"
+                                    <form:input path="password" type="password" pattern=".{5,}"
+                                                title="5 символов минимум" maxlength="20" class="form-control"
+                                                id="password"
                                                 required="required" placeholder="Password"/>
                                 </div>
 
@@ -419,34 +501,40 @@
                                 <div class="form-group">
                                     <form:label path="firstName"
                                                 for="studentFirstName">Student First Name:</form:label>
-                                    <form:input path="firstName" type="text" pattern=".{2,}" title="2 символа минимум" maxlength="10" class="form-control"
+                                    <form:input path="firstName" type="text" pattern=".{2,}" title="2 символа минимум"
+                                                maxlength="10" class="form-control"
                                                 id="studentFirstName" required="required" placeholder="Pavel"/>
                                 </div>
                                 <div class="form-group">
                                     <form:label path="lastName"
                                                 for="studentLastName">Student Last Name:</form:label>
-                                    <form:input path="lastName" type="text" pattern=".{2,}" title="2 символа минимум" maxlength="10" class="form-control"
+                                    <form:input path="lastName" type="text" pattern=".{2,}" title="2 символа минимум"
+                                                maxlength="10" class="form-control"
                                                 id="studentLastName" required="required" placeholder="Khankevich"/>
                                 </div>
                                 <div class="form-group">
                                     <form:label path="userName" for="studentUserName">Student userName:</form:label>
-                                    <form:input path="userName" type="text" pattern=".{5,}" title="5 символа минимум" maxlength="10" class="form-control"
+                                    <form:input path="userName" type="text" pattern=".{5,}" title="5 символа минимум"
+                                                maxlength="10" class="form-control"
                                                 id="studentUserName" required="required" placeholder="Username"/>
                                 </div>
                                 <div class="form-group">
                                     <form:label path="email" for="studentEmail">Student email:</form:label>
-                                    <form:input path="email" type="text" pattern=".{5,}" title="5 символов минимум" maxlength="20" class="form-control" id="studentEmail"
+                                    <form:input path="email" type="text" pattern=".{5,}" title="5 символов минимум"
+                                                maxlength="20" class="form-control" id="studentEmail"
                                                 required="required" placeholder="email"/>
                                 </div>
                                 <div class="form-group">
                                     <form:label path="password" for="studentPassword">Student password:</form:label>
-                                    <form:input path="password" type="password" pattern=".{5,}" title="5 символов минимум" maxlength="20" class="form-control"
+                                    <form:input path="password" type="password" pattern=".{5,}"
+                                                title="5 символов минимум" maxlength="20" class="form-control"
                                                 id="studentPassword" required="required" placeholder="Password"/>
                                 </div>
 
                                 <div class="form-group">
                                     <form:label path="avgScore" for="avgScore">Average score:</form:label>
-                                    <form:input path="avgScore" type="number" step="0.01" min="0" max="10" class="form-control" id="avgScore"
+                                    <form:input path="avgScore" type="number" step="0.01" min="0" max="10"
+                                                class="form-control" id="avgScore"
                                                 required="required"/>
                                 </div>
 
@@ -512,7 +600,8 @@
                                             </div>
                                             <form:label path="startDate"
                                                         for="startDateAdmin">Start date of practice:</form:label>
-                                            <form:input path="startDate" type="date" min="2017-12-27" max="2018-12-31" class="form-control"
+                                            <form:input path="startDate" type="date" min="2017-12-27" max="2018-12-31"
+                                                        class="form-control"
                                                         id="startDateAdmin" required="required"
                                                         placeholder="18:12:1997"/>
                                         </div>
@@ -531,7 +620,8 @@
                                             </div>
                                             <form:label path="endDate"
                                                         for="endDateAdmin">End date of practice:</form:label>
-                                            <form:input path="endDate" type="date" min="2017-12-27" max="2018-12-31" class="form-control"
+                                            <form:input path="endDate" type="date" min="2017-12-27" max="2018-12-31"
+                                                        class="form-control"
                                                         id="endDateAdmin" required="required"/>
                                         </div>
                                     </div>
@@ -541,7 +631,8 @@
 
                             <div class="form-group">
                                 <form:label path="quantity" for="quantity">Quantity of students:</form:label>
-                                <form:input path="quantity" type="number" min="1" max="100" class="form-control" id="quantity"
+                                <form:input path="quantity" type="number" min="1" max="100" class="form-control"
+                                            id="quantity"
                                             required="required"/>
                             </div>
 
@@ -666,7 +757,8 @@
                                             </div>
                                             <form:label path="startDate"
                                                         for="startDate">Start date of practice:</form:label>
-                                            <form:input path="startDate" type="date" min="2017-12-27" max="2018-12-31" name="startDate"
+                                            <form:input path="startDate" type="date" min="2017-12-27" max="2018-12-31"
+                                                        name="startDate"
                                                         class="form-control" id="startDate" required="required"
                                                         placeholder="18:12:1997"/>
                                         </div>
@@ -684,7 +776,8 @@
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             <form:label path="endDate" for="endDate">End date of practice:</form:label>
-                                            <form:input path="endDate" type="date" min="2017-12-27" max="2018-12-31" name="endDate" class="form-control"
+                                            <form:input path="endDate" type="date" min="2017-12-27" max="2018-12-31"
+                                                        name="endDate" class="form-control"
                                                         id="endDate" required="required"/>
                                         </div>
                                     </div>
@@ -694,7 +787,8 @@
 
                             <div class="form-group">
                                 <form:label path="quantity" for="quantity">Quantity of students:</form:label>
-                                <form:input path="quantity" type="number" min="1" max="100" class="form-control" id="quantity"
+                                <form:input path="quantity" type="number" min="1" max="100" class="form-control"
+                                            id="quantity"
                                             required="required"/>
                             </div>
 
@@ -783,7 +877,8 @@
                 <span class="hamb-bottom"></span>
             </button>
 
-            <table class="table order-column table-hover myTable" id="example1" cellspacing="0" cellpadding="0" width="100%">
+            <table class="table order-column table-hover myTable" id="example1" cellspacing="0" cellpadding="0"
+                   width="100%">
                 <thead>
                 <tr>
                     <th><span>First Name</span></th>
