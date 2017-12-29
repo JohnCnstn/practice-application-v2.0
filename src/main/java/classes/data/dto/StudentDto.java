@@ -56,6 +56,8 @@ public class StudentDto {
     @Setter
     private long specialityId;
 
+    @NotNull
+    @Size(min = 0, max = 10, message = "Your average score should be from 0 to 10!")
     @Getter
     @Setter
     private double avgScore;

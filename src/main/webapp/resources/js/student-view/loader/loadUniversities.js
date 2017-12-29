@@ -14,6 +14,12 @@ $( document ).ready(function() {
             success: function (result) {
                 var html = '';
                 var len = result.length;
+                if (len > 0) {
+                    $(".submitFaculty").prop('disabled', false);
+                } else {
+                    callErrorAlert("You should create at least 1 university!");
+                    $(".submitFaculty").prop('disabled', true);
+                }
                 for(var i=0; i<len; i++){
                     html += '<option value="' + result[i].id + '">' + result[i].name + '</option>';
                 }
