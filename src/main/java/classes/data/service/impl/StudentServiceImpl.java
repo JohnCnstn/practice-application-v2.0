@@ -7,6 +7,7 @@ import classes.data.repository.UserRepository;
 import classes.data.service.PracticeService;
 import classes.data.service.SpecialityService;
 import classes.data.service.StudentService;
+import classes.data.validation.exception.NewPracticeDateInsideOldPractice;
 import classes.data.validation.exception.practice.NumberOfStudentsEqualsQuantity;
 import classes.data.validation.exception.signUp.EmailExistsException;
 import classes.data.validation.exception.signUp.UserNameExistsException;
@@ -56,13 +57,17 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void setStudentsOnPractice(List<Long> practicesIds, Long[] ids) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
+    public void setStudentsOnPractice(List<Long> practicesIds, Long[] ids) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity, NewPracticeDateInsideOldPractice {
         for (Long id : ids) {
 
             Student student = null;
 
             for (Long practiceId : practicesIds) {
                 Practice practice = practiceService.findOne(practiceId);
+
+                if (newPracticeDateInsideOldPractice(practice, id)) {
+                    throw new NewPracticeDateInsideOldPractice("New practice date between one of the old practice date!");
+                }
 
                 if (studentAlreadyOnThisPractice(practice, id)) {
                     throw new StudentAlreadyOnThisPracticeException("One of students already on your practice!");
@@ -236,6 +241,17 @@ public class StudentServiceImpl implements StudentService {
 
         for (Practice practice : allStudentsPractices) {
             if (practice.equals(headMasterPractice)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean newPracticeDateInsideOldPractice(Practice newPractice, long id) {
+
+        List<Practice> studentPractices = getStudentPractices(id);
+        for (Practice practice : studentPractices) {
+            if (newPractice.getStartDate().after(practice.getStartDate()) && newPractice.getStartDate().before(practice.getEndDate())) {
                 return true;
             }
         }

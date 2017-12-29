@@ -7,6 +7,7 @@ import classes.data.entity.Practice;
 import classes.data.entity.User;
 import classes.data.service.HeadMasterService;
 import classes.data.service.StudentService;
+import classes.data.validation.exception.NewPracticeDateInsideOldPractice;
 import classes.data.validation.exception.practice.NumberOfStudentsEqualsQuantity;
 import classes.data.validation.exception.studentOnPractice.StudentAlreadyOnThisPracticeException;
 import classes.data.validation.exception.studentOnPractice.StudentNotOnYourPracticeException;
@@ -45,7 +46,7 @@ public class UserInfoRestController {
 
     @RequestMapping(value = "/{id}/assignOnPractice", method = RequestMethod.POST)
     public @ResponseBody
-    ResponseEntity<StudentDto> assignOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
+    ResponseEntity<StudentDto> assignOnPractice(@RequestBody Long[] dataArrayToSend, @ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity, NewPracticeDateInsideOldPractice {
 
         List<Long> practicesIds = new ArrayList();
 
@@ -60,7 +61,7 @@ public class UserInfoRestController {
 
     @RequestMapping(value = "/{id}/headMasterAssignOnPractice", method = RequestMethod.GET)
     public @ResponseBody
-    ResponseEntity<StudentDto> headMasterAssignOnPractice(@ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
+    ResponseEntity<StudentDto> headMasterAssignOnPractice(@ModelAttribute StudentDto studentDto) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity, NewPracticeDateInsideOldPractice {
 
         User headMaster = getPrincipal();
 
@@ -99,7 +100,7 @@ public class UserInfoRestController {
         studentService.deleteStudentFromPractice(practicesIds, ids);
     }
 
-    private void setStudentOnPractice(List<Long> practicesIds, long id) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity {
+    private void setStudentOnPractice(List<Long> practicesIds, long id) throws StudentAlreadyOnThisPracticeException, NumberOfStudentsEqualsQuantity, NewPracticeDateInsideOldPractice {
         Long[] ids = {id};
         studentService.setStudentsOnPractice(practicesIds, ids);
     }
