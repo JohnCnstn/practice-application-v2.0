@@ -27,7 +27,7 @@ $( document ).ready(function() {
                     for(var i=0; i<len; i++){
                         html += '<option value="' + result[i].id + '">' + result[i].name + '</option>';
                     }
-                    $('select#facultyId').append(html);
+                    $('select#universityId').append(html);
                     console.log("Success: ", result);
                 }
             },

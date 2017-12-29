@@ -32,8 +32,8 @@
                         '</sec:authorize>' +
                         '<sec:authorize access="hasRole('ADMIN')">' +
                         '   <button id="adminAssignButton" disabled data-toggle="modal" +\n' +
-                        '       data-target="#studentOnPracticeModal" class="action-button shadow animate green">Assign</button>\n' +
-                        '   <button id="adminReleaseButton" disabled class="action-button shadow animate yellow">Release</button>\n' +
+                        '       data-target="#studentOnPracticesModal" class="action-button shadow animate green">Assign</button>\n' +
+//                        '   <button id="adminReleaseButton" disabled class="action-button shadow animate yellow">Release</button>\n' +
                         '   <button id="deleteButton" disabled class="action-button shadow animate red">Delete</button>' +
                         '</sec:authorize>'
                     );
@@ -198,7 +198,7 @@
         <div class="container">
 
             <!-- Modal -->
-            <div class="modal fade" id="studentOnPracticeModal" role="dialog">
+            <div class="modal fade" id="studentOnPracticesModal" role="dialog">
                 <div class="modal-dialog">
 
                     <!-- Modal content-->

@@ -208,7 +208,9 @@
                     <sec:authorize access="hasRole('STUDENT')">
                         <h4 class="modal-title">My practices</h4>
                     </sec:authorize>
-                    <h4 class="modal-title">Student practices</h4>
+                    <sec:authorize access="hasAnyRole('ADMIN', 'HEAD_MASTER')">
+                        <h4 class="modal-title">Student practices</h4>
+                    </sec:authorize>
                 </div>
                 <div class="modal-body">
 

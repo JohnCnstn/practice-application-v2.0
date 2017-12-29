@@ -251,7 +251,8 @@ public class StudentServiceImpl implements StudentService {
 
         List<Practice> studentPractices = getStudentPractices(id);
         for (Practice practice : studentPractices) {
-            if (newPractice.getStartDate().after(practice.getStartDate()) && newPractice.getStartDate().before(practice.getEndDate())) {
+            if ((newPractice.getStartDate().after(practice.getStartDate()) && newPractice.getStartDate().before(practice.getEndDate()))
+                    || (newPractice.getStartDate().before(practice.getStartDate()) && newPractice.getEndDate().after(practice.getStartDate()))) {
                 return true;
             }
         }

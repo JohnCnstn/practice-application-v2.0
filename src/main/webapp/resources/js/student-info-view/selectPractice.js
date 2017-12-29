@@ -46,7 +46,8 @@ $(document).ready(function() {
                 console.log(result);
             },
             error: function (e) {
-                callErrorAlert('Student already on one of those practices!');
+                $('#studentOnPracticesModal').modal('hide');
+                callErrorAlert(e.responseText);
                 console.log("ERROR: ", e);
             }
         });
