@@ -31,8 +31,8 @@
                         '   <button id="headMasterReleaseButton" disabled class="action-button shadow animate yellow">Release</button>' +
                         '</sec:authorize>' +
                         '<sec:authorize access="hasRole('ADMIN')">' +
-                        '   <button id="headMasterAssignButton" disabled class="action-button shadow animate green">Assign</button>\n' +
-                        '   <button id="headMasterReleaseButton" disabled class="action-button shadow animate yellow">Release</button>\n' +
+                        '   <button id="adminAssignButton" disabled class="action-button shadow animate green">Assign</button>\n' +
+                        '   <button id="adminReleaseButton" disabled class="action-button shadow animate yellow">Release</button>\n' +
                         '   <button id="deleteButton" disabled class="action-button shadow animate red">Delete</button>' +
                         '</sec:authorize>'
                     );

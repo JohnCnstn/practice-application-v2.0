@@ -7,10 +7,22 @@ $(document).ready(function() {
 
         var numberOfSelectedStudents = document.getElementsByClassName('selected');
 
-        if (numberOfSelectedStudents.length > 0) {
-            $(".action-button").prop('disabled', false);
+        if (numberOfSelectedStudents.length == 1) {
+            $("#adminAssignButton").prop('disabled', false);
+            $("#adminReleaseButton").prop('disabled', false);
         } else {
-            $(".action-button").prop('disabled', true);
+            $("#adminAssignButton").prop('disabled', true);
+            $("#adminReleaseButton").prop('disabled', true);
+        }
+
+        if (numberOfSelectedStudents.length > 0) {
+            $("#headMasterAssignButton").prop('disabled', false);
+            $("#headMasterReleaseButton").prop('disabled', false);
+            $("#deleteButton").prop('disabled', false);
+        } else {
+            $("#headMasterAssignButton").prop('disabled', true);
+            $("#headMasterReleaseButton").prop('disabled', true);
+            $("#deleteButton").prop('disabled', true);
         }
 
     } );
