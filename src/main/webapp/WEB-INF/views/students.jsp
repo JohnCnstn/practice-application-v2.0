@@ -298,7 +298,7 @@
 
                                     <select id="facultyId">
                                         <c:forEach items="${facultiesList}" var="i">
-                                            <option value="${i.id}">${i.name}</option>
+                                            <option id="faculty" value="${i.id}">${i.name}</option>
                                         </c:forEach>
                                     </select>
 
