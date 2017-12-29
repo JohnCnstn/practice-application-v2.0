@@ -541,7 +541,7 @@
 
                             <div class="form-group">
                                 <form:label path="quantity" for="quantity">Quantity of students:</form:label>
-                                <form:input path="quantity" type="quantity" min="1" max="100" class="form-control" id="quantity"
+                                <form:input path="quantity" type="number" min="1" max="100" class="form-control" id="quantity"
                                             required="required"/>
                             </div>
 
@@ -556,7 +556,7 @@
                             </label>
 
                             <div class="sign-up button">
-                                <input class="submitPractice" type="submit" value="Sign up"/>
+                                <input class="submitPractice" type="submit" value="Submit"/>
                             </div>
 
                         </div>
@@ -694,12 +694,12 @@
 
                             <div class="form-group">
                                 <form:label path="quantity" for="quantity">Quantity of students:</form:label>
-                                <form:input path="quantity" type="quantity" min="1" max="100" class="form-control" id="quantity"
+                                <form:input path="quantity" type="number" min="1" max="100" class="form-control" id="quantity"
                                             required="required"/>
                             </div>
 
                             <div class="sign-up button">
-                                <input type="submit"/>
+                                <input type="submit" value="Submit"/>
                             </div>
 
                         </div>

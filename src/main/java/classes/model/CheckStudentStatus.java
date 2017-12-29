@@ -14,33 +14,29 @@ public class CheckStudentStatus {
     private static StudentService studentService;
 
     public static void checkStatus() {
-        Date today = new Date();
-
         List<Student> students = studentService.getAll();
 
         for (Student student : students) {
             List<Practice> practices = studentService.getStudentPractices(student.getId());
-            for (Practice practice : practices) {
-                if(today.after(practice.getStartDate()) && today.before(practice.getEndDate())) {
-                    studentService.changeStatus(student);
-                }
-            }
+            checkStatus(practices);
         }
     }
 
-    public static String checkStatus(Practice practice) {
+    public static String checkStatus(List<Practice> practices) {
 
-        Date today = new Date();
+        String status = "AVAILABLE";
 
-        String status;
+        for (Practice practice : practices) {
 
-        if(today.after(practice.getStartDate()) && today.before(practice.getEndDate())) {
-            status = "ON_PRACTICE";
-        } else if (today.before(practice.getStartDate())) {
-            status = "WAITING";
-            return status;
-        } else {
-            status = "AVAILABLE";
+            Date today = new Date();
+
+            if (today.after(practice.getStartDate()) && today.before(practice.getEndDate())) {
+                return "ON_PRACTICE";
+            } else if (today.before(practice.getStartDate())) {
+                status = "WAITING";
+            } else {
+                status = "AVAILABLE";
+            }
         }
         return status;
     }

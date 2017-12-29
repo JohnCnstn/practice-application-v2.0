@@ -101,7 +101,10 @@ public class StudentsRestController {
     }
 
     @RequestMapping(value = "/postPractice", method = RequestMethod.POST)
-    public ResponseEntity<PracticeDto> postPractice(@RequestBody PracticeDto practiceDto) throws HeadMasterAlreadyHavePractice {
+    public ResponseEntity<PracticeDto> postPractice(@Valid @RequestBody PracticeDto practiceDto, BindingResult bindingResult) throws HeadMasterAlreadyHavePractice, CustomInvalidDataException {
+        if (bindingResult.hasErrors()) {
+            throw new CustomInvalidDataException(bindingResult.getFieldError().getDefaultMessage());
+        }
         whatCreatePracticeMethodShouldBeUsed(practiceDto);
         return new ResponseEntity<>(practiceDto, HttpStatus.OK);
     }

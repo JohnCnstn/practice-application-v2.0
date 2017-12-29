@@ -87,13 +87,11 @@ public class StudentServiceImpl implements StudentService {
 
                 student.setPractices(studentPractice);
 
-                student.setStatus(CheckStudentStatus.checkStatus(practice));
-
             }
 
-            if (student != null) {
-                studentRepository.save(student);
-            }
+            List<Practice> studentPractices = getStudentPractices(id);
+            student.setStatus(CheckStudentStatus.checkStatus(studentPractices));
+            studentRepository.save(student);
         }
     }
 
@@ -128,13 +126,12 @@ public class StudentServiceImpl implements StudentService {
 
             }
 
-            List<Practice> studentPractice = getStudentPractices(id);
-            if (studentPractice.size() == 0) {
+            List<Practice> studentPractices = getStudentPractices(id);
+            if (studentPractices.size() == 0) {
                 student.setStatus("AVAILABLE");
             } else {
-                for (Practice practice : studentPractice) {
-                    student.setStatus(CheckStudentStatus.checkStatus(practice));
-                }
+                student.setStatus(CheckStudentStatus.checkStatus(studentPractices));
+                studentRepository.save(student);
             }
 
             studentRepository.save(student);

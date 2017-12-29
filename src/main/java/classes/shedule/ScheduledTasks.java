@@ -9,8 +9,6 @@ public class ScheduledTasks {
 
     @Scheduled(cron = "0 0 0 * * *", zone="Europe/Minsk")
     public void reportCurrentTime() {
-
         CheckStudentStatus.checkStatus();
-
     }
 }
