@@ -1,5 +1,7 @@
 $( document ).ready(function() {
 
+    var specialitiesList = '';
+
     // GET REQUEST
     $("#getAllSpecialities").click(function(event){
         event.preventDefault();
@@ -12,13 +14,21 @@ $( document ).ready(function() {
             type : "GET",
             url: window.location + "/getAllSpecialities",
             success: function (result) {
-                var specialitiesList = '';
                 var len = result.length;
-                for(var i=0; i<len; i++){
-                    specialitiesList += '<option value="' + result[i].id + '">' + result[i].name + '</option>';
+
+                if (len > 0) {
+                    $(".submitStudent").prop('disabled', false);
+                } else {
+                    callErrorAlert("You should create at least 1 faculty!");
+                    $(".submitStudent").prop('disabled', true);
                 }
-                $('select#specialityId').append(specialitiesList);
-                console.log("Success: ", result);
+                if (specialitiesList.length == 0) {
+                    for (var i = 0; i < len; i++) {
+                        specialitiesList += '<option value="' + result[i].id + '">' + result[i].name + '</option>';
+                    }
+                    $('select#specialityId').append(specialitiesList);
+                    console.log("Success: ", result);
+                }
             },
             error : function(e) {
                 console.log("ERROR: ", e);
